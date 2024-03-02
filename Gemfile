@@ -29,6 +29,7 @@ gem "jbuilder"
 gem "cloudinary"
 gem 'taskjuggler'
 gem 'acts-as-taggable-on'
+#gem 'gantt', git: 'git://github.com/Martin-Alexander/gantt.git'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
