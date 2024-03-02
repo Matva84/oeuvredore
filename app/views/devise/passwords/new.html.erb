@@ -1,18 +1,22 @@
-<h2>Forgot your password?</h2>
+<div class="container centerContainerSmall">
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
+  <div class="logForm">
+    <h2>Forgot your password ?</h2>
+    <form action="<%= session_path(resource_name) %>" method="post">
+      <div class="form-inputs">
+        <div class="emailpwd">
+          <div class="email_left leftaligned">
+            <h3>Email</h3>
+            <label for="<%= resource_name %>_email"></label>
+            <input type="email" size="52" id="<%= resource_name %>_email" name="<%= resource_name %>[email]" required="true" autofocus="true" autocomplete="email" class="inputText">
+          </div>
+         </div>
+      </div>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
+      <div class="form-actions">
+        <button  class="btnSubmitSmall" type="submit">Send me reset password instructions</button>
+      </div>
+    </form>
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
