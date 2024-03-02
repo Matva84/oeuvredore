@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_01_210145) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_01_210608) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,61 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_01_210145) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "documents", force: :cascade do |t|
+    t.string "name"
+    t.string "type"
+    t.bigint "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_documents_on_project_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "address"
+    t.date "start_at"
+    t.date "end_at"
+    t.date "initial_start_at"
+    t.date "initial_end_at"
+    t.float "customer_budget"
+    t.float "total_expenses"
+    t.integer "progress"
+    t.float "longitude"
+    t.float "latitude"
+    t.integer "customer_id"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.string "content"
+    t.bigint "user_id", null: false
+    t.bigint "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_reviews_on_project_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "category"
+    t.string "start_at"
+    t.string "end_at"
+    t.integer "progress"
+    t.float "budget"
+    t.integer "dependant_from_task_id"
+    t.bigint "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_tasks_on_project_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -64,4 +119,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_01_210145) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "documents", "projects"
+  add_foreign_key "projects", "users"
+  add_foreign_key "reviews", "projects"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "tasks", "projects"
 end
