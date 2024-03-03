@@ -30,6 +30,8 @@ gem "cloudinary"
 gem 'taskjuggler'
 gem 'acts-as-taggable-on'
 #gem 'gantt', git: 'git://github.com/Martin-Alexander/gantt.git'
+gem 'faker'
+gem "geocoder"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"

@@ -2,6 +2,6 @@ class Review < ApplicationRecord
   belongs_to :user
   belongs_to :project
 
-  validates :rating, presence: true, inclusion: { in: %w(0 1 2 3 4 5) }
-  validates :content, length: {minimum: 6}
+  validates :rating, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 5 }
+  validates :content, presence: true, length: {minimum: 6}
 end
