@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :email, presence: true
-  validates :pro, presence: true
+  # validates :pro, presence: true, default: false
 
   has_one_attached :photo
 end
