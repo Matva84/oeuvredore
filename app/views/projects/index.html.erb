@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Projets réalisés</h5>
+          <!-- Contenu à ajouter ultérieurement -->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Projets en cours</h5>
+        <!-- Contenu à ajouter ultérieurement -->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Chiffre d'affaires</h5>
+         <!-- Contenu à ajouter ultérieurement -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <h1 class="mt-4 mb-4">Mes projets</h1>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <% @projects.each do |project| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= project.title %></h5>
+            <p class="card-text"><%= project.description %></p>
+
+            <%= link_to "Voir le projet", project_path(project), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+      <h1 class="mb-4">Calendrier</h1>
+      <!-- Intégration du calendrier de Gantt -->
+    </div>
+  </div>
+</div>
