@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h2>Mon projet en cours</h2>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= @project.title %></h5>
+          <p class="card-text"><%= @project.description %></p>
+          <p><strong>Adresse:</strong> <%= @project.address %></p>
+          <p><strong>Date de début:</strong> <%= @project.initial_start_at.strftime("%d %B %Y") %></p>
+          <p><strong>Date de fin:</strong> <%= @project.initial_end_at.strftime("%d %B %Y") %></p>
+          <p><strong>Progression:</strong> <%= @project.progress %> %</p>
+          <p><strong>Budget du client:</strong> <%= @project.customer_budget %> €</p>
+          <p><strong>Dépenses totales:</strong> <%= @project.total_expenses %> €</p>
+
+          <%= link_to "Retour au tableau de bord", projects_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- aJOUT DE CODE POUR FINALISER LA FRAME GLOBAL SUIVANT FIGMA DE LA PAGE SHOW -->
+ <!-- A remplacer lorsqu'on codera ces pages!! -->
+
+ <div class="container mt-4">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Planning</h5>
+          <!-- Contenu de la carte Planning -->
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Budget</h5>
+          <!-- Contenu de la carte Budget -->
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Documents & Suivi</h5>
+          <!-- Contenu de la carte Documents & Suivi -->
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Photos & Vidéos</h5>
+          <!-- Contenu de la carte Photos & Vidéos -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
