@@ -2,7 +2,9 @@
   <%= link_to "Retour au tableau de bord", projects_path, class: "btn btn-primary" %>
   <div class="card">
     <div class="card-presentation">
-      <img src="" alt="Image du projet" class="img-projet">
+      <div class="card-img">
+        <i class="fa-regular fa-pen-to-square pen"></i>
+      </div>
       <h5 class="card-title"><%= @project.title %></h5>
       <p class="card-text"><%= @project.description %></p>
       <div class="card-progression">
