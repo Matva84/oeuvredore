@@ -36,30 +36,30 @@
     </div>
   </div>
 
-  <div class="onglets">
+  <div class="onglets" data-controller="tabs-link" >
     <nav>
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <button class="nav-link active myTab" id="nav-planning-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" data-controller="tabs-link" data-action="click->tabs-link#revealPlanning">Planning</button>
-        <button class="nav-link myTab" id="nav-budget-tab" data-bs-toggle="tab" data-bs-target="#nav-budget" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" data-controller="tabs-link" data-action="click->tabs-link#revealBudget">Budget</button>
-        <button class="nav-link myTab" id="nav-documents-tab" data-bs-toggle="tab" data-bs-target="#nav-documents" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" data-controller="tabs-link" data-action="click->tabs-link#revealDocuments">Documents</button>
-        <button class="nav-link myTab" id="nav-photos-tab" data-bs-toggle="tab" data-bs-target="#nav-photos" type="button" role="tab" aria-controls="nav-photos" aria-selected="false" data-controller="tabs-link" data-action="click->tabs-link#revealPhotos">Photos</button>
-        <button class="nav-link myTab" id="nav-messagerie-tab" data-bs-toggle="tab" data-bs-target="#nav-messagerie" type="button" role="tab" aria-controls="nav-messagerie" aria-selected="false" data-controller="tabs-link" data-action="click->tabs-link#revealMessagerie">Messagerie</button>
+        <button class="nav-link active myTab" id="nav-planning-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" data-action="click->tabs-link#revealPlanning">Planning</button>
+        <button class="nav-link myTab" id="nav-budget-tab" data-bs-toggle="tab" data-bs-target="#nav-budget" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" data-action="click->tabs-link#revealBudget">Budget</button>
+        <button class="nav-link myTab" id="nav-documents-tab" data-bs-toggle="tab" data-bs-target="#nav-documents" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" data-action="click->tabs-link#revealDocuments">Documents</button>
+        <button class="nav-link myTab" id="nav-photos-tab" data-bs-toggle="tab" data-bs-target="#nav-photos" type="button" role="tab" aria-controls="nav-photos" aria-selected="false" data-action="click->tabs-link#revealPhotos">Photos</button>
+        <button class="nav-link myTab" id="nav-messagerie-tab" data-bs-toggle="tab" data-bs-target="#nav-messagerie" type="button" role="tab" aria-controls="nav-messagerie" aria-selected="false" data-action="click->tabs-link#revealMessagerie">Messagerie</button>
       </div>
     </nav>
-    <div class="tab-content ongletscontainer" id="nav-tabContent" data-tabs-link-target="content">
+    <div class="tab-content ongletscontainer" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-planning" role="tabpanel" aria-labelledby="nav-planning-tab" tabindex="0" data-tabs-link-target="contentPlanning">
         Ceci est l'onglet planning
       </div>
-      <div class="tab-pane fade d-none" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab" tabindex="0" data-tabs-link-target="contentBudget">
+      <div class="tab-pane fade d-none" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab" tabindex="1" data-tabs-link-target="contentBudget">
         Ceci est l'onglet budget
       </div>
-      <div class="tab-pane fade d-none" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="0" data-tabs-link-target="contentDocuments">
+      <div class="tab-pane fade d-none" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="2" data-tabs-link-target="contentDocuments">
         Ceci est l'onglet documents
       </div>
-      <div class="tab-pane fade d-none" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="0" data-tabs-link-target="contentPhotos">
+      <div class="tab-pane fade d-none" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="3" data-tabs-link-target="contentPhotos">
         Ceci est l'onglet photos
       </div>
-      <div class="tab-pane fade d-none" id="nav-messagerie" role="tabpanel" aria-labelledby="nav-messagerie-tab" tabindex="0" data-tabs-link-target="contentMessagerie">
+      <div class="tab-pane fade d-none" id="nav-messagerie" role="tabpanel" aria-labelledby="nav-messagerie-tab" tabindex="4" data-tabs-link-target="contentMessagerie">
         Ceci est l'onglet messagerie
       </div>
     </div>
