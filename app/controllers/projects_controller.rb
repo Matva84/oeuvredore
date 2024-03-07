@@ -4,11 +4,12 @@ class ProjectsController < ApplicationController
   def index
     @user = current_user
     @users = User.all
-    @projects = Project.all
-
+    @show_all_projects = params[:show_all] == "true" && params[:show_all] != "false"
+    @projects = @show_all_projects ? Project.all : Project.limit(3)
   end
 
   def new
+    @project = Project.new
   end
 
   def show
@@ -16,6 +17,14 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    @user = current_user
+    @project = Project.new(project_params)
+    @project.user_id = @user.id
+    if @project.save
+      redirect_to projects_path, notice: 'Le projet a été créé avec succès.'
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -29,8 +38,8 @@ class ProjectsController < ApplicationController
 
   private
 
-  def projects_params
-    params.require(:project).permit(:title, :descritpion, :address, :initial_start_at, :initial_end_at, :progress, :customer_budget, :total_expenses)
+  def project_params
+    params.require(:project).permit(:title, :description, :address, :initial_start_at, :initial_end_at, :progress, :customer_budget, :total_expenses)
   end
 
 end
