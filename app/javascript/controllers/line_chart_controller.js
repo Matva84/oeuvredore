@@ -6,7 +6,8 @@ export default class extends Controller {
   connect() {
     console.log("Line chart controller connected")
 
-    const linechartChart = new Chart(this.element, {
+    new Chart(
+      this.element, {
       type: 'bar',
       data: {
         labels: ['Men', 'Women'],
