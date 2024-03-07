@@ -14,6 +14,8 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @tasks = @project.tasks
+    @customer = User.find(@project.customer_id)
   end
 
   def create
