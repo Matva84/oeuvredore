@@ -1,71 +1,83 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <h2>Mon projet en cours</h2>
-    </div>
-  </div>
-</div>
+  <%= link_to "Retour au tableau de bord", projects_path, class: "btn btn-primary" %>
+  <div class="card">
+    <div class="card-presentation">
+      <div class="card-img">
+        <i class="fa-regular fa-pen-to-square pen"></i>
+      </div>
+      <h5 class="card-title"><%= @project.title %></h5>
+      <p class="card-text"><%= @project.description %></p>
+      <div class="card-progression">
 
-<div class="container mt-4">
-  <div class="row">
-    <div class="col-md-8 offset-md-2">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title"><%= @project.title %></h5>
-          <p class="card-text"><%= @project.description %></p>
-          <p><strong>Adresse:</strong> <%= @project.address %></p>
-          <p><strong>Date de début:</strong> <%= @project.initial_start_at.strftime("%d %B %Y") %></p>
-          <p><strong>Date de fin:</strong> <%= @project.initial_end_at.strftime("%d %B %Y") %></p>
-          <p><strong>Progression:</strong> <%= @project.progress %> %</p>
-          <p><strong>Budget du client:</strong> <%= @project.customer_budget %> €</p>
-          <p><strong>Dépenses totales:</strong> <%= @project.total_expenses %> €</p>
+        <div class="cardsmall">
+          <p><strong>Planning</strong></p>
+          <div class="w3-darkgreen  w3-round-large">
+            <% s = "width:#{@project.progress}%" %>
+            <div class="w3-container w3-green w3-round-large" style= <%=s%> >
+              <%= (@project.progress).round %>%
+            </div>
+          </div>
 
-          <%= link_to "Retour au tableau de bord", projects_path, class: "btn btn-primary" %>
         </div>
+        <div class="cardsmall">
+          <p><strong>Budget</strong></p>
+          <div class="w3-darkblue w3-round-large">
+            <% s = "width:#{100 * (@project.total_expenses/@project.customer_budget)}%" %>
+            <div class="w3-container w3-blue w3-round-large" style=<%= s%>>
+              <%= (100 * (@project.total_expenses/@project.customer_budget)).round %>%
+            </div>
+          </div>
+        </div>
+
+        <div class="cardsmall">
+          <p><strong>Client</strong></p>
+          <p><%= @customer %> </p>
+        </div>
+
       </div>
     </div>
   </div>
-</div>
 
- <!-- aJOUT DE CODE POUR FINALISER LA FRAME GLOBAL SUIVANT FIGMA DE LA PAGE SHOW -->
- <!-- A remplacer lorsqu'on codera ces pages!! -->
+  <div class="onglets" data-controller="tabs-link" >
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active myTab" id="nav-planning-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" data-action="click->tabs-link#revealPlanning">Planning</button>
+        <button class="nav-link myTab" id="nav-budget-tab" data-bs-toggle="tab" data-bs-target="#nav-budget" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" data-action="click->tabs-link#revealBudget" data-controller="line-chart">Budget</button>
+        <button class="nav-link myTab" id="nav-documents-tab" data-bs-toggle="tab" data-bs-target="#nav-documents" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" data-action="click->tabs-link#revealDocuments">Documents</button>
+        <button class="nav-link myTab" id="nav-photos-tab" data-bs-toggle="tab" data-bs-target="#nav-photos" type="button" role="tab" aria-controls="nav-photos" aria-selected="false" data-action="click->tabs-link#revealPhotos">Photos</button>
+        <button class="nav-link myTab" id="nav-messagerie-tab" data-bs-toggle="tab" data-bs-target="#nav-messagerie" type="button" role="tab" aria-controls="nav-messagerie" aria-selected="false" data-action="click->tabs-link#revealMessagerie">Messagerie</button>
+      </div>
+    </nav>
 
- <div class="container mt-4">
-  <div class="row">
-    <div class="col-md-3">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Planning</h5>
-          <!-- Contenu de la carte Planning -->
+    <div class="tab-content ongletscontainer" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-planning" role="tabpanel" aria-labelledby="nav-planning-tab" tabindex="0" data-tabs-link-target="contentPlanning">
+        <% @tasks.each do |task| %>
+          <p><%= task.name %> from <%= task.start_at %> to <%= task.end_at %> </p>
+        <% end %>
+      </div>
+
+
+      <div class="tab-pane fade d-none" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab" tabindex="1" data-tabs-link-target="contentBudget">
+        Ceci est l'onglet budget
+        <div class="pt-5">
+          <div class="chart">
+            <canvas data-controller="line-chart" data-line-chart-target="linechart">
+            </canvas>
+          </div>
         </div>
+      </div>
+
+
+      <div class="tab-pane fade d-none" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="2" data-tabs-link-target="contentDocuments">
+        Ceci est l'onglet documents
+      </div>
+      <div class="tab-pane fade d-none" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="3" data-tabs-link-target="contentPhotos">
+        Ceci est l'onglet photos
+      </div>
+      <div class="tab-pane fade d-none" id="nav-messagerie" role="tabpanel" aria-labelledby="nav-messagerie-tab" tabindex="4" data-tabs-link-target="contentMessagerie">
+        Ceci est l'onglet messagerie
       </div>
     </div>
 
-    <div class="col-md-3">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Budget</h5>
-          <!-- Contenu de la carte Budget -->
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Documents & Suivi</h5>
-          <!-- Contenu de la carte Documents & Suivi -->
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Photos & Vidéos</h5>
-          <!-- Contenu de la carte Photos & Vidéos -->
-        </div>
-      </div>
-    </div>
   </div>
 </div>

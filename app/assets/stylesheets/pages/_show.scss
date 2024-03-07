@@ -1,0 +1,87 @@
+.card {
+  background-color: white;
+  color: black;
+  border: solid 1px #e2e2e2;
+  border-radius: 8px;
+  margin-top: 20px;
+  margin-left: 12.5%;
+  width: 75%;
+  box-shadow: 2px 2px 3px #e2e2e2;
+}
+
+.card-img {
+  background-image: "";
+  background-size: cover;
+  //<img src="" alt="Image du projet" class="img-projet">
+  height: 200px;
+  //object-fit: cover;
+}
+.pen {
+  padding-left: 93%;
+  padding-top: 168px;
+}
+
+.onglets {
+  background-color: white;
+  color: black;
+  border: solid 1px #e2e2e2;
+  border-radius: 8px;
+  margin-top: 20px;
+  margin-left: 12.5%;
+  width: 75%;
+  box-shadow: 2px 2px 3px #e2e2e2;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.ongletscontainer {
+
+}
+//"container">
+
+.w100 {
+  width: 194px;
+}
+.tcenter {
+  text-align: center;
+}
+
+.card-title {
+  padding-left: 48px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  font-size: x-large;
+  font-weight: 500;
+}
+.card-text {
+  margin-left: 48px;
+  margin-right: 48px;
+  font-size: large;
+  font-weight: 300;
+  border-top: 1px solid #e2e2e2;
+  padding-top: 16px;
+}
+
+.card-progression {
+  margin-left: 48px;
+  margin-right: 48px;
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.cardsmall {
+  border: 0px black solid;
+  margin-bottom: 16px;
+  width: 25%;
+}
+
+.w3-round-xlarge{border-radius:16px}
+.w3-round-large{border-radius:8px}
+.w3-darkblue,.w3-hover-blue:hover{color:#fff!important;background-color:#3d93f5!important}
+.w3-blue,.w3-hover-blue:hover{color:#fff!important;background-color:#8bbff8!important}
+.w3-container,.w3-panel{padding:0.01em 16px}.w3-panel{margin-top:16px;margin-bottom:16px}
+.w3-light-grey,.w3-hover-light-grey:hover,.w3-light-gray,.w3-hover-light-gray:hover{color:#000!important;background-color:#f1f1f1!important}
+.w3-green,.w3-hover-green:hover{color:#fff!important;background-color:#4dd293!important}
+.w3-darkgreen,.w3-hover-green:hover{color:#fff!important;background-color:#169151!important}
