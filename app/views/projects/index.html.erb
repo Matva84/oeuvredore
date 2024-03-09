@@ -52,6 +52,11 @@
       </div>
     <% end %>
   </div>
+    <% if @show_all_projects %>
+      <%= link_to "Réduire", projects_path, class: "mt-3" %>
+    <% else %>
+      <%= link_to "Tout voir", projects_path(show_all: true), class: "mt-3" %>
+    <% end %>
 </div>
 
 <div class="row mt-4">
