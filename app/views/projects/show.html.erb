@@ -51,18 +51,22 @@
 
     <div class="tab-content ongletscontainer" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-planning" role="tabpanel" aria-labelledby="nav-planning-tab" tabindex="0" data-tabs-link-target="contentPlanning">
+        <% task_enddate = [] %>
+        <% task_price = [] %>
         <% @tasks.each do |task| %>
-          <p><%= task.name %> from <%= task.start_at %> to <%= task.end_at %> </p>
+          <p><%= task.name %> du <%= task.start_at %> au <%= task.end_at %> </p>
+          <% task_enddate << task.end_at %>
+          <% task_price << task.budget %>
         <% end %>
+        <% json_enddate =  task_enddate.to_json%>
+        <% json_price =  task_price.to_json%>
       </div>
 
 
       <div class="tab-pane fade d-none" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab" tabindex="1" data-tabs-link-target="contentBudget">
-        Ceci est l'onglet budget
         <div class="pt-5">
           <div class="chart">
-            <canvas data-controller="line-chart" data-line-chart-target="linechart">
-            </canvas>
+            <canvas id = "budgetgraph" data-controller="line-chart" data-line-chart-target="linechart" data-date = <%= json_enddate%> data-price = <%= json_price%>></canvas>
           </div>
         </div>
       </div>
