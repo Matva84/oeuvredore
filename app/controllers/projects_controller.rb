@@ -5,7 +5,22 @@ class ProjectsController < ApplicationController
     @user = current_user
     @users = User.all
     @show_all_projects = params[:show_all] == "true" && params[:show_all] != "false"
-    @projects = @show_all_projects ? Project.all : Project.limit(3)
+
+    @projects_all = Project.all
+    @projects = []
+    @projects_all.each do |project|
+      #if project.user.pro == true && project.user_id == @user.id
+      #  @projects << project
+      #else project.user.pro == false && project.customer_id == @user.id
+      #  @projects << project
+      #end
+      if project.user_id == @user.id || project.customer_id == @user.id
+          @projects << project
+      end
+    end
+
+    # @projects = @show_all_projects ? Project.all : Project.limit(3)
+    # @projects = @show_all_projects ? @projects : @projects.limit(3)
   end
 
   def new
@@ -15,7 +30,10 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @tasks = @project.tasks
-    @customer = @project.user
+    @user = @project.user
+    @customer = @project.customer
+    @chatroom = @project.chatroom
+    @message = Message.new
   end
 
   def create

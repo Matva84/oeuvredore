@@ -1,5 +1,5 @@
 class Document < ApplicationRecord
-  AUTHORIZED_CATEGORIES = ["Photo", "Facture", "Devis", "Contrat","Autre"]
+  AUTHORIZED_CATEGORIES = ["Photo", "Facture", "Devis", "Contrat", "Autre"]
   belongs_to :project
 
   validates :name, presence: true
