@@ -91,7 +91,24 @@
             data-controller="chatroom-subscription"
             data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
             <% @chatroom.messages.each do |message| %>
-              <%= render "messages/message", message: message %>
+              <%#= render "messages/message", message: message %>
+
+
+  <% if message.user.nickname == @project.user.nickname %>
+    <div id="message-<%= message.id %>">
+      <small class="colgrey"><strong><%= message.user.nickname %></strong>
+      <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i></small>
+      <div class="blue"><p><%= message.content %></p></div>
+    </div>
+  <% else %>
+    <div id="message-<%= message.id %>">
+      <small class="colgrey txtshift"><strong><%= message.user.nickname %></strong>
+      <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i></small>
+      <div class="grey"><p><%= message.content %></p></div>
+    </div>
+  <% end %>
+
+
             <% end %>
           </div>
 
