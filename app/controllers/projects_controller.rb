@@ -9,8 +9,13 @@ class ProjectsController < ApplicationController
     @projects_all = Project.all
     @projects = []
     @projects_all.each do |project|
-      if project.user_id == @user.id
-        @projects << project
+      #if project.user.pro == true && project.user_id == @user.id
+      #  @projects << project
+      #else project.user.pro == false && project.customer_id == @user.id
+      #  @projects << project
+      #end
+      if project.user_id == @user.id || project.customer_id == @user.id
+          @projects << project
       end
     end
 

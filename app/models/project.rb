@@ -1,5 +1,6 @@
 class Project < ApplicationRecord
   belongs_to :user
+  belongs_to :customer, class_name: 'User', foreign_key: 'customer_id', required: true
   has_many :tasks, dependent: :destroy
   has_many :documents, dependent: :destroy
   has_one :chatroom, dependent: :destroy
