@@ -94,3 +94,40 @@
 .w3-light-grey,.w3-hover-light-grey:hover,.w3-light-gray,.w3-hover-light-gray:hover{color:#000!important;background-color:#f1f1f1!important}
 .w3-green,.w3-hover-green:hover{color:#fff!important;background-color:#4dd293!important}
 .w3-darkgreen,.w3-hover-green:hover{color:#fff!important;background-color:#169151!important}
+
+.blue {
+  border: solid 1px #218aff;
+  border-radius: 4px;
+  background-color: #218aff;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 0px;
+  margin-left: 5%;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 10px;
+  width: 50%;
+  color: white;
+}
+.grey {
+  border: solid 1px #aeb9cc;
+  border-radius: 4px;
+  background-color: #aeb9cc;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 45%;
+  padding-bottom: 0px;
+  padding-top: 10px;
+  padding-left: 3%;
+  padding-right: 3%;
+  width: 50%;
+  color: white;
+}
+.colgrey {
+  color: grey;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+.txtshift {
+  margin-left: 45%;
+}
