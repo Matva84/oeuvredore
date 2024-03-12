@@ -11,4 +11,8 @@ class User < ApplicationRecord
   # validates :pro, presence: true, default: false
 
   has_one_attached :photo
+
+  def full_name
+    name
+  end
 end

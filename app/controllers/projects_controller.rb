@@ -4,23 +4,13 @@ class ProjectsController < ApplicationController
   def index
     @user = current_user
     @users = User.all
-    @show_all_projects = params[:show_all] == "true" && params[:show_all] != "false"
+    @show_all_projects = params[:show_all] == "true"
 
-    @projects_all = Project.all
-    @projects = []
-    @projects_all.each do |project|
-      #if project.user.pro == true && project.user_id == @user.id
-      #  @projects << project
-      #else project.user.pro == false && project.customer_id == @user.id
-      #  @projects << project
-      #end
-      if project.user_id == @user.id || project.customer_id == @user.id
-          @projects << project
-      end
+    if @show_all_projects
+      @projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id))
+    else
+      @projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id)).limit(3)
     end
-
-    # @projects = @show_all_projects ? Project.all : Project.limit(3)
-    # @projects = @show_all_projects ? @projects : @projects.limit(3)
   end
 
   def new
@@ -59,7 +49,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:title, :description, :address, :initial_start_at, :initial_end_at, :progress, :customer_budget, :total_expenses)
+    params.require(:project).permit(:title, :description, :address, :initial_start_at, :initial_end_at, :progress, :customer_budget, :total_expenses, :customer_id)
   end
 
 end
