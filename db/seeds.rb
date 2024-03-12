@@ -7,7 +7,7 @@ list_of_projects = []
 list_of_documents = []
 list_of_tasks = []
 list_of_reviews = []
-list_of_categories = ["Peinture", "Carrelage", "Plomberie", "Eletricité", "Maçonnerie","Climatisation", "Menuiserie", "Jardin", "Démontage", "Montage", "Réception", "Définition"]
+list_of_categories = ["Peinture", "Carrelage", "Plomberie", "Eletricité", "Maçonnerie", "Climatisation", "Menuiserie", "Jardin", "Démontage", "Montage", "Réception", "Définition"]
 
 puts "Cleaning databases:"
 Message.destroy_all

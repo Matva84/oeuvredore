@@ -77,7 +77,22 @@
 
 
       <div class="tab-pane fade d-none" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="2" data-tabs-link-target="contentDocuments">
-        Ceci est l'onglet documents
+
+        <h3>Charger un fichier PDF</h3>
+        <%= form_with(url: documents_path, multipart: true) do |form| %>
+          <%= form.file_field :file, accept: '.pdf' %>
+          <%= form.submit "Télécharger" %>
+        <% end %>
+
+        <!--<% if @upload_url %>
+          <p>Fichier PDF téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %></p>
+        <% end %>-->
+
+        <% @documents.each do |doc| %>
+          <p><%= doc.url %> </p>
+        <% end %>
+
+
       </div>
       <div class="tab-pane fade d-none" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="3" data-tabs-link-target="contentPhotos">
         Ceci est l'onglet photos
@@ -111,10 +126,11 @@
 
             <% end %>
           </div>
-
-          <%= simple_form_for [@chatroom, @message], remote: true do |f|%>
-            <%= f.input :content,label: false,placeholder: "Message ##{@chatroom.name}"%>
-          <% end %>
+          <div class="msgbox">
+            <%= simple_form_for [@chatroom, @message], remote: true do |f|%>
+              <%= f.input :content,label: false,placeholder: "Message ##{@chatroom.name}"%>
+            <% end %>
+          </div>
         </div>
 
 
