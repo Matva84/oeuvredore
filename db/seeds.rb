@@ -55,9 +55,11 @@ puts "Creating projects..."
   projectbq1 = Project.new(title: "Maison sur l'ile de Ré, à rénover", description: "Rénovation complète de la salle de bain, avec remplacement de la baignoire par une douche, remplacement du carrelage, et installation d'un meuble vasque.", address: "573, avenue de la Corniche, 17940 Rivedoux-Plage", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 5000, total_expenses: 1000, user: user_bq, customer_id: list_of_users[rand(0..list_of_users.count-1)].id)
   projectbq1.save!
   list_of_projects << projectbq1
+
   projectbq2 = Project.new(title: "Appartement à Bordeaux", description: "Rénovation complète de la cuisine, avec remplacement des meubles, remplacement du carrelage, et installation d'un plan de travail.", address: "9, chemin clos des Grenettes, 17740 Sainte-Marie-De-Ré", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 8000, total_expenses: 5000, user: user_bq, customer_id: list_of_users[rand(0..list_of_users.count-1)].id)
   projectbq2.save!
   list_of_projects << projectbq2
+
   projectbq3 = Project.new(title: "Villa à Nantes, rénovation de la chambre", description: "Rénovation complète de la chambre, avec remplacement du parquet, remplacement de la peinture, et installation d'un dressing.", address: "12 rue de la Grosse Pierre, 17580 Le-Bois-Plage-En-Ré", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 3000, total_expenses: 1000, user: user_bq, customer_id: list_of_users[rand(0..list_of_users.count-1)].id)
   projectbq3.save!
   list_of_projects << projectbq3

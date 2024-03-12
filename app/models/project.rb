@@ -13,4 +13,5 @@ class Project < ApplicationRecord
   validates :total_expenses, presence: true
 
   has_many_attached :photo
+
 end
