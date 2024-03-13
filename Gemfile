@@ -29,7 +29,6 @@ gem "jbuilder"
 gem "cloudinary"
 gem 'taskjuggler'
 gem 'acts-as-taggable-on'
-#gem 'gantt', git: 'git://github.com/Martin-Alexander/gantt.git'
 gem 'faker'
 gem "geocoder"
 

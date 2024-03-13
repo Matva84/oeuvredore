@@ -4,7 +4,6 @@ import { Chart } from "chart.js";
 export default class extends Controller {
 
   connect() {
-    console.log("Line chart controller connected")
 
     var graph = document.getElementById("budgetgraph")
     var json_price = graph.dataset.price;
