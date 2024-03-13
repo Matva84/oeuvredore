@@ -1,0 +1,52 @@
+@font-face {
+  font-family: 'Brotherline';
+  src: url('/app/assets/stylesheets/config/Brotherline.ttf') format('truetype');
+}
+
+h2, h3, h4, a, p {
+  font-family: 'Inter', sans-serif;
+  color: black;
+}
+
+h1 {
+  font-family: 'Brotherline', sans-serif;
+  font-size: 70px;
+  font-weight: 600;
+}
+
+.h2-heading {
+  font-size: 50px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+h1, .h2-white, .h3-white, .p-white {
+  color: #fff;
+}
+
+.link-white {
+  color: #fff;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}

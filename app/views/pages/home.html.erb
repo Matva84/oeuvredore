@@ -1,5 +1,85 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-
 <%#<link rel="stylesheet" href="/config/frappe-gantt.scss"> %>
 <%#<script src="../../app/javascript/frappe-gantt.min.js"></script>%>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage Oeuvre d'Oré</title>
+    <link rel="stylesheet" href="style.scss">
+</head>
+<body>
+  <div class="background-img-section" style="background-image: url('https://images.unsplash.com/photo-1615571022219-eb45cf7faa9d?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+    <header>
+        <h1>Oeuvre d'Oré</h1>
+    </header>
+
+    <section class="head-content">
+        <h2 class="h2-white">Donnez-vie à vos projets immobiliers et de rénovation</h2>
+        <p class="p-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum commodo, justo ac scelerisque lacinia, purus velit tincidunt quam, vel consectetur leo nunc eget mauris.</p>
+    </section>
+
+    <section class="btn-section">
+      <div>
+        <a class="main-btn" href="">Je suis un professionnel</a>
+        <a class="main-btn" href="">Je suis un particulier</a>
+      </div>
+      <div class="form-input">
+        <p class="txt-form"> Entrez-votre adresse e-mail</p>
+        <a class="main-btn-rounded" href="">S'inscrire</a>
+      </div>
+      <a class="link-white" href="<%= new_user_session_path %>">J'ai déjà un compte</a>
+    </section>
+  </div>
+
+  <section class="pictos">
+    <div class="bloc-picto">
+      <img class="picto" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAADWklEQVR4nO2ZS0gVURjHp6zMHvSQpNQiih7QIuhhUYuW1SoCcdW+RYa7LCi6ULmIKMrCTbsIfBTSixatItpEmyR6UJBmCGlGRQ9N6hdffMJ4OnPnzD0zanB/cDd3vvOd7z8z5/WfIChSpIg3wBRgI3AEaAOeAu+BIeAn8FH/u6YxW4Cpk6HwxcAJoJfkSJsmoGoiCp8PnNM77MsQcAlYOF7F7wX6SZ8BoC7Lwkv0rv8mWy4C09IufoYOwDQ5CLyLuHYTKEur+KlAZ8rFf9LcpcBxYCRChP+TAE6TPm1GH5uBHktcs2/xuzMo/gNQbelrKfDCEl9baPGzge4UC/+si1x1zLrSa7STGW9BIQLO+FRb0F0L/vZbA/zwepVEMfB1IgQIOrDNxc59xQYO+RSfgoAyy+t7KsnGrHsiBQhAvZGyx2kDCKzzLR54G9tRfB3zgG9G3hqXhgd8iwd2+QoQgA4jd2MQB9BuNHrsUnVs4n/7OekQ02B00+GS+JHRaBuQy0CAcFbGXJ6YrUY3XS6J3xiNKvT/XAYChJaowQksYywDLonNgVMautZI+gKEq7aNm06nYYZcEg8bjeYY12NfJxsxAoRWYLrlDCJbkEQCBhnLSktM5JPwECDcBmYacRt0Ayj0uwgQ9yDM9oi4XAYChLvmYQZYry7HExcB1xlLfZ7YxgwECPeBuUb8Wpm1XASIbxPmTkx8LgMBwkNZjY02TlsJMZ3CfAdm+YooQMDoIloeW7SpUrcDYRoc2mUhQHgGVCYVIY5ZmD5zdhhHAcLzpOeBKovrdjSmzReyEyC8BpYnESF2X5iRqClV4zszFjB6JljlKqBc7b4wMjaWRMSvURc6LQG/gNVOxeYRUWdJ/CrqUao10m4s/64CBiz/tXgJ0I7EqzQR62NTTLskAlqBFRaHTqbwRb4CSiyrM9rZefGPPAVcGd2Jqm9kkvMSENrWildpo1tdjPICBFwIH2j08ITF2PI3euUuicFENGJG3QAOAzscBDQ5ngiF/d4CQh3U6s4wEQny77M0f5nqNzV17pqTfGJK+C2iz5JiT2oCQp1VimNm2TsVLEAAjllSPAiyQjeANfr+i5fTpSe7Yf0NJsxXYTzde8DO4H8CuAzccnLjJiPk8YuKBJOIP4yRp5VLESQFAAAAAElFTkSuQmCC">
+      <h3 class="h3-white">Une interface 100% personnalisable</h3>
+      <p class="p-white">Consultez les avancées de vos derniers chantiers en temps réel et suivez l’évolution de votre budget</p>
+    </div>
+
+    <div class="bloc-picto">
+      <img class="picto" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADHUlEQVR4nO2aS0hVURSGj9mbiiQsKCMaRpMGUeotehdFD2rQuFEGBWoPE2tmlihGj1nNCqIG0aCIBkZiEBgFFb0fmBVaUNbA8pbWF6tWsb149Tz2eQh+cCfXte/aP+fstf+9to4zzBAHGAGkgAPAJeAh0An06KdTv5O/VQHFMsZJCsAsoBZoxzsy5ggwM04BU4CTwA+C8x04DuRFLWID0IF95AmtjUrEQeAX4fFT1lDYIo4SHXVhiaggespti1isjzxqeqVMO5ZEjAFeEh/PgNE2hJQSP7ts7NatcasAXgO5QYSsJDksCyKkwUWCwItRPdpg1GvsbCDfa4JmFwlSFoQscpGnSWOLgC4RBkx0m+A9yaFd5zTN+E7W73I3QtIkh7SxHZiIXdo3lIR0ZxHyj+qh9mpNHSCmJJuQm7aqVkZlKvZRtZo0tnCAGDmJFvp1uykflSnlo2rVa+z2QeLuAyMzk68iOSzVOV1wEbsjU0gu0Eb8vFK7NA744iL+CZCTKaaM+Nmpc9nmYcySTCFjgRfEx1NglL4djz2Mq852sJJDTtRIziKdQ4nHsX+qXH9i9hA9pZp7BvDZ49jWgUqoNOKiotbYyW/5GN81WFNOmmlhIr2BSqNqngvizbIJqSNc3gGrNZcs8LMBfqsjm4iNIS74tB7iJmuufOBGwN9s7k/EmpCcsDyBGmC6kWuTJbPaYAqQ3bRSzZgX7qrn+ahNbvl8Ah4AF4H9wEJz9wXmAdewxwpTyBWPg7/p/Uhfe5B9zY0HtgKN2KWtz90LcNvlQDlDnwYKjGozV14Z9UeycPOAOcB6bYRfBb4S4v7zHznc6+1SC/BBgzpVcaPeaWzObAIAZ4iP57L3ODYAFvhYVzbolbONFRGGmPIYhOy2KsIQczhqSxMawN4InHM6kvtH3VDfhiymJnQhKmYScEz6UyEJ6QHWRSLGaHke0qsC23RLwyQyMSooB5ivduU88EivvLvV0oi9uQfc8fFkKhL1XxWG4Cq1P1647CQRoAA45cHWtDhJhr+2aQtwArgOvFHbhNqoFn2CE+Ke6zBOP/wG8gd/k7cxMqcAAAAASUVORK5CYII=">
+      <h3 class="h3-white">Chat en direct entre maitre d’oeuvre et client</h3>
+      <p class="p-white">Ne perdez jamais le contact avec votre chantier même à distance et restez informé des dernières évolutions</p>
+    </div>
+
+    <div class="bloc-picto">
+      <img class="picto" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACa0lEQVR4nO2YzWrUUBTH47RgxQodUNB5gfYV1BGXohvxCaTUrkWtTl2JurDqa4g70a26sOhYsH0ALS78QqorhbFQkfYnR08g6EhzkntuAuYPgZDk/u/5hXPuV5I0atQoqoA2MA08AF4B3/SS+/v6rp3UVcAu4DLwle31BZgHxpI6CegAK5lAHwJngElgt15T+uxR5rtlaZvUCOK9Bibp083R5oh+i7bt1CGdVjSgJ8CEoe0EsKhtX1SaZvyuCdFLC8QfA8OqevR8oswXRFrY3RI+RzMDQDtslPkCmE4LO4DXY/U6HSY6W+cyJ4hmAnjNqte9MNHZOk9zezKA11Q66iWxBQy08/EAXuPqNQgTna3zX6qrX6mOgVHgGHAT6APvgHW95P6ZvpNvRrfzi6Jsx8AeXTt9IL9kRu+lqVk5CHBC/3ZRvVWPykGCKokM0fICAVoxQa45glyNBSH5vOkIsgkc94YYM45MRfVRtgieIOeIp7NeEDLZrUUEWQNGPEDSfUNMdT1AblUAcsMD5KkxiO/AJT2c6OhyRJ5ZtOgB8toYxF97cIWxaNUDRE4LLTowxGO/0WPgAWJNi71DPPYZPTY8QD4bg5gb4iE1Y9EnD5AlYxA/snWi+xV5ZlHfA+Q2BZRpX0QLHiDdCkAOeoCMFKgT9AfIoXWRJUorOIjCXCSezrtAZJbxZfbnefUG2OkGojCngC1HiC3gpCtEBua6I8iVKBAKsgO46wBxR7yjgWRgeoH275JOC1FPUP5RM2UP6OLURM7RbE7WRsZ54oL76FTi4O6w7iafK5ismjf0vq+H2IcqTaNGjf5D/QTIH9j/8UjWFgAAAABJRU5ErkJggg==">
+      <h3 class="h3-white">Une plateforme fiable et sécurisée</h3>
+      <p class="p-white">Des centaines d’utilisateurs font confiance à Oeuvre d’Oré pour gérer leurs chantiers depuis chez eux.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="img-bloc">
+      <div class="bloc">
+        <img src="https://images.unsplash.com/photo-1595877244574-e90ce41ce089?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+      </div>
+      <div class="bloc">
+        <img src="https://images.unsplash.com/photo-1597211833712-5e41faa202ea?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+      </div>
+      <div class="double-row-bloc">
+        <div class="bloc">
+          <img src="https://cdn.dribbble.com/userupload/8506819/file/original-8a7899a3864bf0e3c69d451c7317aa6a.jpg?resize=752x" alt="">
+        </div>
+        <div class="bloc">
+          <h4>Lorem Ipsum dolor sit amet</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae consequat nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </div>
+    </div>
+
+    <section>
+      <div class="rich-text">
+        <h2>Oeuvre d’Oré c’est la plateforme en ligne N°1 pour la mise en relation de maitre d’oeuvre et de particuliers qui souhaitent entreprendre dans un projet immobilier</h2>
+      </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Mon Site Web. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
