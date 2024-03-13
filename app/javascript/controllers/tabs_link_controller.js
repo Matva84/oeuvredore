@@ -4,7 +4,6 @@ export default class extends Controller {
 static targets = ["contentPlanning", "contentBudget", "contentDocuments", "contentPhotos", "contentMessagerie"]
 
   connect() {
-    console.log("Hello from the tabs controller!")
   }
 
   hideAll() {

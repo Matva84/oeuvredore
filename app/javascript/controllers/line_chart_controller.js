@@ -2,23 +2,24 @@ import { Controller } from "@hotwired/stimulus";
 import { Chart } from "chart.js";
 
 export default class extends Controller {
+  static targets = ["tasksName", "tasksPrice"]
 
   connect() {
-    console.log("Line chart controller connected")
 
-    var graph = document.getElementById("budgetgraph")
-    var json_price = graph.dataset.price;
-    var json_date = graph.dataset.date;
-    var price = JSON.parse(json_price);
-    var date = JSON.parse(json_date);
+    var names = this.tasksNameTarget.dataset.value
+    var names_json = JSON.parse(names)
+
+    var prices = this.tasksPriceTarget.dataset.value
+    var prices_json = JSON.parse(prices)
 
     new Chart(
       this.element, {
       type: 'bar',
       data: {
-        labels: date,
+        labels: names_json,
         datasets: [{
-          data: price,
+          label: "Niveau de dépenses",
+          data: prices_json,
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(255, 159, 64, 0.2)',
