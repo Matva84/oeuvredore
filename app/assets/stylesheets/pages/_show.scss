@@ -22,7 +22,12 @@
   //object-fit: cover;
 }
 
-
+.card-presentation {
+  display: block;
+  flex-direction: row;
+  gap: 10px;
+  height: 100%;
+}
 
 
 
