@@ -18,6 +18,7 @@ export default class extends Controller {
       data: {
         labels: names_json,
         datasets: [{
+          label: "Niveau de dépenses",
           data: prices_json,
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
