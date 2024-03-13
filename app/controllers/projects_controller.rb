@@ -24,6 +24,7 @@ class ProjectsController < ApplicationController
     @customer = @project.customer
     @chatroom = @project.chatroom
     @message = Message.new
+    @documents = @project.documents
   end
 
   def create
