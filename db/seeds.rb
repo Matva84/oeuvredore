@@ -1,6 +1,11 @@
 require "open-uri"
 require "faker"
 
+urls = ["https://res.cloudinary.com/dabkgyd3m/image/upload/v1710264766/travaux-de-renovation-08042019-1129-800x442_s6fuu3.jpg",
+        "https://res.cloudinary.com/dabkgyd3m/image/upload/v1710268175/Ootravaux-renovation-salle-de-bain_1000x667_stowkx.jpg",
+        "https://res.cloudinary.com/dabkgyd3m/image/upload/v1710268081/shutterstock_736643602_fjrcca.jpg"
+]
+
 list_of_users_pro = []
 list_of_users = []
 list_of_projects = []
@@ -64,76 +69,100 @@ puts "  >> #{list_of_users.count} user(s) created"
 
 puts "Creating projects..."
 usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open("https://res.cloudinary.com/dabkgyd3m/image/upload/v1710268175/Ootravaux-renovation-salle-de-bain_1000x667_stowkx.jpg")
 projectbq1 = Project.new(title: "Maison sur l'ile de Ré, à rénover", description: "Rénovation complète de la salle de bain, avec remplacement de la baignoire par une douche, remplacement du carrelage, et installation d'un meuble vasque.", address: "573, avenue de la Corniche, 17940 Rivedoux-Plage", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 5000, total_expenses: 1000, user: user_bq, customer: usr)
+projectbq1.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
 projectbq1.save!
 list_of_projects << projectbq1
 chatbq1 = Chatroom.create(name: "Maison bq", project: projectbq1)
 Message.create(chatroom: chatbq1, user: user_bq, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
 usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open("https://res.cloudinary.com/dabkgyd3m/image/upload/v1710264766/travaux-de-renovation-08042019-1129-800x442_s6fuu3.jpg")
 projectbq2 = Project.new(title: "Appartement à Bordeaux", description: "Rénovation complète de la cuisine, avec remplacement des meubles, remplacement du carrelage, et installation d'un plan de travail.", address: "9, chemin clos des Grenettes, 17740 Sainte-Marie-De-Ré", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 8000, total_expenses: 5000, user: user_bq, customer: usr)
+projectbq2.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
 projectbq2.save!
 list_of_projects << projectbq2
 chatbq2 = Chatroom.create(name: "Appartement bq", project: projectbq2)
 Message.create(chatroom: chatbq2, user: user_bq, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
 usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open("https://res.cloudinary.com/dabkgyd3m/image/upload/v1710268081/shutterstock_736643602_fjrcca.jpg")
 projectbq3 = Project.new(title: "Villa à Nantes, rénovation de la chambre", description: "Rénovation complète de la chambre, avec remplacement du parquet, remplacement de la peinture, et installation d'un dressing.", address: "12 rue de la Grosse Pierre, 17580 Le-Bois-Plage-En-Ré", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 3000, total_expenses: 1000, user: user_bq, customer: usr)
+projectbq3.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
 projectbq3.save!
 list_of_projects << projectbq3
 chatbq3 = Chatroom.create(name: "Villa bq", project: projectbq3)
 Message.create(chatroom: chatbq3, user: user_bq, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
 
 usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open("https://res.cloudinary.com/dabkgyd3m/image/upload/v1710268175/Ootravaux-renovation-salle-de-bain_1000x667_stowkx.jpg")
 projectmv1 = Project.new(title: "Maison sur l'ile de Ré", description: "Rénovation complète de la salle de bain, avec remplacement de la baignoire par une douche, remplacement du carrelage, et installation d'un meuble vasque.", address: "6, avenue des mésanges, 91190 Gif sur Yvette", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 5000, total_expenses: 1000, user: user_mv, customer: usr)
+projectmv1.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
 projectmv1.save!
 list_of_projects << projectmv1
 chatmv1 = Chatroom.create(name: "Maison mv", project: projectmv1)
 Message.create(chatroom: chatmv1, user: user_mv, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
 usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open("https://res.cloudinary.com/dabkgyd3m/image/upload/v1710264766/travaux-de-renovation-08042019-1129-800x442_s6fuu3.jpg")
 projectmv2 = Project.new(title: "Appartement à Bordeaux", description: "Rénovation complète de la cuisine, avec remplacement des meubles, remplacement du carrelage, et installation d'un plan de travail.", address: "13, rue de Chartres, 91400 Orsay", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 8000, total_expenses: 5000, user: user_mv, customer: usr)
+projectmv2.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
 projectmv2.save!
 list_of_projects << projectmv2
 chatmv2 = Chatroom.create(name: "Appartement mv", project: projectmv2)
 Message.create(chatroom: chatmv2, user: user_mv, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
 usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open("https://res.cloudinary.com/dabkgyd3m/image/upload/v1710268081/shutterstock_736643602_fjrcca.jpg")
 projectmv3 = Project.new(title: "Villa à Nantes, rénovation de la chambre", description: "Rénovation complète de la chambre, avec remplacement du parquet, remplacement de la peinture, et installation d'un dressing.", address: "Route de Vauhallan, 91400 Saclay", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 3000, total_expenses: 1000, user: user_mv, customer: usr)
+projectmv3.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
 projectmv3.save!
 list_of_projects << projectmv3
 chatmv3 = Chatroom.create(name: "Villa mv", project: projectmv3)
 Message.create(chatroom: chatmv3, user: user_mv, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
 
 usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open("https://res.cloudinary.com/dabkgyd3m/image/upload/v1710268175/Ootravaux-renovation-salle-de-bain_1000x667_stowkx.jpg")
 projectfl1 = Project.new(title: "Maison sur l'ile de Ré", description: "Rénovation complète de la salle de bain, avec remplacement de la baignoire par une douche, remplacement du carrelage, et installation d'un meuble vasque.", address: "10, Grand Place, 1000 Bruxelles", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 5000, total_expenses: 1000, user: user_fl, customer: usr)
+projectfl1.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
 projectfl1.save!
 list_of_projects << projectfl1
 chatfl1 = Chatroom.create(name: "Maison fl", project: projectfl1)
 Message.create(chatroom: chatfl1, user: user_fl, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
 usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open("https://res.cloudinary.com/dabkgyd3m/image/upload/v1710264766/travaux-de-renovation-08042019-1129-800x442_s6fuu3.jpg")
 projectfl2 = Project.new(title: "Appartement à Bordeaux", description: "Rénovation complète de la cuisine, avec remplacement des meubles, remplacement du carrelage, et installation d'un plan de travail.", address: "19, rue Kleindal, 1630 Linkebeek", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 8000, total_expenses: 5000, user: user_fl, customer: usr)
+projectfl2.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
 projectfl2.save!
 list_of_projects << projectfl2
 chatfl2 = Chatroom.create(name: "Appartement fl", project: projectfl2)
 Message.create(chatroom: chatfl2, user: user_fl, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
 usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open("https://res.cloudinary.com/dabkgyd3m/image/upload/v1710268081/shutterstock_736643602_fjrcca.jpg")
 projectfl3 = Project.new(title: "Villa à Nantes, rénovation de la chambre", description: "Rénovation complète de la chambre, avec remplacement du parquet, remplacement de la peinture, et installation d'un dressing.", address: "Fabriekstraat 20, 1652 Beersel", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 3000, total_expenses: 1000, user: user_fl, customer: usr)
+projectfl3.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
 projectfl3.save!
 list_of_projects << projectfl3
 chatfl3 = Chatroom.create(name: "Villa fl", project: projectfl3)
 Message.create(chatroom: chatfl3, user: user_fl, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
 
 usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open("https://res.cloudinary.com/dabkgyd3m/image/upload/v1710268175/Ootravaux-renovation-salle-de-bain_1000x667_stowkx.jpg")
 projectgl1 = Project.new(title: "Maison sur l'ile de Ré", description: "Rénovation complète de la salle de bain, avec remplacement de la baignoire par une douche, remplacement du carrelage, et installation d'un meuble vasque.", address: "10, Grand Place, 1000 Bruxelles", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 5000, total_expenses: 1000, user: user_gl, customer: usr)
+projectgl1.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
 projectgl1.save!
 list_of_projects << projectgl1
 chatgl1 = Chatroom.create(name: "Maison gl", project: projectgl1)
 Message.create(chatroom: chatgl1, user: user_gl, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
 usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open("https://res.cloudinary.com/dabkgyd3m/image/upload/v1710264766/travaux-de-renovation-08042019-1129-800x442_s6fuu3.jpg")
 projectgl2 = Project.new(title: "Appartement à Bordeaux", description: "Rénovation complète de la cuisine, avec remplacement des meubles, remplacement du carrelage, et installation d'un plan de travail.", address: "19, rue Kleindal, 1630 Linkebeek", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 8000, total_expenses: 5000, user: user_gl, customer: usr)
+projectgl2.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
 projectgl2.save!
 list_of_projects << projectgl2
 chatgl2 = Chatroom.create(name: "Appartement gl", project: projectgl2)
 Message.create(chatroom: chatgl2, user: user_gl, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
 usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open("https://res.cloudinary.com/dabkgyd3m/image/upload/v1710268081/shutterstock_736643602_fjrcca.jpg")
 projectgl3 = Project.new(title: "Villa à Nantes, rénovation de la chambre", description: "Rénovation complète de la chambre, avec remplacement du parquet, remplacement de la peinture, et installation d'un dressing.", address: "Fabriekstraat 20, 1652 Beersel", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 3000, total_expenses: 1000, user: user_gl, customer: usr)
+projectgl3.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
 projectgl3.save!
 list_of_projects << projectgl3
 chatgl3 = Chatroom.create(name: "Villa gl", project: projectgl3)

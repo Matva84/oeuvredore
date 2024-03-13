@@ -40,6 +40,16 @@
     <%= f.text_field :total_expenses, class: 'form-control' %>
   </div>
 
+ <div class="form-group mt-3">
+    <%= f.label :customer_id %>
+    <%= f.collection_select :customer_id, User.all, :id, :full_name, {}, { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group mt-3">
+    <%= f.label :photo %>
+    <%= f.file_field :photo, class: 'form-control' %>
+  </div>
+
   <div class="form-group mt-3">
     <%= f.submit 'Créer nouveau projet', class: 'btn btn-success' %>
   </div>
