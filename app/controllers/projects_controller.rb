@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
     else
       @projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id)).limit(3)
     end
+      @total_projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id)).count
   end
 
   def new
