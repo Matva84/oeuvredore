@@ -7,11 +7,12 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%# link rel="stylesheet" href="/config/frappe-gantt.scss" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body><%= render "shared/navbar" %>
+  <body>
+
+  <%= render "shared/navbar" %>
 <%= render "shared/flashes" %>
 
  <p class="notice"><%= notice %></p>

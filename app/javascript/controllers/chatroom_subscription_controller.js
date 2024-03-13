@@ -10,7 +10,7 @@ export default class extends Controller {
       { channel: "ChatroomChannel", id: this.chatroomIdValue },
       { received: data => this.insertMessageAndScroll(data) }
     )
-    console.log(`Subscribed to the chatroom with the id ${this.chatroomIdValue}.`)
+    // console.log(`Subscribed to the chatroom with the id ${this.chatroomIdValue}.`)
   }
 
   insertMessageAndScroll(data) {
