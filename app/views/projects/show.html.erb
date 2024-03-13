@@ -19,9 +19,9 @@
               <% else  %>
                 <%= (@project.progress).round %>%
               <% end %>
-            </div>
           </div>
         </div>
+      </div>
 
         <div class="cardsmall">
           <p><strong>Budget</strong></p>
@@ -30,15 +30,15 @@
             <div class="w3-container w3-blue w3-round-large" style=<%= s%>>
               <%= (100 * (@project.total_expenses/@project.customer_budget)).round %>%
             </div>
-          </div>
         </div>
+  </div>
 
         <div class="cardsmall">
           <p><strong>Client</strong></p>
           <p><%= @customer.name %> </p>
         </div>
 
-      </div>
+</div>
 
 
   <div class="onglets" data-controller="tabs-link" >
