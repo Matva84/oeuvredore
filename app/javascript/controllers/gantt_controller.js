@@ -1,7 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import { Chart } from "chart.js";
-import 'chartjs-adapter-date-fns';
-
+import { formatDistance, subDays } from "date-fns";
 
 
 // Connects to data-controller="gantt"
@@ -9,6 +8,8 @@ export default class extends Controller {
   static targets = ["projectName", "tasksName", "tasksEnd"]
 
   connect() {
+    const test = formatDistance(subDays(new Date(), 3), new Date(), { addSuffix: true });
+    console.log(test)
     console.log("hello from gantt controller")
     var names = this.tasksNameTarget.dataset.value
     var names_json = JSON.parse(names)
