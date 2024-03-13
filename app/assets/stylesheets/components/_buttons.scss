@@ -1,0 +1,27 @@
+.main-btn, .main-btn-rounded {
+  background-color: #000000;
+  border: solid 1.5px #000000;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 25px 10px 25px;
+  font-size: 14px;
+  font-weight: 500;
+  &:hover {
+    background-color: #000000b1;
+    border-color: #000000;
+    color: rgb(255, 255, 255);
+  }
+}
+
+.main-btn, .main-btn-rounded {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.main-btn {
+  border-radius: 6px;
+}
+
+.main-btn-rounded {
+  border-radius: 50px;
+}
