@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
     if @project.save && @chatroom.save
       # Créer une nouvelle tâche avec les dates de début et de fin du projet
       @task = Task.new(
-        name: "Durée prévue du projet",
+        name: "Définition du projet",
         description: @project.description,
         category: "Catégorie par défaut",
         progress: 0,

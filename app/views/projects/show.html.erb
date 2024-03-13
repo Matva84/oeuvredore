@@ -1,6 +1,7 @@
 <div class="container">
-  <%= link_to "Retour au tableau de bord", projects_path, class: "btn btn-primary" %>
+  <%= link_to "Retour au tableau de bord", projects_path, class: "btn btn-see" %>
   <div class="card">
+
     <div class="card-presentation">
       <%= cl_image_tag @project.photo.key, crop: :fill, class: "img-fluid full-width mb-8" %>
       <i class="fa-regular fa-pen-to-square pen"></i>
