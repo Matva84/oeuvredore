@@ -48,7 +48,7 @@
               <div class="w3-darkgreen w3-round-large">
                 <% s = "width:#{project.progress}%" %>
                 <div class="w3-container w3-green w3-round-large" style="<%= s %>">
-                  <% if project.progress.round < 20 %>
+                  <% if project.progress.round < 10 %>
                     <p class="greentext"></p>
                   <% else %>
                     <%= project.progress.round %>%
@@ -62,15 +62,19 @@
       <% end %>
     </div>
 
-
-      <% if @show_all_projects %>
-        <%= link_to "Réduire", projects_path, class: "btn btn-see mt-3 mb-5" %>
-      <% else %>
-        <%= link_to "Tout voir", projects_path(show_all: true), class: " btn btn-see mt-3 mb-5" %>
-      <% end %>
-
-
-  </div>
+    <div class="container">
+      <div class="row mt-6">
+        <div class="col-md-10">
+        </div>
+        <div class="col-md-2 text-md-right mt-5">
+          <% if @show_all_projects %>
+            <%= link_to "Réduire", projects_path, class: "btn btn-see mt-3 mb-5" %>
+          <% else %>
+            <%= link_to "Tout voir", projects_path(show_all: true), class: " btn btn-see mt-3 mb-5" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
 
 </div>
