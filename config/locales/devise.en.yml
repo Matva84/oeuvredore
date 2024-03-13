@@ -63,3 +63,67 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
+
+fr:
+  devise:
+    confirmations:
+      confirmed: "Votre email a été validé avec succès."
+      send_instructions: "Vous allez recevoir un email avec des instructions détaillées dans quelques minutes."
+      send_paranoid_instructions: "Si votre addresse email existe dans notre base de données, vous allez recevoir des instructions dans quelques minutes."
+    failure:
+      already_authenticated: "Vous êtes déjà connecté."
+      inactive: "Votre compte n'est pas encore activé."
+      invalid: "Invalide %{authentication_keys} ou mot de passe."
+      locked: "Votre compte est bloqué."
+      last_attempt: "Il vous reste une dernière chance avant que votre compte ne soit bloqué."
+      not_found_in_database: "Invalide %{authentication_keys} ou mot de passe."
+      timeout: "Votre session a expiré. Connectez vous à nouveau pour continuer."
+      unauthenticated: "Vous devez vous connecter avant de continuer."
+      unconfirmed: "Vous devez confirmer votre email avant de continuer."
+    mailer:
+      confirmation_instructions:
+        subject: "Instructions de confirmation"
+      reset_password_instructions:
+        subject: "Instructions de reset de mot de passe"
+      unlock_instructions:
+        subject: "Instructions de déverrouillage"
+      email_changed:
+        subject: "Changement d'email"
+      password_change:
+        subject: "Mot de passe changé"
+    omniauth_callbacks:
+      failure: "Nous n'avons pas pu vous authentifier %{kind} à cause de \"%{reason}\"."
+      success: "Authentification réussie depuis le compte %{kind}."
+    passwords:
+      no_token: "Vous ne pouvez accéder à cette page sans venir d'un changement de mot de passe."
+      send_instructions: "Vous allez recevoir an email avec des instructions sur la façon de modifier votre mot de passe dans quelques minutes."
+      send_paranoid_instructions: "Si votre addresse email existe dans notre base de données, vous allez recevoir des instructions dans quelques minutes."
+      updated: "Votre mot de passe a été changé. Vous êtes connecté."
+      updated_not_active: "Votre mot de passe a été changé."
+    registrations:
+      destroyed: "Bye! Votre compte a été annulé. Nous espérons vous revoir bientôt."
+      signed_up: "Bienvenue, vous êtes connecté."
+      signed_up_but_inactive: "Vous vous êtes bien inscrit, cependant nous ne pouvons vous connecter tant que l'email n'a pas été confirmé."
+      signed_up_but_locked: "Vous vous êtes bien inscrit, cependant nous n'avons pas pu vous connecter car votre compte est bloqué."
+      signed_up_but_unconfirmed: "Un message avec lien de confirmation vous a été envoyé, suivez les instructions pour activer votre compte."
+      update_needs_confirmation: "Compte mis à jour avec succès. Nous devons vérifier votre email. Surveillez vos emails et suivez le lien de confirmation."
+      updated: "Compte mis à jour avec succès."
+      updated_but_not_signed_in: "Compte mis à jour avec succès, mais vous devez recommencer car le mot de passe a changé."
+    sessions:
+      signed_in: "Connecté."
+      signed_out: "Déconnecté."
+      already_signed_out: "Déconnecté."
+    unlocks:
+      send_instructions: "Vous allez recevoir un email avec des instructions pour déverouiller votre compte."
+      send_paranoid_instructions: "Si votre compte existe, vous allez recevoir un email avec les instructions dans quelques minutes."
+      unlocked: "Votre compte a été déverrouillé. Authentifiez vous pour continuer."
+  errors:
+    messages:
+      already_confirmed: "a déjà été confirmé, authentifiez vous à nouveau svp."
+      confirmation_period_expired: "a besoin d'être confirmé sous %{period}, faites une nouvelle demande"
+      expired: "a expiré, faites un nouvelle demande."
+      not_found: "introuvable"
+      not_locked: "n'a pas été verrouillé"
+      not_saved:
+        one: "1 erreur n'a pas permis de sauvegarder cette %{resource} :"
+        other: "%{count} n'ont pas permis de sauvagarder ces %{resource} :"
