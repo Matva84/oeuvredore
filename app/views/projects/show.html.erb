@@ -137,7 +137,7 @@
 
   <% if message.user.nickname == @project.user.nickname %>
     <div id="message-<%= message.id %>">
-      <small class="colblue"><strong><%= message.user.nickname %></strong>
+      <small class="colgrey"><strong><%= message.user.nickname %></strong>
       <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i></small>
       <div class="blue"><p><%= message.content %></p></div>
     </div>

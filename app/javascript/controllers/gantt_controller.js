@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import { Chart } from "chart.js";
+import "chartjs-adapter-date-fns"
 
 
 // Connects to data-controller="gantt"
@@ -76,6 +77,10 @@ export default class extends Controller {
           x: {
             min: minStart,
             max: maxEnd,
+            type: 'time',
+                time: {
+                    unit: 'day'
+                }
           },
           y: {
             beginAtZero: true
