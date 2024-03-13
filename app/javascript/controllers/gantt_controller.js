@@ -42,7 +42,7 @@ export default class extends Controller {
     const data = {
       labels: names_json,
       datasets: [{
-        label: this.projectNameTarget.dataset.value,
+        label: "Déroulée",
         data: dates_data,
         backgroundColor: [
           'rgba(255, 26, 104, 1)',
