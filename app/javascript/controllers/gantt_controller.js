@@ -79,7 +79,7 @@ export default class extends Controller {
             max: maxEnd,
             type: 'time',
                 time: {
-                    unit: 'month'
+                    unit: 'day'
                 }
           },
           y: {
