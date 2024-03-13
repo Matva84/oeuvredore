@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import { Chart } from "chart.js";
-import { DateTime } from "chartjs-adapter-luxon";
+import 'chartjs-adapter-date-fns';
 
 
 
@@ -18,7 +18,7 @@ export default class extends Controller {
     console.log(ends_json)
 
     var ends_dates = ends_json.map(function(dateString) {
-      return DateTime.fromISO(dateString);
+      return new Date(dateString);
   });
 
   // Afficher les dates converties
