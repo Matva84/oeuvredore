@@ -155,13 +155,17 @@
   </div>
 
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <div class="gantt" data-controller="gantt">
-        test
-      </div>
-    </div>
-  </div>
+  <% tasks_name = [] %>
+  <% tasks_end = [] %>
+  <% @tasks.each do |task| %>
+    <% tasks_name << task.name %>
+    <% tasks_end << task.end_at%>
+  <% end %>
+  <canvas id= "ganttChart" data-controller="gantt" >
+    <div data-gantt-target="projectName" data-value="<%= @project.title %>"></div>
+    <div data-gantt-target="tasksName" data-value = "<%= tasks_name %>"> </div>
+    <div data-gantt-target="tasksEnd" data-value = "<%= tasks_end %>"> </div>
+  </canvas>
 </div>
 
 </div>
