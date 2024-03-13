@@ -13,7 +13,9 @@ class Project < ApplicationRecord
   validates :progress, presence: true
   validates :customer_budget, presence: true
   validates :total_expenses, presence: true
-  # validates :customer
+  validates :customer, presence: true
 
-  has_many_attached :photo
+  has_one_attached :photo
+  #has_many_attached :photo
+
 end

@@ -9,6 +9,11 @@
   box-shadow: 2px 2px 3px #e2e2e2;
 }
 
+.full-width {
+  width: 100%;
+}
+
+
 .card-img {
   background-image: "";
   background-size: cover;
@@ -16,6 +21,16 @@
   height: 200px;
   //object-fit: cover;
 }
+
+.card-presentation {
+  display: block;
+  flex-direction: row;
+  gap: 10px;
+  height: 100%;
+}
+
+
+
 .pen {
   padding-left: 93%;
   padding-top: 168px;
@@ -97,7 +112,7 @@
 
 .blue {
   border: solid 1px #218aff;
-  border-radius: 4px;
+  border-radius: 16px;
   background-color: #218aff;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -111,7 +126,7 @@
 }
 .grey {
   border: solid 1px #aeb9cc;
-  border-radius: 4px;
+  border-radius: 16px;
   background-color: #aeb9cc;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -129,5 +144,5 @@
   padding-bottom: 0px;
 }
 .txtshift {
-  margin-left: 45%;
+  margin-left: 40%;
 }

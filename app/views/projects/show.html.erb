@@ -2,13 +2,13 @@
   <%= link_to "Retour au tableau de bord", projects_path, class: "btn btn-primary" %>
   <div class="card">
     <div class="card-presentation">
-      <div class="card-img">
-        <i class="fa-regular fa-pen-to-square pen"></i>
-      </div>
+      <%= cl_image_tag @project.photo.key, crop: :fill, class: "img-fluid full-width mb-8" %>
+      <i class="fa-regular fa-pen-to-square pen"></i>
+    </div>
       <h5 class="card-title"><%= @project.title %></h5>
       <p class="card-text"><%= @project.description %></p>
-      <div class="card-progression">
 
+      <div class="card-progression">
         <div class="cardsmall">
           <p><strong>Planning</strong></p>
           <div class="w3-darkgreen  w3-round-large">
@@ -21,8 +21,8 @@
               <% end %>
             </div>
           </div>
-
         </div>
+
         <div class="cardsmall">
           <p><strong>Budget</strong></p>
           <div class="w3-darkblue w3-round-large">
@@ -39,8 +39,7 @@
         </div>
 
       </div>
-    </div>
-  </div>
+
 
   <div class="onglets" data-controller="tabs-link" >
     <nav>
@@ -77,15 +76,45 @@
 
 
       <div class="tab-pane fade d-none" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="2" data-tabs-link-target="contentDocuments">
-        Ceci est l'onglet documents
+
+        <h3>Charger un fichier PDF</h3>
+        <%= form_with(url: documents_path, multipart: true) do |form| %>
+          <%= form.file_field :file, accept: '.pdf' %>
+          <%= form.submit "Télécharger" %>
+        <% end %>
+
+        <!--<% if @upload_url %>
+          <p>Fichier PDF téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %></p>
+        <% end %>-->
+
+        <% @documents.each do |doc| %>
+          <p><%= doc.url %> </p>
+        <% end %>
+
+
       </div>
       <div class="tab-pane fade d-none" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="3" data-tabs-link-target="contentPhotos">
-        Ceci est l'onglet photos
+
+
+        <h3>Charger une photo</h3>
+        <%= form_with(url: documents_path, multipart: true) do |form| %>
+          <%= form.file_field :file, accept: '.pdf' %>
+          <%= form.submit "Télécharger" %>
+        <% end %>
+
+        <!--<% if @upload_url %>
+          <p>Fichier PDF téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %></p>
+        <% end %>-->
+
+        <% @documents.each do |doc| %>
+          <p><%= doc.url %> </p>
+        <% end %>
+
+
       </div>
+
+
       <div class="tab-pane fade d-none" id="nav-messagerie" role="tabpanel" aria-labelledby="nav-messagerie-tab" tabindex="4" data-tabs-link-target="contentMessagerie">
-
-
-
         <div class="container chatroom">
           <div class="messages"
             data-controller="chatroom-subscription"
@@ -111,10 +140,11 @@
 
             <% end %>
           </div>
-
-          <%= simple_form_for [@chatroom, @message], remote: true do |f|%>
-            <%= f.input :content,label: false,placeholder: "Message ##{@chatroom.name}"%>
-          <% end %>
+          <div class="msgbox">
+            <%= simple_form_for [@chatroom, @message], remote: true do |f|%>
+              <%= f.input :content,label: false,placeholder: "Message ##{@chatroom.name}"%>
+            <% end %>
+          </div>
         </div>
 
 

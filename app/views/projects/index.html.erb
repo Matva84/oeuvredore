@@ -43,6 +43,9 @@
       <div class="col-md-4 mb-4">
         <div class="card">
           <div class="card-body">
+
+              <%= cl_image_tag project.photo.key, crop: :fill, class: "img-fluid" %>
+
             <h5 class="card-title"><%= project.title %></h5>
             <p class="card-text"><%= project.description %></p>
 
