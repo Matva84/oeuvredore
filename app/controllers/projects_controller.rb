@@ -31,17 +31,32 @@ class ProjectsController < ApplicationController
     @user = current_user
     @project = Project.new(project_params)
     @project.user_id = @user.id
-    @project.customer_id = params[:project][:customer_id] # Vous devez inclure le customer_id dans le formulaire de création du projet
-    @chatroom = Chatroom.new(name: "Chatroom for #{@project.title}") # Crée une nouvelle chatroom associée au projet
-    @project.chatroom = @chatroom # Associe la chatroom nouvellement créée au projet
+    @project.customer_id = params[:project][:customer_id]
+    @chatroom = Chatroom.new(name: "Chatroom for #{@project.title}")
+    @project.chatroom = @chatroom
     if @project.save && @chatroom.save
-      client_name = @project.customer.name
-      @message = Message.new(content: "Bonjour #{client_name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
-      @message.user = @user
-      @message.chatroom = @chatroom
-      @message.save
+      # Créer une nouvelle tâche avec les dates de début et de fin du projet
+      @task = Task.new(
+        name: "Durée prévue du projet",
+        description: @project.description,
+        category: "Catégorie par défaut",
+        progress: 0,
+        budget: @project.customer_budget,
+        start_at: @project.initial_start_at,
+        end_at: @project.initial_end_at,
+        project_id: @project.id
+      )
+      if @task.save
+        client_name = @project.customer.name
+        @message = Message.new(content: "Bonjour #{client_name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
+        @message.user = @user
+        @message.chatroom = @chatroom
+        @message.save
 
-      redirect_to projects_path, notice: 'Le projet a été créé avec succès.'
+        redirect_to projects_path, notice: 'Le projet a été créé avec succès.'
+      else
+        render :new, status: :unprocessable_entity
+      end
     else
       render :new, status: :unprocessable_entity
     end

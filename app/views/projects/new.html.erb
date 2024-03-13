@@ -1,52 +1,54 @@
 <%= simple_form_for @project do |f| %>
   <div class="form-group mt-3 ">
-    <%= f.label :title %>
+    <%= f.label :title, "Titre" %>
     <%= f.text_field :title, class: 'form-control' %>
   </div>
 
   <div class="form-group mt-3">
-    <%= f.label :description %>
+    <%= f.label :description , "Description du chantier" %>
     <%= f.text_area :description, class: 'form-control' %>
   </div>
 
   <div class="form-group mt-3">
-    <%= f.label :address %>
+    <%= f.label :address, "Adresse du chantier" %>
     <%= f.text_field :address, class: 'form-control' %>
   </div>
 
   <div class="form-group mt-3">
     <div class="row">
       <div class="col">
-        <%= f.input :initial_start_at, as: :date, class: 'form-control' %>
+        <%= f.label :initial_start_at, "Début du chantier" %>
+        <%= f.input :initial_start_at, as: :date, class: 'form-control', label: false %>
       </div>
       <div class="col">
-        <%= f.input :initial_end_at, as: :date, class: 'form-control' %>
+        <%= f.label :initial_end_at, "Fin du chantier" %>
+        <%= f.input :initial_end_at, as: :date, class: 'form-control', label: false %>
       </div>
     </div>
   </div>
 
   <div class="form-group mt-3">
-    <%= f.label :progress %>
+    <%= f.label :progress, "Progression en cours du chantier" %>
     <%= f.text_field :progress, class: 'form-control' %>
   </div>
 
   <div class="form-group mt-3">
-    <%= f.label :customer_budget %>
+    <%= f.label :customer_budget, "Budget du client" %>
     <%= f.text_field :customer_budget, class: 'form-control' %>
   </div>
 
   <div class="form-group mt-3">
-    <%= f.label :total_expenses %>
+    <%= f.label :total_expenses, "Dépenses totales du projet en cours" %>
     <%= f.text_field :total_expenses, class: 'form-control' %>
   </div>
 
  <div class="form-group mt-3">
-    <%= f.label :customer_id %>
+    <%= f.label :customer_id, "Nom du client" %>
     <%= f.collection_select :customer_id, User.all, :id, :full_name, {}, { class: 'form-control' } %>
   </div>
 
   <div class="form-group mt-3">
-    <%= f.label :photo %>
+    <%= f.label :photo, "Photo" %>
     <%= f.file_field :photo, class: 'form-control' %>
   </div>
 
