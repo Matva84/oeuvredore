@@ -54,6 +54,23 @@
 
     <div class="tab-content ongletscontainer" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-planning" role="tabpanel" aria-labelledby="nav-planning-tab" tabindex="0" data-tabs-link-target="contentPlanning">
+        <% tasks_name = [] %>
+        <% tasks_start = [] %>
+        <% tasks_end = [] %>
+        <% @tasks.each do |task| %>
+          <% tasks_name << task.name %>
+          <% tasks_end << task.end_at%>
+          <% tasks_start << task.start_at%>
+        <% end %>
+      <canvas id= "ganttChart" data-controller="gantt" >
+        <div data-gantt-target="projectName" data-value="<%= @project.title %>"></div>
+        <div data-gantt-target="tasksName" data-value = "<%= tasks_name %>"> </div>
+        <div data-gantt-target="tasksStart" data-value = "<%= tasks_start %>"> </div>
+        <div data-gantt-target="tasksEnd" data-value = "<%= tasks_end %>"> </div>
+      </canvas>
+    </div>
+
+
         <% task_enddate = [] %>
         <% task_price = [] %>
         <% @tasks.each do |task| %>
@@ -61,15 +78,12 @@
           <% task_enddate << task.end_at %>
           <% task_price << task.budget %>
         <% end %>
-        <% json_enddate =  task_enddate.to_json%>
-        <% json_price =  task_price.to_json%>
-      </div>
-
-
+        <%# <% json_enddate =  task_enddate.to_json%>
+        <%# <% json_price =  task_price.to_json%>
       <div class="tab-pane fade d-none" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab" tabindex="1" data-tabs-link-target="contentBudget">
         <div class="pt-5">
           <div class="chart">
-            <canvas id = "budgetgraph" data-controller="line-chart" data-line-chart-target="linechart" data-date = <%= json_enddate%> data-price = <%= json_price%>></canvas>
+            <canvas id = "budgetgraph" data-controller="line-chart" data-line-chart-target="linechart" data-date = <%=task_enddate%> data-price = <%= task_price%>></canvas>
           </div>
         </div>
       </div>
