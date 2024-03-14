@@ -9,25 +9,25 @@
     <title>Homepage Oeuvre d'Oré</title>
     <link rel="stylesheet" href="style.scss">
 </head>
-<body>
+<body class="home">
   <div class="background-img-section" style="background-image: url('https://images.unsplash.com/photo-1615571022219-eb45cf7faa9d?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
     <header>
-        <h1>Oeuvre d'Oré</h1>
+        <h1 class="logo-white">Oeuvre d'Oré</h1>
     </header>
 
     <section class="head-content">
         <h2 class="h2-white">Donnez-vie à vos projets immobiliers et de rénovation</h2>
-        <p class="p-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum commodo, justo ac scelerisque lacinia, purus velit tincidunt quam, vel consectetur leo nunc eget mauris.</p>
+        <p class="p-white-head">Oeuvre d'Oré vous aide, étape par étape dans vos projets immobiliers, et simplifie la collaboration entre maîtres d'œuvre et particuliers.<br>Profitez d'un accompagnement spécialisé pour faire de votre projet de construction ou de rénovation un foyer qui vous ressemble.</p>
     </section>
 
     <section class="btn-section">
       <div>
-        <a class="main-btn" href="">Je suis un professionnel</a>
-        <a class="main-btn" href="">Je suis un particulier</a>
+        <a class="main-btn-banner" href="#" id="proBtn">Je suis un professionnel</a>
+        <a class="main-btn-banner" href="#" id="partBtn">Je suis un particulier</a>
       </div>
       <div class="form-input">
-        <p class="txt-form"> Entrez-votre adresse e-mail</p>
-        <a class="main-btn-rounded" href="">S'inscrire</a>
+        <input id="emailInput-home" type="email" placeholder="Entrez votre adresse e-mail">
+        <a class="main-btn-rounded" href="/users/sign_in">S'inscrire</a>
       </div>
       <a class="link-white" href="<%= new_user_session_path %>">J'ai déjà un compte</a>
     </section>
@@ -54,23 +54,24 @@
   </section>
 
   <section>
-    <div class="img-bloc">
-      <div class="bloc">
-        <img src="https://images.unsplash.com/photo-1595877244574-e90ce41ce089?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-      </div>
-      <div class="bloc">
-        <img src="https://images.unsplash.com/photo-1597211833712-5e41faa202ea?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-      </div>
-      <div class="double-row-bloc">
+      <div class="container-bloc">
         <div class="bloc">
-          <img src="https://cdn.dribbble.com/userupload/8506819/file/original-8a7899a3864bf0e3c69d451c7317aa6a.jpg?resize=752x" alt="">
+          <img src="https://images.unsplash.com/photo-1595877244574-e90ce41ce089?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
         </div>
         <div class="bloc">
-          <h4>Lorem Ipsum dolor sit amet</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae consequat nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <img src="https://images.unsplash.com/photo-1597211833712-5e41faa202ea?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+        </div>
+        <div class="double-bloc">
+            <div class="row-bloc-img">
+                <img src="https://cdn.dribbble.com/userupload/8506819/file/original-8a7899a3864bf0e3c69d451c7317aa6a.jpg?resize=752x" alt="">
+            </div>
+              <div class="row-bloc-txt">
+                <p>Restez informé à chaque étape du processus.<br>Des notifications en temps réel et des mises à jour instantanées sur l'avancement de vos projets</p>
+                <h4>Suivi précis de vos projets</h4>
+            </div>
         </div>
       </div>
-    </div>
+  </section>
 
     <section>
       <div class="rich-text">
@@ -78,8 +79,33 @@
       </div>
     </section>
 
-    <footer>
-        <p>&copy; 2024 Mon Site Web. Tous droits réservés.</p>
-    </footer>
+  <footer>
+    <div class="footer-container">
+      <div>
+        <h3 class="h3-white-logo">Oeuvre d'Oré</h3>
+      </div>
+      <div>
+        <h3 class="h3-white-footer">Contact</h3>
+        <p class="p-white">1 rue de la Paix, 1705 Ile de Ré</p>
+        <p class="p-white">Téléphone : 01 23 45 67 89</p>
+        <p class="p-white">Email : contact@oeuvredore.com</p>
+      </div>
+      <div>
+        <h3 class="h3-white-footer">Liens utiles</h3>
+        <p class="p-white">Politique de confidentialité</p>
+        <p class="p-white">Conditions générales</p>
+        <p class="p-white">Plan du site</p>
+      </div>
+      <div>
+        <h3 class="h3-white-footer">Suivez-nous</h3>
+        <p class="p-white">Facebook</p>
+        <p class="p-white">Twitter</p>
+        <p class="p-white">Instagram</p>
+      </div>
+    </div>
+    <div>
+      <p class="p-white-footer">&copy; 2024 Oeuvre d'Oré. Tous droits réservés.</p>
+    </div>
+  </footer>
 </body>
 </html>

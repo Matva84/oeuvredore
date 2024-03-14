@@ -6,6 +6,10 @@ body {
   margin: 0;
 }
 
+.home {
+  background-color: #FCF5EB;
+}
+
 /* Head */
 
 .background-img-section {
@@ -56,12 +60,12 @@ body {
 .form-input {
   display: flex;
   flex-direction: row;
-  gap: 200px;
+  gap: 20px;
   margin: 0 auto;
   align-items: center;
   background-color: white;
   border-radius: 50px;
-  padding: 1px 4px 1px 4px;
+  padding: 1px 2px 1px 2px;
   margin-top: 20px;
 }
 
@@ -105,7 +109,107 @@ body {
 
 /* Blocs */
 
-.bloc img {
+.container-bloc {
+  display: flex;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 0 5%;
+}
+
+.bloc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 50px 5px 50px 5px;
   width: 500px;
-  height: auto;
+  height: 550px;
+  border-radius: 10px;
+}
+
+.bloc img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.double-bloc {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 5px 50px 5px;
+  gap: 10px;
+  width: 500px;
+  height: 550px;
+  border-radius: 10px;
+}
+
+.row-bloc-img, .row-bloc-txt {
+  height: 50%;
+  border-radius: 10px;
+}
+
+.row-bloc-img {
+  background-color: #3F332F;
+  display: flex;
+  justify-content: center;
+}
+
+.double-bloc img {
+  width: auto;
+  height: 100%;
+}
+
+.row-bloc-txt {
+  background-color: #EADFCF;
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 20px;
+
+}
+
+.row-bloc-txt p{
+  margin-bottom: 0;
+  color: #847053;
+}
+
+.row-bloc-txt p{
+  color: #3F322F;
+}
+
+/* Bloc Texte*/
+
+.rich-text {
+  width: 88%;
+  border-top: 1px solid #3F322F;
+  border-bottom: 1px solid #3F322F;
+  margin: 0 auto;
+  margin-bottom: 100px;
+}
+
+.rich-text h2 {
+  color : #3F322F;
+  padding: 40px 45px 40px 45px;
+  text-align: center;
+  font-size: 36px;
+  line-height: 1.45;
+}
+
+/* Footer */
+
+footer {
+  background-color: #000000;
+  padding: 60px 0 20px 0;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px; /* Largeur maximale du contenu */
+  margin: 0 auto; /* Centrage horizontal du contenu */
+}
+
+/* Style pour chaque section du footer */
+.footer-container > div {
+  flex: 1;
 }
