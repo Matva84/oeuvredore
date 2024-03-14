@@ -9,9 +9,10 @@ h2, h3, h4, a, p {
 }
 
 h1 {
-  font-family: 'Brotherline', sans-serif;
-  font-size: 70px;
+  font-family: 'Inter', sans-serif;
+  font-size: 50px;
   font-weight: 600;
+  color: black;
 }
 
 .h2-heading {
@@ -20,7 +21,7 @@ h1 {
 }
 
 h2 {
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 700;
 }
 
@@ -39,9 +40,29 @@ p {
   font-weight: 400;
 }
 
-h1, .h2-white, .h3-white, .p-white {
+.h2-white, .h3-white, .p-white {
   color: #fff;
 }
+
+.h2-white {
+  font-size: 40px;
+  margin-bottom: 35px;
+}
+
+.h3-white-logo {
+font-family: 'Brotherline';
+font-size: 40px;
+color: #fff;
+}
+
+.p-white-head {
+  color: #fff;
+  font-size: 16px;
+  line-height: 2;
+  margin: 0 auto;
+  text-shadow: 1px 1px 15px rgba(0, 0, 0, 0.5);
+}
+
 
 .link-white {
   color: #fff;
@@ -49,4 +70,38 @@ h1, .h2-white, .h3-white, .p-white {
   &:hover {
     text-decoration: underline;
   }
+}
+
+.logo-white {
+  color: #fff;
+  font-family: 'Brotherline', sans-serif;
+  font-size: 70px;
+  font-weight: 600;
+  margin-top: 50px;
+}
+
+.h3-white-footer {
+  margin-bottom: 30px;
+  color: #fff;
+}
+.p-white-footer {
+  margin-top: 50px;
+  font-weight: 300;
+  font-size: 12px;
+  margin-bottom: 0px;
+  text-align: center;
+  color: white;
+}
+
+#emailInput-home {
+  width: 400px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  margin-bottom: 0;
+  border: 0px;
+}
+
+#emailInput-home::placeholder {
+  color: #999;
 }
