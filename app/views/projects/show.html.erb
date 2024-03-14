@@ -1,48 +1,62 @@
-<div class="container">
-  <%= link_to "Retour au tableau de bord", projects_path, class: "btn btn-see" %>
-  <div class="card">
-
-    <div class="card-presentation">
-      <%= cl_image_tag @project.photo.key, crop: :fill, class: "img-fluid full-width mb-8" %>
-      <i class="fa-regular fa-pen-to-square pen"></i>
+<div>
+  <div class="row">
+    <div class="col-1 nav-lat-menu">
+      <%= render "shared/navmenu" %>
     </div>
+
+    <div class="col-11">
+  <div class="container">
+  <div class="row">
+
+    <div class="card">
+      <div class="card-presentation">
+        <%= cl_image_tag @project.photo.key, crop: :fill, class: "img-fluid full-width mb-8" %>
+        <i class="fa-regular fa-pen-to-square pen"></i>
+      </div>
+
       <h5 class="card-title"><%= @project.title %></h5>
       <p class="card-text"><%= @project.description %></p>
 
-      <div class="card-progression">
+      <div class="card-caracteristic">
         <div class="cardsmall">
           <p><strong>Planning</strong></p>
           <div class="w3-darkgreen  w3-round-large">
             <% s = "width:#{@project.progress}%" %>
-            <div class="w3-container w3-green w3-round-large" style= <%=s%> >
+            <div class="w3-container w3-green w3-round-large" style= <%=s%>>
               <% if (@project.progress).round < 10 %>
                 <p class="greentext"> </p>
               <% else  %>
-                <%= (@project.progress).round %>%
+                <%= (@project.progress).round %>
               <% end %>
+              %
+            </div>
+          </div>
+        </div>
+
+      <div class="cardsmall">
+        <p><strong>Budget</strong></p>
+        <div class="w3-darkblue w3-round-large">
+          <% s = "width:#{100 * (@project.total_expenses/@project.customer_budget)}%" %>
+          <div class="w3-container w3-blue w3-round-large" style=<%= s%>>
+            <%= (100 * (@project.total_expenses/@project.customer_budget)).round %>
+            %
           </div>
         </div>
       </div>
 
-        <div class="cardsmall">
-          <p><strong>Budget</strong></p>
-          <div class="w3-darkblue w3-round-large">
-            <% s = "width:#{100 * (@project.total_expenses/@project.customer_budget)}%" %>
-            <div class="w3-container w3-blue w3-round-large" style=<%= s%>>
-              <%= (100 * (@project.total_expenses/@project.customer_budget)).round %>%
-            </div>
-        </div>
+      <div class="cardsmall">
+        <p><strong>Client</strong></p>
+        <p><%= @customer.name %> </p>
+      </div>
+    </div>
+
+    </div>
   </div>
-
-        <div class="cardsmall">
-          <p><strong>Client</strong></p>
-          <p><%= @customer.name %> </p>
-        </div>
-
 </div>
 
-
-  <div class="onglets" data-controller="tabs-link" >
+<div class="container">
+  <div class="row">
+    <div class="onglets" data-controller="tabs-link" >
     <nav>
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <button class="nav-link active myTab" id="nav-planning-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" data-action="click->tabs-link#revealPlanning">Planning</button>
@@ -167,4 +181,10 @@
       </div>
     </div>
 
+    </div>
+  </div>
+
+</div>
+    </div>
+  </div>
 </div>
