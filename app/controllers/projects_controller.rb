@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
     else
       @projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id)).limit(3)
     end
+      @total_projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id)).count
   end
 
   def new
@@ -37,7 +38,7 @@ class ProjectsController < ApplicationController
     if @project.save && @chatroom.save
       # Créer une nouvelle tâche avec les dates de début et de fin du projet
       @task = Task.new(
-        name: "Durée prévue du projet",
+        name: "Définition du projet",
         description: @project.description,
         category: "Catégorie par défaut",
         progress: 0,
