@@ -9,7 +9,6 @@ class MessagesController < ApplicationController
         ChatroomChannel.broadcast_to(@chatroom,
           render_to_string(partial: "message_pro", locals: {message: @message}))
           @message.content = " "
-        #redirect_to project_path(@chatroom, tab: "nav-messagerie", anchor: "#txtwrite")
       else
         render "chatrooms/show", status: :unprocessable_entity
       end
@@ -17,8 +16,6 @@ class MessagesController < ApplicationController
       if @message.save
         ChatroomChannel.broadcast_to(@chatroom,
           render_to_string(partial: "message", locals: {message: @message}))
-        #redirect_to project_path(@chatroom, anchor: "message #{@message.id}")
-        #redirect_to project_path(@chatroom, tab: "nav-messagerie", anchor: "#txtwrite")
       else
         render "chatrooms/show", status: :unprocessable_entity
       end
