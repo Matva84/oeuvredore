@@ -15,10 +15,8 @@ export default class extends Controller {
 
   insertMessageAndScroll(data) {
     this.element.insertAdjacentHTML("beforeend", data)
-    this.element.scrollTo({
-      bottom: this.element.scrollHeight,
-      top: 0,
-      behavior: "smooth",
-    });
+    const chat = document.getElementById("chatmsg")
+    document.getElementById("message_content").value = '';
+    document.getElementById('test').scrollIntoView({ behavior: 'smooth' });
   }
 }
