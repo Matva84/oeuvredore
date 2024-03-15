@@ -18,7 +18,7 @@ export default class extends Controller {
       data: {
         labels: names_json,
         datasets: [{
-          label: "Niveau de dépenses",
+          label: "",
           data: prices_json,
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
@@ -44,9 +44,12 @@ export default class extends Controller {
       },
       options: {
         scales: {
-          y: {
-            beginAtZero: true
-          }
+            yAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Prix (€)'
+                }
+            }]
         }
       }
     });

@@ -8,7 +8,6 @@ class DocumentsController < ApplicationController
     tempfile = params[:file].tempfile
     upload = Cloudinary::Uploader.upload(tempfile.path, folder: 'pdf_uploads')
     # @upload_url = upload['secure_url']
-    raise
     puts "PROJECT PARAMS"
     puts params[:id]
     doc = Document.new(project_id: params[:id], name: "Test", url: upload['secure_url'], type: "Facture")
