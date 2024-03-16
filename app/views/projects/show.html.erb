@@ -116,9 +116,9 @@
         <% end %>
 
         <% @documents.each do |doc| %>
-          <%= if @documents.type_of_document == "Document" %>
+          <% if @documents.type_of_document == "Documents" %>
               <p><%= doc.name %> || <%= doc.url %> || <%= doc.type %> </p>
-            <%= end %>
+            <% end %>
         <% end %>
 
       </div>
@@ -136,9 +136,9 @@
           <% end %>
 
           <% @documents.each do |doc| %>
-            <%= if @documents.type_of_document == "Photo" %>
+            <% if @documents.type_of_document == "Photo" %>
               <p><%= doc.name %> || <%= doc.url %> || <%= doc.type %> </p>
-            <%= end %>
+            <% end %>
           <% end %>
         </div>
       </div>
