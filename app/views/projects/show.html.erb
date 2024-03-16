@@ -116,7 +116,9 @@
         <% end %>
 
         <% @documents.each do |doc| %>
-          <p><%= doc.name %> || <%= doc.url %> </p>
+          <%= if @documents.type_of_document == "Document" %>
+              <p><%= doc.name %> || <%= doc.url %> || <%= doc.type %> </p>
+            <%= end %>
         <% end %>
 
       </div>
@@ -134,7 +136,9 @@
           <% end %>
 
           <% @documents.each do |doc| %>
-            <p><%= doc.name %> || <%= doc.url %> || <%= doc.type %> </p>
+            <%= if @documents.type_of_document == "Photo" %>
+              <p><%= doc.name %> || <%= doc.url %> || <%= doc.type %> </p>
+            <%= end %>
           <% end %>
         </div>
       </div>
@@ -161,7 +165,6 @@
                   </div>
               <% end %>
             <% end %>
-
           </div>
 
           <div class="msgbox boxrounded" id="txtwrite">
@@ -169,14 +172,12 @@
               <%= f.input :content, id: 'msgtxt', label: false ,input_html: { placeholder: "Message", style: "font-style: italic;"} %>
             <% end %>
           </div>
+
           <div id="test">
           </div>
         </div>
-
       </div>
-
     </div>
-
     </div>
   </div>
 
