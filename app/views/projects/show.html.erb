@@ -107,40 +107,52 @@
       <div class="tab-pane fade d-none fixedheight" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="2" data-tabs-link-target="contentDocuments">
 
         <%= form_with(url: documents_path, multipart: true) do |form| %>
-          <%= form.file_field :file, accept: '.pdf' %>
-          <%= form.submit "Télécharger" %>
+          <%= form.file_field :file, class: 'd-none', id: 'photo-upload', accept: '.pdf' %>
+          <%= form.label :photo, '📝 Charger un document', class: 'upload-photo', for: 'photo-upload' %>
+          <%= form.hidden_field :id, value: @project.id %>
+          <%= form.submit "Télécharger", class: 'upload-photo' %>
         <% end %>
 
         <% if @upload_url %>
-          <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %></p>
-        <% end %>
+            <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %></p>
+          <% end %>
 
-        <% @documents.each do |doc| %>
-          <% if @documents.type_of_document == "Documents" %>
-              <p><%= doc.name %> || <%= doc.url %> || <%= doc.type %> </p>
+          <div class="card-group">
+            <% @documents.each do |doc| %>
+              <% if doc.type_of_document == "Document" %>
+                <div class="onephoto">
+                  <%= link_to(cl_image_tag( doc.name ), doc.url, target: "_blank" ) %>
+                  <a href=<%= doc.url %> target="_blank" class="doclink"><%= doc.name %></a>
+                </div>
+              <% end %>
             <% end %>
-        <% end %>
+          </div>
 
       </div>
       <div class="tab-pane fade d-none fixedheight" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="3" data-tabs-link-target="contentPhotos">
 
         <%= form_with(url: documents_path, multipart: true) do |form| %>
-          <%= form.file_field :file, class: 'd-none', id: 'photo-upload', accept: '.jpg' %>
-          <%= form.label :photo, '📷 Upload a photo', class: 'upload-photo', for: 'photo-upload' %>
-          <%= form.submit "Télécharger" %>
+          <%= form.file_field :file, class: 'd-none', id: 'photo-upload', accept: '.png,.gif,.jpeg,.jpg' %>
+          <%= form.label :photo, '📸 Charger une photo', class: 'upload-photo', for: 'photo-upload' %>
+          <%= form.hidden_field :id, value: @project.id %>
+          <%= form.submit "Télécharger", class: 'upload-photo' %>
         <% end %>
 
-        <div>
           <% if @upload_url %>
             <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %></p>
           <% end %>
 
-          <% @documents.each do |doc| %>
-            <% if @documents.type_of_document == "Photo" %>
-              <p><%= doc.name %> || <%= doc.url %> || <%= doc.type %> </p>
+          <div class="card-group">
+            <% @documents.each do |doc| %>
+              <% if doc.type_of_document == "Photo" %>
+                <div class="onephoto">
+                  <%= link_to(cl_image_tag( doc.name ), doc.url, target: "_blank" ) %>
+                  <a href=<%= doc.url %> target="_blank" class="doclink"><%= doc.name %></a>
+                </div>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
+          </div>
+
       </div>
 
 

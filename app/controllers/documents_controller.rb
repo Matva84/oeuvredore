@@ -1,6 +1,9 @@
 class DocumentsController < ApplicationController
   def new
+    puts "CECI EST LE NEW"
     @project = Project.find(params[:project_id])
+    puts @project
+    raise
     @document = Document.new
   end
 
@@ -23,22 +26,15 @@ class DocumentsController < ApplicationController
     name = params[:file].original_filename
     upload = Cloudinary::Uploader.upload(tempfile.path, folder: 'pdf_uploads')
     @upload_url = upload['secure_url']
-    if ((name.include? ".jpg") || (name.include? ".jpeg") || (name.include? ".png"))
+    if ((name.include? ".jpg") || (name.include? ".jpeg") || (name.include? ".png") || (name.include? ".gif"))
       doctype = "Photo"
     else
       doctype = "Document"
     end
     filename = name.split('.')[0]
-    @document = Document.new(name: filename, type_of_document: doctype, url: upload['secure_url'])
-    @project = Project.find(params[:project_id])
-    @document.project_id = @project.id
-    puts @document.project_id
-
-    if @document.save
-      puts ">>>>>>Document saved with succes"
-    else
-      puts ">>>>>>Document not saved"
-    end
+    project_id = params[:id].to_i
+    @document = Document.new(project_id: project_id, name: filename, type_of_document: doctype, url: upload['secure_url'])
+    @document.save!
   end
 
   def show
@@ -49,6 +45,6 @@ class DocumentsController < ApplicationController
   private
 
   def document_params
-    params.require(:document).permit(:name, :type_of_document, :url)
+    params.require(:document).permit(:name, :type_of_document, :url, :id)
   end
 end
