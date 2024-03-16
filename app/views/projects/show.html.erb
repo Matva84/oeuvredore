@@ -69,7 +69,7 @@
 
     <div class="tab-content ongletscontainer" id="nav-tabContent">
 
-      <div class="tab-pane fade show active" id="nav-planning" role="tabpanel" aria-labelledby="nav-planning-tab" tabindex="0" data-tabs-link-target="contentPlanning">
+      <div class="tab-pane fade show active fixedheight" id="nav-planning" role="tabpanel" aria-labelledby="nav-planning-tab" tabindex="0" data-tabs-link-target="contentPlanning">
         <% tasks_name = [] %>
         <% tasks_start = [] %>
         <% tasks_end = [] %>
@@ -92,7 +92,7 @@
     </div>
 
 
-      <div class="tab-pane fade d-none" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab" tabindex="1" data-tabs-link-target="contentBudget">
+      <div class="tab-pane fade d-none fixedheight" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab" tabindex="1" data-tabs-link-target="contentBudget">
         <div class="pt-5">
           <div class="chart">
             <canvas id = "budgetgraph" data-controller="line-chart">
@@ -104,81 +104,77 @@
       </div>
 
 
-      <div class="tab-pane fade d-none" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="2" data-tabs-link-target="contentDocuments">
+      <div class="tab-pane fade d-none fixedheight" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="2" data-tabs-link-target="contentDocuments">
 
-        <h3>Charger un fichier PDF</h3>
         <%= form_with(url: documents_path, multipart: true) do |form| %>
           <%= form.file_field :file, accept: '.pdf' %>
           <%= form.submit "Télécharger" %>
         <% end %>
 
-        <!--<% if @upload_url %>
-          <p>Fichier PDF téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %></p>
-        <% end %>-->
-
-        <% @documents.each do |doc| %>
-          <p><%= doc.url %> </p>
+        <% if @upload_url %>
+          <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %></p>
         <% end %>
 
+        <% @documents.each do |doc| %>
+          <p><%= doc.name %> || <%= doc.url %> </p>
+        <% end %>
 
       </div>
-      <div class="tab-pane fade d-none" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="3" data-tabs-link-target="contentPhotos">
+      <div class="tab-pane fade d-none fixedheight" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="3" data-tabs-link-target="contentPhotos">
 
-
-        <h3>Charger une photo</h3>
         <%= form_with(url: documents_path, multipart: true) do |form| %>
-          <%= form.file_field :file, accept: '.pdf' %>
+          <%= form.file_field :file, class: 'd-none', id: 'photo-upload', accept: '.jpg' %>
+          <%= form.label :photo, '📷 Upload a photo', class: 'upload-photo', for: 'photo-upload' %>
           <%= form.submit "Télécharger" %>
         <% end %>
 
-        <!--<% if @upload_url %>
-          <p>Fichier PDF téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %></p>
-        <% end %>-->
+        <div>
+          <% if @upload_url %>
+            <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %></p>
+          <% end %>
 
-        <% @documents.each do |doc| %>
-          <p><%= doc.url %> </p>
-        <% end %>
-
-
+          <% @documents.each do |doc| %>
+            <p><%= doc.name %> || <%= doc.url %> || <%= doc.type %> </p>
+          <% end %>
+        </div>
       </div>
 
 
-      <div class="tab-pane fade d-none" id="nav-messagerie" role="tabpanel" aria-labelledby="nav-messagerie-tab" tabindex="4" data-tabs-link-target="contentMessagerie">
-        <div class="container chatroom">
+      <div class="tab-pane fade d-none scrollonglet" id="nav-messagerie" role="tabpanel" aria-labelledby="nav-messagerie-tab" tabindex="4" data-tabs-link-target="contentMessagerie">
+        <div class="container chatroom" id="chatmsg">
           <div class="messages"
             data-controller="chatroom-subscription"
             data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
             <% @chatroom.messages.each do |message| %>
               <%#= render "messages/message", message: message %>
+              <% if message.user.nickname == @project.user.nickname %>
+                  <div class="messagePro #{@message.id}">
+                    <div class="blue"><p class="white"><%= message.content %></p></div><br>
+                    <small class="colgrey txtshiftsmall"><strong><%= message.user.nickname %></strong>
+                    <i><%= message.created_at.strftime("le %d/%m/%Y à %H:%M:%S") %></i></small>
+                  </div>
+              <% else %>
+                  <div class="message #{@message.id}">
+                    <div class="grey"><p class="white"><%= message.content %></p></div>
+                    <small class="colgrey txtshift"><strong><%= message.user.nickname %></strong>
+                    <i><%= message.created_at.strftime("le %d/%m/%Y à %H:%M:%S") %></i></small>
+                  </div>
+              <% end %>
+            <% end %>
 
+          </div>
 
-  <% if message.user.nickname == @project.user.nickname %>
-    <div id="message-<%= message.id %>">
-      <small class="colgrey"><strong><%= message.user.nickname %></strong>
-      <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i></small>
-      <div class="blue"><p><%= message.content %></p></div>
-    </div>
-  <% else %>
-    <div id="message-<%= message.id %>">
-      <small class="colgrey txtshift"><strong><%= message.user.nickname %></strong>
-      <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i></small>
-      <div class="grey"><p><%= message.content %></p></div>
-    </div>
-  <% end %>
-
-
+          <div class="msgbox boxrounded" id="txtwrite">
+            <%= simple_form_for [@chatroom, @message], remote: true do |f|%>
+              <%= f.input :content, id: 'msgtxt', label: false ,input_html: { placeholder: "Message", style: "font-style: italic;"} %>
             <% end %>
           </div>
-          <div class="msgbox">
-            <%= simple_form_for [@chatroom, @message], remote: true do |f|%>
-              <%= f.input :content,label: false,placeholder: "Message ##{@chatroom.name}"%>
-            <% end %>
+          <div id="test">
           </div>
         </div>
 
-
-
       </div>
+
     </div>
 
     </div>

@@ -3,5 +3,6 @@ class Document < ApplicationRecord
   belongs_to :project
 
   validates :name, presence: true
-  validates :type, presence: true, inclusion: { in: AUTHORIZED_CATEGORIES }
+  validates :url, presence: true
+  #validates :type_of_document#, presence: true, inclusion: { in: AUTHORIZED_CATEGORIES }
 end

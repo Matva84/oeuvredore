@@ -4,13 +4,11 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.chatroom = @chatroom
     @message.user = current_user
-    puts "CECI EST LE CURRENT USER", @message.user.pro
-    if @message.user.pro == 1
+    if @message.user.pro == true
       if @message.save
         ChatroomChannel.broadcast_to(@chatroom,
           render_to_string(partial: "message_pro", locals: {message: @message}))
-        # head :ok
-        # redirect_to chatroom_path(@chatroom, anchor: "message #{@message.id}")
+          @message.content = " "
       else
         render "chatrooms/show", status: :unprocessable_entity
       end
@@ -18,8 +16,6 @@ class MessagesController < ApplicationController
       if @message.save
         ChatroomChannel.broadcast_to(@chatroom,
           render_to_string(partial: "message", locals: {message: @message}))
-        # head :ok
-        # redirect_to chatroom_path(@chatroom, anchor: "message #{@message.id}")
       else
         render "chatrooms/show", status: :unprocessable_entity
       end

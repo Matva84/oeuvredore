@@ -13,6 +13,14 @@
   width: 100%;
 }
 
+.upload-photo {
+  border: 1px solid #d3d3d3;
+  padding: 16px 24px;
+  cursor: pointer;
+  font-weight: 500;
+  background: white;
+  border-radius: 2px;
+}
 
 .card-img {
   // background-image: "";
@@ -116,32 +124,47 @@ padding: 16px;
 .w3-darkgreen,.w3-hover-green:hover{color:#fff!important;background-color:#169151!important}
 
 .blue {
+  display: inline-block;
   border: solid 1px #218aff;
-  border-radius: 16px;
+  border-radius: 32px;
   background-color: #218aff;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 24px;
+  margin-bottom: 0px;
   padding-bottom: 0px;
   margin-left: 5%;
   padding-left: 3%;
   padding-right: 3%;
-  padding-top: 10px;
-  width: 50%;
+  padding-top: 12px;
+  line-height: 20px;
+  font-size: 16px;
+  max-width: 40%;
+  text-align: left;
   color: white;
 }
 .grey {
+  display: inline-block;
   border: solid 1px #aeb9cc;
-  border-radius: 16px;
+  border-radius: 32px;
   background-color: #aeb9cc;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 45%;
+  margin-top: 24px;
+  margin-bottom: 0px;
   padding-bottom: 0px;
-  padding-top: 10px;
+  margin-left: 55%;
   padding-left: 3%;
   padding-right: 3%;
-  width: 50%;
+  padding-top: 12px;
+  line-height: 20px;
+  font-size: 16px;
+  max-width: 40%;
+  text-align: left;
   color: white;
+}
+.msgLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: left;
+  justify-content: center;
 }
 .colgrey {
   color: grey;
@@ -149,5 +172,35 @@ padding: 16px;
   padding-bottom: 0px;
 }
 .txtshift {
-  margin-left: 40%;
+  display: inline-block;
+  margin-left: 55%;
+  font-size: 12px;
+  padding-top: 0px;
+  margin-top: 0px;
+  line-height: 10px;
+}
+.txtshiftsmall {
+  display: inline-block;
+  margin-left: 5%;
+  font-size: 12px;
+  padding-top: 0px;
+  margin-top: 0px;
+  line-height: 10px;
+}
+.white{
+  color: white;
+}
+.boxrounded {
+  width: 70%;
+  justify-content: center;
+  padding-top:24px;
+  padding-bottom:24px;
+  margin-left: 15%;
+}
+.scrollonglet {
+  height: 550px;
+  overflow-y: auto;
+}
+.fixedheight {
+  height: 550px;
 }
