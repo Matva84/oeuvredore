@@ -1,11 +1,12 @@
 <div>
   <div class="row">
-    <div class="col-1 nav-lat-menu">
+    <div class="col-2">
       <%= render "shared/navmenu" %>
     </div>
 
-    <div class="col-11">
-  <div class="container">
+    <div class="col-10">
+
+  <div class="mx-3">
   <div class="row">
 
     <div class="card">
@@ -54,7 +55,7 @@
   </div>
 </div>
 
-<div class="container">
+<div class="mx-3">
   <div class="row">
     <div class="onglets" data-controller="tabs-link" >
     <nav>
@@ -69,7 +70,7 @@
 
     <div class="tab-content ongletscontainer" id="nav-tabContent">
 
-      <div class="tab-pane fade show active fixedheight" id="nav-planning" role="tabpanel" aria-labelledby="nav-planning-tab" tabindex="0" data-tabs-link-target="contentPlanning">
+      <div class="tab-pane fade show active fixedheight d-flex justify-content-center align-items-center p-2" id="nav-planning" role="tabpanel" aria-labelledby="nav-planning-tab" tabindex="0" data-tabs-link-target="contentPlanning">
         <% tasks_name = [] %>
         <% tasks_start = [] %>
         <% tasks_end = [] %>
@@ -92,15 +93,11 @@
     </div>
 
 
-      <div class="tab-pane fade d-none fixedheight" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab" tabindex="1" data-tabs-link-target="contentBudget">
-        <div class="pt-5">
-          <div class="chart">
-            <canvas id = "budgetgraph" data-controller="line-chart">
-              <div data-line-chart-target="tasksName" data-value = "<%= tasks_name %>"> </div>
-              <div data-line-chart-target="tasksPrice" data-value = "<%= tasks_price %>"> </div>
-            </canvas>
-          </div>
-        </div>
+      <div class="tab-pane fade d-none fixedheight d-flex justify-content-center align-items-center p-2" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab" tabindex="1" data-tabs-link-target="contentBudget">
+        <canvas id = "budgetgraph" data-controller="line-chart">
+          <div data-line-chart-target="tasksName" data-value = "<%= tasks_name %>"> </div>
+          <div data-line-chart-target="tasksPrice" data-value = "<%= tasks_price %>"> </div>
+        </canvas>
       </div>
 
 
