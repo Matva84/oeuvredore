@@ -1,16 +1,23 @@
-<p>Titre de l'application</p>
-<div>
-  <div class="button-nav">
-      <%= link_to "Accueil", root_path, class: "btn btn-menu" %>
-  </div>
-  <div class="button-nav">
-      <%= link_to "Mes projets", projects_path, class: "btn btn-menu" %>
-  </div>
-      <%= link_to "Paramètres", edit_user_registration_path, class: "btn btn-menu" %>
-  <div class="button-nav">
-  </div>
-  <div class="button-nav">
-      <%= link_to "Déconnexion", destroy_user_session_path, data: {turbo_method: :delete}, class: "btn btn-menu" %>
-  </div>
+<%# <span>Bonjour <%=@user.name%>
 
+<div class="nav-title">
+  <strong>Oeuvre d'ORé</strong>
+</div>
+
+<div class="nav-lat-menu">
+      <%= link_to root_path, class: "btn btn-menu" do %>
+          <i class="fa-solid fa-house"></i> <strong>Accueil</strong>
+      <% end %>
+
+      <%= link_to projects_path, class: "btn btn-menu" do %>
+        <i class="fa-solid fa-screwdriver-wrench"></i> <strong>Projets</strong>
+      <% end %>
+
+      <%= link_to edit_user_registration_path, class: "btn btn-menu" do %>
+        <i class="fa-solid fa-sliders"></i> <strong>Paramètres</strong>
+      <% end %>
+
+      <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "btn btn-menu" do %>
+        <i class="fa-solid fa-xmark"></i> <strong>Déconnexion</strong>
+      <% end %>
 </div>

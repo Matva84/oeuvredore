@@ -6,6 +6,8 @@ export default class extends Controller {
 
   connect() {
 
+    console.log("hello budget controller")
+
     var names = this.tasksNameTarget.dataset.value
     var names_json = JSON.parse(names)
 
