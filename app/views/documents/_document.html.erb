@@ -1,0 +1,13 @@
+<div class="card-group">
+  <% @documents.each do |doc| %>
+    <% if doc.type_of_document == "document" %>
+      <div class="onephoto">
+        <div class="photo">
+          <%= link_to(cl_image_tag(doc.cloudinary_id, { width: 175, height: 216 }), doc.url, target: "_blank") %>
+          <i class="fa-solid fa-trash-can" style="position: absolute; bottom: 0; right: 0;padding-bottom: 16px; padding-right: 16px"></i>
+        </div>
+        <a href=<%= doc.url %> target="_blank" class="doclink"><%= doc.name %></a>
+      </div>
+    <% end %>
+  <% end %>
+</div>

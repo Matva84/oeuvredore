@@ -2,9 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
+  gap: 0px;
   border: 1px solid #e6e6e6;
-  border-radius: 8px;
+  border-radius: 16px;
   box-shadow: 2px 2px 3px #e6e6e6;
   width: 175px;
   height: 260px;
@@ -20,5 +20,10 @@
   padding-bottom: 8px;
   padding-left: 8px;
   position: relative;
-  bottom: -185px;
+  bottom: 0px;
+}
+
+.photo {
+  position: relative;
+  display: flex;
 }

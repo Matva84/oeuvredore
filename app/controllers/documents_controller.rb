@@ -1,9 +1,6 @@
 class DocumentsController < ApplicationController
   def new
-    puts "CECI EST LE NEW"
     @project = Project.find(params[:project_id])
-    puts @project
-    raise
     @document = Document.new
   end
 
@@ -21,20 +18,24 @@ class DocumentsController < ApplicationController
   end
 
   def create
-    puts "VOICI LE DOCUMENT CREE 1"
     tempfile = params[:file].tempfile
     name = params[:file].original_filename
-    upload = Cloudinary::Uploader.upload(tempfile.path, folder: 'pdf_uploads')
-    @upload_url = upload['secure_url']
     if ((name.include? ".jpg") || (name.include? ".jpeg") || (name.include? ".png") || (name.include? ".gif"))
-      doctype = "Photo"
+      doctype = "photo"
+      upload = Cloudinary::Uploader.upload(tempfile.path, folder: 'development')
     else
-      doctype = "Document"
+      doctype = "document"
+      upload = Cloudinary::Uploader.upload(tempfile.path, folder: 'development')
     end
+    puts "CECI EST LE RETOUR DE UPLOAD"
+    puts upload
+    @upload_url = upload['secure_url']
+    public_id = upload['public_id'].split("/")[1]
     filename = name.split('.')[0]
     project_id = params[:id].to_i
-    @document = Document.new(project_id: project_id, name: filename, type_of_document: doctype, url: upload['secure_url'])
+    @document = Document.new(project_id: project_id, name: filename, type_of_document: doctype, url: upload['secure_url'], cloudinary_id: public_id)
     @document.save!
+    #render "document/#{doctype}"
   end
 
   def show
