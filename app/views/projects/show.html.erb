@@ -5,70 +5,69 @@
     </div>
 
     <div class="col-10">
+      <div class="mx-3">
+        <div class="row">
 
-  <div class="mx-3">
-  <div class="row">
+          <div class="card">
+            <div class="card-presentation">
+              <%= cl_image_tag @project.photo.key, crop: :fill, class: "img-fluid full-width mb-8" %>
+              <i class="fa-regular fa-pen-to-square pen"></i>
+            </div>
 
-    <div class="card">
-      <div class="card-presentation">
-        <%= cl_image_tag @project.photo.key, crop: :fill, class: "img-fluid full-width mb-8" %>
-        <i class="fa-regular fa-pen-to-square pen"></i>
-      </div>
+            <h5 class="card-title"><%= @project.title %></h5>
+            <p class="card-text"><%= @project.description %></p>
 
-      <h5 class="card-title"><%= @project.title %></h5>
-      <p class="card-text"><%= @project.description %></p>
+            <div class="card-caracteristic">
+              <div class="cardsmall">
+                <p><strong>Planning</strong></p>
+                <div class="w3-darkgreen  w3-round-large">
+                  <% s = "width:#{@project.progress}%" %>
+                  <div class="w3-container w3-green w3-round-large" style= <%=s%>>
+                    <% if (@project.progress).round < 10 %>
+                      <p class="greentext"> </p>
+                    <% else  %>
+                      <%= (@project.progress).round %>
+                    <% end %> %
+                  </div>
+                </div>
+              </div>
 
-      <div class="card-caracteristic">
-        <div class="cardsmall">
-          <p><strong>Planning</strong></p>
-          <div class="w3-darkgreen  w3-round-large">
-            <% s = "width:#{@project.progress}%" %>
-            <div class="w3-container w3-green w3-round-large" style= <%=s%>>
-              <% if (@project.progress).round < 10 %>
-                <p class="greentext"> </p>
-              <% else  %>
-                <%= (@project.progress).round %>
-              <% end %>
-              %
+              <div class="cardsmall">
+                <p><strong>Budget</strong></p>
+                <div class="w3-darkblue w3-round-large">
+                  <% s = "width:#{100 * (@project.total_expenses/@project.customer_budget)}%" %>
+                  <div class="w3-container w3-blue w3-round-large" style=<%= s%>>
+                    <%= (100 * (@project.total_expenses/@project.customer_budget)).round %>
+                    %
+                  </div>
+                </div>
+              </div>
+
+              <div class="cardsmall">
+                <p><strong>Client</strong></p>
+                <p><%= @customer.name %> </p>
+              </div>
+
             </div>
           </div>
         </div>
-
-      <div class="cardsmall">
-        <p><strong>Budget</strong></p>
-        <div class="w3-darkblue w3-round-large">
-          <% s = "width:#{100 * (@project.total_expenses/@project.customer_budget)}%" %>
-          <div class="w3-container w3-blue w3-round-large" style=<%= s%>>
-            <%= (100 * (@project.total_expenses/@project.customer_budget)).round %>
-            %
-          </div>
-        </div>
       </div>
 
-      <div class="cardsmall">
-        <p><strong>Client</strong></p>
-        <p><%= @customer.name %> </p>
-      </div>
-    </div>
+      <div class="mx-3">
+        <div class="row">
+          <div class="onglets" data-controller="tabs-link" >
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active myTab" id="nav-planning-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" data-action="click->tabs-link#revealPlanning">Planning</button>
+                <button class="nav-link myTab" id="nav-budget-tab" data-bs-toggle="tab" data-bs-target="#nav-budget" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" data-action="click->tabs-link#revealBudget">Budget</button>
+                <button class="nav-link myTab" id="nav-documents-tab" data-bs-toggle="tab" data-bs-target="#nav-documents" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" data-action="click->tabs-link#revealDocuments">Documents</button>
+                <button class="nav-link myTab" id="nav-photos-tab" data-bs-toggle="tab" data-bs-target="#nav-photos" type="button" role="tab" aria-controls="nav-photos" aria-selected="false" data-action="click->tabs-link#revealPhotos">Photos</button>
+                <button class="nav-link myTab" id="nav-messagerie-tab" data-bs-toggle="tab" data-bs-target="#nav-messagerie" type="button" role="tab" aria-controls="nav-messagerie" aria-selected="false" data-action="click->tabs-link#revealMessagerie">Messagerie</button>
+                <button class="nav-link myTab" id="nav-taches-tab" data-bs-toggle="tab" data-bs-target="#nav-taches" type="button" role="tab" aria-controls="nav-taches" aria-selected="false" data-action="click->tabs-link#revealTaches">Tâches</button>
+              </div>
+            </nav>
 
-    </div>
-  </div>
-</div>
-
-<div class="mx-3">
-  <div class="row">
-    <div class="onglets" data-controller="tabs-link" >
-    <nav>
-      <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <button class="nav-link active myTab" id="nav-planning-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" data-action="click->tabs-link#revealPlanning">Planning</button>
-        <button class="nav-link myTab" id="nav-budget-tab" data-bs-toggle="tab" data-bs-target="#nav-budget" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" data-action="click->tabs-link#revealBudget">Budget</button>
-        <button class="nav-link myTab" id="nav-documents-tab" data-bs-toggle="tab" data-bs-target="#nav-documents" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" data-action="click->tabs-link#revealDocuments">Documents</button>
-        <button class="nav-link myTab" id="nav-photos-tab" data-bs-toggle="tab" data-bs-target="#nav-photos" type="button" role="tab" aria-controls="nav-photos" aria-selected="false" data-action="click->tabs-link#revealPhotos">Photos</button>
-        <button class="nav-link myTab" id="nav-messagerie-tab" data-bs-toggle="tab" data-bs-target="#nav-messagerie" type="button" role="tab" aria-controls="nav-messagerie" aria-selected="false" data-action="click->tabs-link#revealMessagerie">Messagerie</button>
-      </div>
-    </nav>
-
-    <div class="tab-content ongletscontainer" id="nav-tabContent">
+      <div class="tab-content ongletscontainer" id="nav-tabContent">
 
       <div class="tab-pane fade show active fixedheight d-flex justify-content-center align-items-center p-2" id="nav-planning" role="tabpanel" aria-labelledby="nav-planning-tab" tabindex="0" data-tabs-link-target="contentPlanning">
         <% tasks_name = [] %>
@@ -90,7 +89,7 @@
         <div data-gantt-target="tasksEnd" data-value = "<%= tasks_end %>"> </div>
         <div data-gantt-target="tasksProgress" data-value = "<%= tasks_progress %>"> </div>
       </canvas>
-    </div>
+      </div>
 
 
       <div class="tab-pane fade d-none fixedheight d-flex justify-content-center align-items-center p-2" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab" tabindex="1" data-tabs-link-target="contentBudget">
@@ -103,7 +102,6 @@
 
 
       <div class="tab-pane fade d-none fixedheight" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="2" data-tabs-link-target="contentDocuments">
-
         <%= form_with(url: documents_path, multipart: true) do |form| %>
           <%= form.file_field :file, accept: '.pdf' %>
           <%= form.submit "Télécharger" %>
@@ -116,10 +114,9 @@
         <% @documents.each do |doc| %>
           <p><%= doc.name %> || <%= doc.url %> </p>
         <% end %>
-
       </div>
-      <div class="tab-pane fade d-none fixedheight" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="3" data-tabs-link-target="contentPhotos">
 
+      <div class="tab-pane fade d-none fixedheight" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="3" data-tabs-link-target="contentPhotos">
         <%= form_with(url: documents_path, multipart: true) do |form| %>
           <%= form.file_field :file, class: 'd-none', id: 'photo-upload', accept: '.jpg' %>
           <%= form.label :photo, '📷 Upload a photo', class: 'upload-photo', for: 'photo-upload' %>
@@ -159,26 +156,24 @@
                   </div>
               <% end %>
             <% end %>
-
           </div>
-
           <div class="msgbox boxrounded" id="txtwrite">
             <%= simple_form_for [@chatroom, @message], remote: true do |f|%>
               <%= f.input :content, id: 'msgtxt', label: false ,input_html: { placeholder: "Message", style: "font-style: italic;"} %>
             <% end %>
           </div>
-          <div id="test">
-          </div>
         </div>
-
       </div>
 
-    </div>
+      <div class="tab-pane fade d-none scrollonglet" id="nav-taches" role="tabpanel" aria-labelledby="nav-taches-tab" tabindex="5" data-tabs-link-target="contentTaches">
+        <p>test</p>
+      </div>
 
+
+      </div>
     </div>
   </div>
-
 </div>
-    </div>
-  </div>
+</div>
+</div>
 </div>
