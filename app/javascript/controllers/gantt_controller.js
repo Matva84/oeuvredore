@@ -8,7 +8,7 @@ export default class extends Controller {
   static targets = ["projectName", "tasksName", "tasksEnd", "tasksStart", "tasksProgress"]
 
   connect() {
-    console.log("hello from gantt controller")
+    // console.log("hello from gantt controller")
 
     var names = this.tasksNameTarget.dataset.value
     var names_json = JSON.parse(names)
@@ -39,7 +39,7 @@ export default class extends Controller {
   for (let i = 0; i < tasks_start.length; i++) {
     progression_dates_data.push([tasks_start[i], (tasks_start[i] + (tasks_end[i] - tasks_start[i]) * progress_json[i]/100)]);
   }
-  console.log(progression_dates_data)
+  // console.log(progression_dates_data)
 
   var previsonnal_dates_data = [];
   for (let i = 0; i < tasks_start.length; i++) {
