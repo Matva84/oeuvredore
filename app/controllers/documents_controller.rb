@@ -27,8 +27,6 @@ class DocumentsController < ApplicationController
       doctype = "document"
       upload = Cloudinary::Uploader.upload(tempfile.path, folder: 'development')
     end
-    puts "CECI EST LE RETOUR DE UPLOAD"
-    puts upload
     @upload_url = upload['secure_url']
     public_id = upload['public_id'].split("/")[1]
     filename = name.split('.')[0]
@@ -41,6 +39,12 @@ class DocumentsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @documents = @project.documents
+  end
+
+  def destroy
+    @document = Document.find(params[:id])
+    @document.destroy
+    #redirect_to document_collection_path, status: :see_other
   end
 
   private

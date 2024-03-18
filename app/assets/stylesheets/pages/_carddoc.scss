@@ -27,3 +27,19 @@
   position: relative;
   display: flex;
 }
+
+.trash-icon {
+  position: absolute;
+  top: 10px; /* Ajustez ceci pour contrôler la position verticale */
+  right: 10px; /* Ajustez ceci pour contrôler la position horizontale */
+  color: #000; /* Couleur de l'icône */
+  font-size: 20px; /* Taille de l'icône */
+  /*background-color: #fff; /* Couleur de fond pour une meilleure visibilité */
+  border-radius: 50%; /* Pour donner une forme de cercle à l'icône */
+  padding: 5px; /* Espace autour de l'icône */
+}
+
+.photo {
+  position: relative;
+  display: inline-block; /* Pour s'assurer que la taille de la div est déterminée par le contenu */
+}

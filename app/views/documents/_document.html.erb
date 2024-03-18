@@ -2,9 +2,11 @@
   <% @documents.each do |doc| %>
     <% if doc.type_of_document == "document" %>
       <div class="onephoto">
-        <div class="photo">
+        <div class="photo" style="position: relative;"> <!-- Assurez-vous que le parent a une position relative -->
           <%= link_to(cl_image_tag(doc.cloudinary_id, { width: 175, height: 216 }), doc.url, target: "_blank") %>
-          <i class="fa-solid fa-trash-can" style="position: absolute; bottom: 0; right: 0;padding-bottom: 16px; padding-right: 16px"></i>
+          <%= link_to(document_path(doc.id), class: 'btn btn-ghost', data: {turbo_method: :delete, turbo_confirm: "Do you really want to remove this document ?"}) do %>
+          <i class="fa-solid fa-trash-can trash-icon"></i>
+          <% end %>
         </div>
         <a href=<%= doc.url %> target="_blank" class="doclink"><%= doc.name %></a>
       </div>
