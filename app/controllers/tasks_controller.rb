@@ -20,11 +20,20 @@ class TasksController < ApplicationController
   end
 
   def edit
-
+    @project = Project.find(params[:project_id])
+    @task = Task.find(params[:id])
   end
 
   def update
-
+    @project = Project.find(params[:project_id])
+    @task = Task.find(params[:id])
+    @start_at = params[:task]["start_at"].to_date
+    @end_at = params[:task]["end_at"].to_date
+    @task.project_id = params[:project_id]
+    @task.start_at = @start_at
+    @task.end_at = @end_at
+    @task.update(params_task)
+    redirect_to project_path(@project.id), notice: 'La tâche a été actualisée.'
   end
 
   private
