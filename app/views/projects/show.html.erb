@@ -170,7 +170,8 @@
         <% @tasks.each do |task| %>
           <div>
             <%= task.name %>
-            <%= link_to "Modifier cette tâche", edit_project_task_path(@project.id), class: "btn btn-see" %>
+            <%= link_to "Modifier", edit_project_task_path(@project.id), class: "btn btn-see" %>
+            <%= link_to '<i class="far fa-trash-alt"></i> Supprimer'.html_safe, task_path(task.id), data: {turbo_method: :delete, turbo_confirm: "Voulez vous supprimer cette tâche?"} %>
           </div>
         <% end %>
       </div>

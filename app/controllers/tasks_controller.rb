@@ -36,6 +36,12 @@ class TasksController < ApplicationController
     redirect_to project_path(@project.id), notice: 'La tâche a été actualisée.'
   end
 
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    redirect_to project_path(@task.project_id), status: :see_other
+  end
+
   private
 
   def params_task
