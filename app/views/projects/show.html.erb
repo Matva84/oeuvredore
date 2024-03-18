@@ -168,7 +168,10 @@
       <div class="tab-pane fade d-none scrollonglet" id="nav-taches" role="tabpanel" aria-labelledby="nav-taches-tab" tabindex="5" data-tabs-link-target="contentTaches">
         <%= link_to "Ajouter une nouvelle tâche", new_project_task_path(@project.id), class: "btn btn-see" %>
         <% @tasks.each do |task| %>
-          <p> <%= task.name %> </p>
+          <div>
+            <%= task.name %>
+            <%= link_to "Modifier cette tâche", edit_project_task_path(@project.id), class: "btn btn-see" %>
+          </div>
         <% end %>
       </div>
 
