@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
   def index
     @user = current_user
     @users = User.all
+    @project = Project.new
     @show_all_projects = params[:show_all] == "true"
 
     if @show_all_projects
