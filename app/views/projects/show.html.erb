@@ -67,120 +67,114 @@
               </div>
             </nav>
 
-      <div class="tab-content ongletscontainer" id="nav-tabContent">
+            <div class="tab-content ongletscontainer" id="nav-tabContent">
 
-      <div class="tab-pane fade show active fixedheight d-flex justify-content-center align-items-center p-2" id="nav-planning" role="tabpanel" aria-labelledby="nav-planning-tab" tabindex="0" data-tabs-link-target="contentPlanning">
-        <% tasks_name = [] %>
-        <% tasks_start = [] %>
-        <% tasks_end = [] %>
-        <% tasks_price = [] %>
-        <% tasks_progress = [] %>
-        <% @tasks.each do |task| %>
-          <% tasks_name << task.name %>
-          <% tasks_end << task.end_at%>
-          <% tasks_start << task.start_at%>
-          <% tasks_price << task.budget %>
-          <% tasks_progress << task.progress %>
-        <% end %>
-      <canvas id= "ganttChart" data-controller="gantt" >
-        <div data-gantt-target="projectName" data-value="<%= @project.title %>"></div>
-        <div data-gantt-target="tasksName" data-value = "<%= tasks_name %>"> </div>
-        <div data-gantt-target="tasksStart" data-value = "<%= tasks_start %>"> </div>
-        <div data-gantt-target="tasksEnd" data-value = "<%= tasks_end %>"> </div>
-        <div data-gantt-target="tasksProgress" data-value = "<%= tasks_progress %>"> </div>
-      </canvas>
-      </div>
+              <div class="tab-pane fade show active fixedheight d-flex justify-content-center align-items-center p-2" id="nav-planning" role="tabpanel" aria-labelledby="nav-planning-tab" tabindex="0" data-tabs-link-target="contentPlanning">
+                <% tasks_name = [] %>
+                <% tasks_start = [] %>
+                <% tasks_end = [] %>
+                <% tasks_price = [] %>
+                <% tasks_progress = [] %>
+                <% @tasks.each do |task| %>
+                  <% tasks_name << task.name %>
+                  <% tasks_end << task.end_at%>
+                  <% tasks_start << task.start_at%>
+                  <% tasks_price << task.budget %>
+                  <% tasks_progress << task.progress %>
+                <% end %>
+                <canvas id= "ganttChart" data-controller="gantt" >
+                  <div data-gantt-target="projectName" data-value="<%= @project.title %>"></div>
+                  <div data-gantt-target="tasksName" data-value = "<%= tasks_name %>"> </div>
+                  <div data-gantt-target="tasksStart" data-value = "<%= tasks_start %>"> </div>
+                  <div data-gantt-target="tasksEnd" data-value = "<%= tasks_end %>"> </div>
+                  <div data-gantt-target="tasksProgress" data-value = "<%= tasks_progress %>"> </div>
+                </canvas>
+              </div>
 
+              <div class="tab-pane fade d-none fixedheight d-flex justify-content-center align-items-center p-2" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab" tabindex="1" data-tabs-link-target="contentBudget">
+                <canvas id = "budgetgraph" data-controller="line-chart">
+                  <div data-line-chart-target="tasksName" data-value = "<%= tasks_name %>"> </div>
+                  <div data-line-chart-target="tasksPrice" data-value = "<%= tasks_price %>"> </div>
+                  <div data-line-chart-target="tasksProgress" data-value = "<%= tasks_progress %>"> </div>
+                </canvas>
+              </div>
 
-      <div class="tab-pane fade d-none fixedheight d-flex justify-content-center align-items-center p-2" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab" tabindex="1" data-tabs-link-target="contentBudget">
-        <canvas id = "budgetgraph" data-controller="line-chart">
-          <div data-line-chart-target="tasksName" data-value = "<%= tasks_name %>"> </div>
-          <div data-line-chart-target="tasksPrice" data-value = "<%= tasks_price %>"> </div>
-          <div data-line-chart-target="tasksProgress" data-value = "<%= tasks_progress %>"> </div>
-        </canvas>
-      </div>
+              <div class="tab-pane fade d-none fixedheight" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="2" data-tabs-link-target="contentDocuments">
+                <%= form_with(url: documents_path, multipart: true) do |form| %>
+                  <%= form.file_field :file, class: 'd-none', id: 'doc-upload', accept: ".pdf" %>
+                  <%= form.label :photo, '📝 Charger un document', class: 'upload-photo', for: 'doc-upload' %>
+                  <%= form.hidden_field :id, value: @project.id %>
+                  <%= form.submit "Télécharger", class: 'upload-photo' %>
+                <% end %>
 
+                <% if @upload_url %>
+                  <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %></p>
+                <% end %>
 
-      <div class="tab-pane fade d-none fixedheight" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="2" data-tabs-link-target="contentDocuments">
-        <%= form_with(url: documents_path, multipart: true) do |form| %>
-          <%= form.file_field :file, accept: '.pdf' %>
-          <%= form.submit "Télécharger" %>
-        <% end %>
+                <%= render "documents/document" %>
+              </div>
 
-        <% if @upload_url %>
-          <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %></p>
-        <% end %>
+              <div class="tab-pane fade d-none fixedheight" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="3" data-tabs-link-target="contentPhotos">
+                <%= form_with(url: documents_path, multipart: true) do |f| %>
+                  <%= f.file_field :file, class: 'd-none', id: 'photo-upload', accept: ".jpg" %>
+                  <%= f.label :photo, '📸 Charger une photo', class: 'upload-photo', for: 'photo-upload' %>
+                  <%= f.hidden_field :id, value: @project.id %>
+                  <%= f.submit "Télécharger", class: 'upload-photo' %>
+                <% end %>
 
-        <% @documents.each do |doc| %>
-          <p><%= doc.name %> || <%= doc.url %> </p>
-        <% end %>
-      </div>
+                <% if @upload_url %>
+                  <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %></p>
+                <% end %>
 
-      <div class="tab-pane fade d-none fixedheight" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="3" data-tabs-link-target="contentPhotos">
-        <%= form_with(url: documents_path, multipart: true) do |form| %>
-          <%= form.file_field :file, class: 'd-none', id: 'photo-upload', accept: '.jpg' %>
-          <%= form.label :photo, '📷 Upload a photo', class: 'upload-photo', for: 'photo-upload' %>
-          <%= form.submit "Télécharger" %>
-        <% end %>
+                <%= render "documents/photo" %>
+              </div>
 
-        <div>
-          <% if @upload_url %>
-            <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %></p>
-          <% end %>
+              <div class="tab-pane fade d-none scrollonglet" id="nav-messagerie" role="tabpanel" aria-labelledby="nav-messagerie-tab" tabindex="4" data-tabs-link-target="contentMessagerie">
+                <div class="container chatroom" id="chatmsg">
+                  <div class="messages"
+                    data-controller="chatroom-subscription"
+                    data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+                    <% @chatroom.messages.each do |message| %>
+                      <%#= render "messages/message", message: message %>
+                      <% if message.user.nickname == @project.user.nickname %>
+                          <div class="messagePro #{@message.id}">
+                            <div class="blue"><p class="white"><%= message.content %></p></div><br>
+                            <small class="colgrey txtshiftsmall"><strong><%= message.user.nickname %></strong>
+                            <i><%= message.created_at.strftime("le %d/%m/%Y à %H:%M:%S") %></i></small>
+                          </div>
+                      <% else %>
+                          <div class="message #{@message.id}">
+                            <div class="grey"><p class="white"><%= message.content %></p></div>
+                            <small class="colgrey txtshift"><strong><%= message.user.nickname %></strong>
+                            <i><%= message.created_at.strftime("le %d/%m/%Y à %H:%M:%S") %></i></small>
+                          </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="msgbox boxrounded" id="txtwrite">
+                    <%= simple_form_for [@chatroom, @message], remote: true do |f|%>
+                      <%= f.input :content, id: 'msgtxt', label: false ,input_html: { placeholder: "Send message", style: "font-style: italic;"} %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
 
-          <% @documents.each do |doc| %>
-            <p><%= doc.name %> || <%= doc.url %> || <%= doc.type %> </p>
-          <% end %>
+              <div class="tab-pane fade d-none scrollonglet" id="nav-taches" role="tabpanel" aria-labelledby="nav-taches-tab" tabindex="5" data-tabs-link-target="contentTaches">
+                <%= link_to "Ajouter une nouvelle tâche", new_project_task_path(@project.id), class: "btn btn-see" %>
+                <% @tasks.each do |task| %>
+                  <div>
+                    <%= task.name %>
+                    <%= link_to "Modifier", edit_project_task_path(@project.id), class: "btn btn-see" %>
+                    <%= link_to '<i class="far fa-trash-alt"></i> Supprimer'.html_safe, task_path(task.id), data: {turbo_method: :delete, turbo_confirm: "Voulez vous supprimer cette tâche?"} %>
+                  </div>
+                <% end %>
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
 
-
-      <div class="tab-pane fade d-none scrollonglet" id="nav-messagerie" role="tabpanel" aria-labelledby="nav-messagerie-tab" tabindex="4" data-tabs-link-target="contentMessagerie">
-        <div class="container chatroom" id="chatmsg">
-          <div class="messages"
-            data-controller="chatroom-subscription"
-            data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
-            <% @chatroom.messages.each do |message| %>
-              <%#= render "messages/message", message: message %>
-              <% if message.user.nickname == @project.user.nickname %>
-                  <div class="messagePro #{@message.id}">
-                    <div class="blue"><p class="white"><%= message.content %></p></div><br>
-                    <small class="colgrey txtshiftsmall"><strong><%= message.user.nickname %></strong>
-                    <i><%= message.created_at.strftime("le %d/%m/%Y à %H:%M:%S") %></i></small>
-                  </div>
-              <% else %>
-                  <div class="message #{@message.id}">
-                    <div class="grey"><p class="white"><%= message.content %></p></div>
-                    <small class="colgrey txtshift"><strong><%= message.user.nickname %></strong>
-                    <i><%= message.created_at.strftime("le %d/%m/%Y à %H:%M:%S") %></i></small>
-                  </div>
-              <% end %>
-            <% end %>
-          </div>
-          <div class="msgbox boxrounded" id="txtwrite">
-            <%= simple_form_for [@chatroom, @message], remote: true do |f|%>
-              <%= f.input :content, id: 'msgtxt', label: false ,input_html: { placeholder: "Message", style: "font-style: italic;"} %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab-pane fade d-none scrollonglet" id="nav-taches" role="tabpanel" aria-labelledby="nav-taches-tab" tabindex="5" data-tabs-link-target="contentTaches">
-        <%= link_to "Ajouter une nouvelle tâche", new_project_task_path(@project.id), class: "btn btn-see" %>
-        <% @tasks.each do |task| %>
-          <div>
-            <%= task.name %>
-            <%= link_to "Modifier", edit_project_task_path(@project.id), class: "btn btn-see" %>
-            <%= link_to '<i class="far fa-trash-alt"></i> Supprimer'.html_safe, task_path(task.id), data: {turbo_method: :delete, turbo_confirm: "Voulez vous supprimer cette tâche?"} %>
-          </div>
-        <% end %>
-      </div>
-
-
-      </div>
     </div>
   </div>
-</div>
-</div>
-</div>
 </div>

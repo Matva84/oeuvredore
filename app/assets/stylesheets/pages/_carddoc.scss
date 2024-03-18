@@ -1,0 +1,45 @@
+.onephoto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0px;
+  border: 1px solid #e6e6e6;
+  border-radius: 16px;
+  box-shadow: 2px 2px 3px #e6e6e6;
+  width: 175px;
+  height: 260px;
+  margin: 24px;
+}
+
+.doclink {
+  text-decoration: none;
+  background-color: #f9f8f9;
+  width: 100%;
+  border-top: 1px solid #e6e6e6;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 8px;
+  position: relative;
+  bottom: 0px;
+}
+
+.photo {
+  position: relative;
+  display: flex;
+}
+
+.trash-icon {
+  position: absolute;
+  top: 10px; /* Ajustez ceci pour contrôler la position verticale */
+  right: 10px; /* Ajustez ceci pour contrôler la position horizontale */
+  color: #000; /* Couleur de l'icône */
+  font-size: 20px; /* Taille de l'icône */
+  /*background-color: #fff; /* Couleur de fond pour une meilleure visibilité */
+  border-radius: 50%; /* Pour donner une forme de cercle à l'icône */
+  padding: 5px; /* Espace autour de l'icône */
+}
+
+.photo {
+  position: relative;
+  display: inline-block; /* Pour s'assurer que la taille de la div est déterminée par le contenu */
+}
