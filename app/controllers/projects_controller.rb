@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
     if @show_all_projects
       @projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id))
     else
-      @projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id)).limit(3)
+      @projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id)).limit(6)
     end
       @total_projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id)).count
   end
