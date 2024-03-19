@@ -92,6 +92,30 @@ projectbq3.save!
 list_of_projects << projectbq3
 chatbq3 = Chatroom.create(name: "Villa bq", project: projectbq3)
 Message.create(chatroom: chatbq3, user: user_bq, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
+usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open(urls[0])
+projectbq4 = Project.new(title: "Rooftop à Bruxelles", description: "Création d'une armoire sur mesure pour rangement, peinture complète de la cuisine et renforcement électrique ", address: "Rue de Stal 153, 1130 Schaerbeek", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 15000, total_expenses: 7000, user: user_bq, customer: usr)
+projectbq4.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
+projectbq4.save!
+list_of_projects << projectbq4
+chatbq4 = Chatroom.create(name: "Rooftop bq", project: projectbq4)
+Message.create(chatroom: chatbq4, user: user_bq, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
+usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open(urls[1])
+projectbq5 = Project.new(title: "Sous-sol à Paris", description: "Création d'un sous-sol habitable dans un appartement du rez-de-chaussée. Transformation de la cave. Arrivée d'eau et électricité à amener. Ajout d'une toilette et d'un lavabo", address: "Boulevard Saint-Germain 354, 75007", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 175000, total_expenses: 35000, user: user_bq, customer: usr)
+projectbq5.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
+projectbq5.save!
+list_of_projects << projectbq5
+chatbq5 = Chatroom.create(name: "Sous-sol bq", project: projectbq5)
+Message.create(chatroom: chatbq5, user: user_bq, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
+usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open(urls[2])
+projectbq6 = Project.new(title: "Maison de campagne, Saint-Emilion", description: "Aménagement d'une cave à vin pour grand cru classé. Empièrement à prévoir, chambre froide et matériaux thermiques. Système de sécurité à reconnaissance optique.", address: "Rue du clocher 42, 33330 Saint-Emilion", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 85000, total_expenses: 22000, user: user_bq, customer: usr)
+projectbq6.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
+projectbq6.save!
+list_of_projects << projectbq6
+chatbq6 = Chatroom.create(name: "Maison de campagne bq", project: projectbq6)
+Message.create(chatroom: chatbq6, user: user_bq, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
 
 usr = list_of_users[rand(0..list_of_users.count-1)]
 file = URI.open(urls[1])
@@ -117,10 +141,34 @@ projectmv3.save!
 list_of_projects << projectmv3
 chatmv3 = Chatroom.create(name: "Villa mv", project: projectmv3)
 Message.create(chatroom: chatmv3, user: user_mv, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
+usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open(urls[0])
+projectmv4 = Project.new(title: "Rooftop à Bruxelles", description: "Création d'une armoire sur mesure pour rangement, peinture complète de la cuisine et renforcement électrique ", address: "Rue de Stal 153, 1130 Schaerbeek", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 15000, total_expenses: 7000, user: user_mv, customer: usr)
+projectmv4.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
+projectmv4.save!
+list_of_projects << projectmv4
+chatmv4 = Chatroom.create(name: "Rooftop mv", project: projectmv4)
+Message.create(chatroom: chatmv4, user: user_mv, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
+usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open(urls[1])
+projectmv5 = Project.new(title: "Sous-sol à Paris", description: "Création d'un sous-sol habitable dans un appartement du rez-de-chaussée. Transformation de la cave. Arrivée d'eau et électricité à amener. Ajout d'une toilette et d'un lavabo", address: "Boulevard Saint-Germain 354, 75007", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 175000, total_expenses: 35000, user: user_mv, customer: usr)
+projectmv5.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
+projectmv5.save!
+list_of_projects << projectmv5
+chatmv5 = Chatroom.create(name: "Sous-sol mv", project: projectmv5)
+Message.create(chatroom: chatmv5, user: user_mv, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
+usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open(urls[2])
+projectmv6 = Project.new(title: "Maison de campagne, Saint-Emilion", description: "Aménagement d'une cave à vin pour grand cru classé. Empièrement à prévoir, chambre froide et matériaux thermiques. Système de sécurité à reconnaissance optique.", address: "Rue du clocher 42, 33330 Saint-Emilion", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 85000, total_expenses: 22000, user: user_mv, customer: usr)
+projectmv6.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
+projectmv6.save!
+list_of_projects << projectmv6
+chatmv6 = Chatroom.create(name: "Maison de campagne mv", project: projectmv6)
+Message.create(chatroom: chatmv6, user: user_mv, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
 
 usr = list_of_users[rand(0..list_of_users.count-1)]
 file = URI.open(urls[1])
-projectfl1 = Project.new(title: "Maison sur l'ile de Ré", description: "Rénovation complète de la salle de bain, avec remplacement de la baignoire par une douche, remplacement du carrelage, et installation d'un meuble vasque.", address: "10, Grand Place, 1000 Bruxelles", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 5000, total_expenses: 1000, user: user_fl, customer: usr)
+projectfl1 = Project.new(title: "Maison sur l'ile de Ré", description: "Rénovation complète de la salle de bain, avec remplacement de la baignoire par une douche, remplacement du carrelage, et installation d'un meuble vasque.", address: "10, Grand Place, 1000 Bruxelles", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 5000, total_expenses: 1000, user: user_mv, customer: usr)
 projectfl1.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
 projectfl1.save!
 list_of_projects << projectfl1
@@ -142,6 +190,30 @@ projectfl3.save!
 list_of_projects << projectfl3
 chatfl3 = Chatroom.create(name: "Villa fl", project: projectfl3)
 Message.create(chatroom: chatfl3, user: user_fl, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
+usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open(urls[0])
+projectfl4 = Project.new(title: "Rooftop à Bruxelles", description: "Création d'une armoire sur mesure pour rangement, peinture complète de la cuisine et renforcement électrique ", address: "Rue de Stal 153, 1130 Schaerbeek", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 15000, total_expenses: 7000, user: user_fl, customer: usr)
+projectfl4.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
+projectfl4.save!
+list_of_projects << projectfl4
+chatfl4 = Chatroom.create(name: "Rooftop fl", project: projectfl4)
+Message.create(chatroom: chatfl4, user: user_fl, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
+usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open(urls[1])
+projectfl5 = Project.new(title: "Sous-sol à Paris", description: "Création d'un sous-sol habitable dans un appartement du rez-de-chaussée. Transformation de la cave. Arrivée d'eau et électricité à amener. Ajout d'une toilette et d'un lavabo", address: "Boulevard Saint-Germain 354, 75007", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 175000, total_expenses: 35000, user: user_fl, customer: usr)
+projectfl5.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
+projectfl5.save!
+list_of_projects << projectfl5
+chatfl5 = Chatroom.create(name: "Sous-sol fl", project: projectfl5)
+Message.create(chatroom: chatfl5, user: user_fl, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
+usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open(urls[2])
+projectfl6 = Project.new(title: "Maison de campagne, Saint-Emilion", description: "Aménagement d'une cave à vin pour grand cru classé. Empièrement à prévoir, chambre froide et matériaux thermiques. Système de sécurité à reconnaissance optique.", address: "Rue du clocher 42, 33330 Saint-Emilion", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 85000, total_expenses: 22000, user: user_fl, customer: usr)
+projectfl6.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
+projectfl6.save!
+list_of_projects << projectfl6
+chatfl6 = Chatroom.create(name: "Maison de campagne fl", project: projectfl6)
+Message.create(chatroom: chatfl6, user: user_fl, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
 
 usr = list_of_users[rand(0..list_of_users.count-1)]
 file = URI.open(urls[1])
@@ -167,6 +239,30 @@ projectgl3.save!
 list_of_projects << projectgl3
 chatgl3 = Chatroom.create(name: "Villa gl", project: projectgl3)
 Message.create(chatroom: chatgl3, user: user_gl, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
+usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open(urls[0])
+projectgl4 = Project.new(title: "Rooftop à Bruxelles", description: "Création d'une armoire sur mesure pour rangement, peinture complète de la cuisine et renforcement électrique ", address: "Rue de Stal 153, 1130 Schaerbeek", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 15000, total_expenses: 7000, user: user_gl, customer: usr)
+projectgl4.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
+projectgl4.save!
+list_of_projects << projectgl4
+chatgl4 = Chatroom.create(name: "Rooftop gl", project: projectgl4)
+Message.create(chatroom: chatgl4, user: user_gl, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
+usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open(urls[1])
+projectgl5 = Project.new(title: "Sous-sol à Paris", description: "Création d'un sous-sol habitable dans un appartement du rez-de-chaussée. Transformation de la cave. Arrivée d'eau et électricité à amener. Ajout d'une toilette et d'un lavabo", address: "Boulevard Saint-Germain 354, 75007", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 175000, total_expenses: 35000, user: user_gl, customer: usr)
+projectgl5.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
+projectgl5.save!
+list_of_projects << projectgl5
+chatgl5 = Chatroom.create(name: "Sous-sol gl", project: projectgl5)
+Message.create(chatroom: chatgl5, user: user_gl, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
+usr = list_of_users[rand(0..list_of_users.count-1)]
+file = URI.open(urls[2])
+projectgl6 = Project.new(title: "Maison de campagne, Saint-Emilion", description: "Aménagement d'une cave à vin pour grand cru classé. Empièrement à prévoir, chambre froide et matériaux thermiques. Système de sécurité à reconnaissance optique.", address: "Rue du clocher 42, 33330 Saint-Emilion", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 85000, total_expenses: 22000, user: user_gl, customer: usr)
+projectgl6.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
+projectgl6.save!
+list_of_projects << projectgl6
+chatgl6 = Chatroom.create(name: "Maison de campagne gl", project: projectgl6)
+Message.create(chatroom: chatgl6, user: user_gl, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
 
 puts "  >> #{Project.count} project(s) created"
 

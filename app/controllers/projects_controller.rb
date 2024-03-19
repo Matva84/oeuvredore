@@ -4,12 +4,13 @@ class ProjectsController < ApplicationController
   def index
     @user = current_user
     @users = User.all
+    @project = Project.new
     @show_all_projects = params[:show_all] == "true"
 
     if @show_all_projects
       @projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id))
     else
-      @projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id)).limit(3)
+      @projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id)).limit(6)
     end
       @total_projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id)).count
   end

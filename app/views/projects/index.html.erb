@@ -29,7 +29,24 @@
               <h1 class="mt-5 mb-4">Mes projets</h1>
             </div>
             <div class="col-md-3 text-right mt-5">
-              <%= link_to "Ajouter Nouveau Projet", new_project_path, class: "btn btn-see" %>
+            <!-- button Modal -->
+              <button type="button" class="btn btn-see" data-bs-toggle="modal" data-bs-target="#newProjectModal">
+                Ajouter Nouveau Projet
+              </button>
+            <!-- Modal -->
+              <div class="modal fade" id="newProjectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title" id="newProjectModal">Ajouter Nouveau Projet</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                     </div>
+                       <div class="modal-body">
+                        <%= render "newproject", project: @new_project_path %>
+                       </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
