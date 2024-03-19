@@ -160,14 +160,27 @@
               </div>
 
               <div class="tab-pane fade d-none scrollonglet" id="nav-taches" role="tabpanel" aria-labelledby="nav-taches-tab" tabindex="5" data-tabs-link-target="contentTaches">
-                <%= link_to "Ajouter une nouvelle tâche", new_project_task_path(@project.id), class: "btn btn-see" %>
-                <% @tasks.each do |task| %>
-                  <div>
-                    <%= task.name %>
-                    <%= link_to "Modifier", edit_project_task_path(@project.id), class: "btn btn-see" %>
-                    <%= link_to '<i class="far fa-trash-alt"></i> Supprimer'.html_safe, task_path(task.id), data: {turbo_method: :delete, turbo_confirm: "Voulez vous supprimer cette tâche?"} %>
+                <div class="container my-4 px-4">
+                  <div class="text-end">
+                    <%= link_to "Ajouter une nouvelle tâche", new_project_task_path(@project.id), class: "btn main-btn" %>
                   </div>
-                <% end %>
+                  <% @tasks.each do |task| %>
+                    <div class="task-notification mt-3">
+                      <div class="task-notification-description">
+                        <p><strong><%= task.name %></strong></p>
+                        <p> <%=task.description%> </p>
+                      </div>
+                      <div class="task-notification-content text-center">
+                        <p><small> <%=task.start_at%> - <%=task.end_at%> </small></p>
+                        <p><small> <%=task.budget%> € </small></p>
+                      </div>
+                      <div class="task-notification-actions">
+                        <%= link_to '<i class="fas fa-pencil-alt"></i> Modifier'.html_safe, edit_project_task_path(@project.id, task.id) %>
+                        <%= link_to '<i class="far fa-trash-alt"></i> Supprimer'.html_safe, task_path(task.id), data: {turbo_method: :delete, turbo_confirm: "Voulez vous supprimer cette tâche?"} %>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
               </div>
 
             </div>

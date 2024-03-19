@@ -204,3 +204,53 @@ padding: 16px;
 .fixedheight {
   height: 550px;
 }
+
+// tâches
+.task-notification {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  background: white;
+  padding: 8px 16px;
+  border: 1px solid rgb(235,235,235);
+  border-radius: 2px;
+}
+
+.task-notification .task-notification-description {
+  width: 300px;
+}
+
+.task-notification .task-notification-content {
+  flex-grow: 1;
+  padding: 0 24px;
+}
+
+.task-notification p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.task-notification small {
+  color: #999999;
+  font-weight: bold;
+}
+.task-notification .task-notification-actions {
+  opacity: 0;
+  display: flex;
+  transition: ease .3s;
+}
+
+.task-notification:hover .task-notification-actions {
+  opacity: 1;
+}
+
+.task-notification .task-notification-actions a {
+  color: #999999;
+  margin-left: 16px;
+  font-size: 14px;
+}
+
+.task-notification .task-notification-actions a:hover {
+  color: #555555;
+}
