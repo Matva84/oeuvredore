@@ -25,3 +25,4 @@ pin "@babel/runtime/helpers/esm/defineProperty", to: "https://ga.jspm.io/npm:@ba
 pin "@babel/runtime/helpers/esm/inherits", to: "https://ga.jspm.io/npm:@babel/runtime@7.23.1/helpers/esm/inherits.js"
 pin "@babel/runtime/helpers/esm/typeof", to: "https://ga.jspm.io/npm:@babel/runtime@7.23.1/helpers/esm/typeof.js"
 pin "date-fns", to: "https://ga.jspm.io/npm:date-fns@2.30.0/esm/index.js"
+pin "flatpickr" # @4.6.13

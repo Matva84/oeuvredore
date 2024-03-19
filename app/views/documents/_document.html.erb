@@ -10,7 +10,7 @@
           <% end %>
 
           <div data-controller="modal">
-            <button type="button" class="btn btn-primary" data-action="click->modal#open">
+            <button type="button" data-action="click->modal#open" id="btn-hidden">
               <i class="fa-solid fa-tag"></i>
             </button>
 
@@ -39,18 +39,19 @@
                 </div>
               </div>
 
-              <!--<p class="hidden">Description saisie : <span data-modal-target="descriptionDisplay"></span></p>-->
-              <% description = content_tag(:span, data: { target: "modal.descriptionDisplay" }) do %>
-                <%= "" %>
-              <% end %>
-              <p class="d-none"><%= description %></p>
-              <p><%= description %></p>
+              <p><span data-modal-target="descriptionDisplay"></span></p>
+              <% desc = content_tag(:span, data: { target: "modal.descriptionDisplay" }) %>
+              <%#<p class="d-none"><%= desc %>
+              <p><%= desc %></p>
+              <%= doc.tag_list.add("Test") %>
               <%#= doc.add_tags %>
-              <%= doc %>
+              <%#= doc.tags %>
+              <% if doc.tag_list.any? %>
+                <p>Tags: <%= doc.tag_list.join(", ") %></p>
+              <% end %>
 
             </div>
           </div>
-
 
         </div>
         <a href=<%= doc.url %> target="_blank" class="doclink"><%= doc.name %></a>

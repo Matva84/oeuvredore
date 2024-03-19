@@ -5,188 +5,224 @@
     </div>
 
     <div class="col-10">
+      <div class="mx-3">
+        <div class="row">
 
-  <div class="mx-3">
-  <div class="row">
-
-    <div class="card">
-      <div class="card-presentation">
-        <%= cl_image_tag @project.photo.key, crop: :fill, class: "img-fluid full-width mb-8" %>
-        <i class="fa-regular fa-pen-to-square pen"></i>
-      </div>
-
-      <h5 class="card-title"><%= @project.title %></h5>
-      <p class="card-text"><%= @project.description %></p>
-
-      <div class="card-caracteristic">
-        <div class="cardsmall">
-          <p><strong>Planning</strong></p>
-          <div class="w3-darkgreen  w3-round-large">
-            <% s = "width:#{@project.progress}%" %>
-            <div class="w3-container w3-green w3-round-large" style= <%=s%>>
-              <% if (@project.progress).round < 10 %>
-                <p class="greentext"> </p>
-              <% else  %>
-                <%= (@project.progress).round %>
-              <% end %>
-              %
+          <div class="card">
+            <div class="card-presentation">
+              <%= cl_image_tag @project.photo.key, crop: :fill, class: "img-fluid full-width mb-8" %>
+              <i class="fa-regular fa-pen-to-square pen"></i>
             </div>
-          </div>
-        </div>
 
-      <div class="cardsmall">
-        <p><strong>Budget</strong></p>
-        <div class="w3-darkblue w3-round-large">
-          <% s = "width:#{100 * (@project.total_expenses/@project.customer_budget)}%" %>
-          <div class="w3-container w3-blue w3-round-large" style=<%= s%>>
-            <%= (100 * (@project.total_expenses/@project.customer_budget)).round %>
-            %
-          </div>
-        </div>
-      </div>
+            <h5 class="card-title"><%= @project.title %></h5>
+            <p class="card-text"><%= @project.description %></p>
 
-      <div class="cardsmall">
-        <p><strong>Client</strong></p>
-        <p><%= @customer.name %> </p>
-      </div>
-    </div>
-
-    </div>
-  </div>
-</div>
-
-<div class="mx-3">
-  <div class="row">
-    <div class="onglets" data-controller="tabs-link" >
-    <nav>
-      <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <button class="nav-link active myTab" id="nav-planning-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" data-action="click->tabs-link#revealPlanning">Planning</button>
-        <button class="nav-link myTab" id="nav-budget-tab" data-bs-toggle="tab" data-bs-target="#nav-budget" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" data-action="click->tabs-link#revealBudget">Budget</button>
-        <button class="nav-link myTab" id="nav-documents-tab" data-bs-toggle="tab" data-bs-target="#nav-documents" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" data-action="click->tabs-link#revealDocuments">Documents</button>
-        <button class="nav-link myTab" id="nav-photos-tab" data-bs-toggle="tab" data-bs-target="#nav-photos" type="button" role="tab" aria-controls="nav-photos" aria-selected="false" data-action="click->tabs-link#revealPhotos">Photos</button>
-        <button class="nav-link myTab" id="nav-messagerie-tab" data-bs-toggle="tab" data-bs-target="#nav-messagerie" type="button" role="tab" aria-controls="nav-messagerie" aria-selected="false" data-action="click->tabs-link#revealMessagerie">Messagerie</button>
-      </div>
-    </nav>
-
-    <div class="tab-content ongletscontainer" id="nav-tabContent">
-
-      <div class="tab-pane fade show active fixedheight d-flex justify-content-center align-items-center p-2" id="nav-planning" role="tabpanel" aria-labelledby="nav-planning-tab" tabindex="0" data-tabs-link-target="contentPlanning">
-        <% tasks_name = [] %>
-        <% tasks_start = [] %>
-        <% tasks_end = [] %>
-        <% tasks_price = [] %>
-        <% tasks_progress = [] %>
-        <% @tasks.each do |task| %>
-          <% tasks_name << task.name %>
-          <% tasks_end << task.end_at%>
-          <% tasks_start << task.start_at%>
-          <% tasks_price << task.budget %>
-          <% tasks_progress << task.progress %>
-        <% end %>
-      <canvas id= "ganttChart" data-controller="gantt" >
-        <div data-gantt-target="projectName" data-value="<%= @project.title %>"></div>
-        <div data-gantt-target="tasksName" data-value = "<%= tasks_name %>"> </div>
-        <div data-gantt-target="tasksStart" data-value = "<%= tasks_start %>"> </div>
-        <div data-gantt-target="tasksEnd" data-value = "<%= tasks_end %>"> </div>
-        <div data-gantt-target="tasksProgress" data-value = "<%= tasks_progress %>"> </div>
-      </canvas>
-    </div>
-
-
-      <div class="tab-pane fade d-none fixedheight d-flex justify-content-center align-items-center p-2" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab" tabindex="1" data-tabs-link-target="contentBudget">
-        <canvas id = "budgetgraph" data-controller="line-chart">
-          <div data-line-chart-target="tasksName" data-value = "<%= tasks_name %>"> </div>
-          <div data-line-chart-target="tasksPrice" data-value = "<%= tasks_price %>"> </div>
-          <div data-line-chart-target="tasksProgress" data-value = "<%= tasks_progress %>"> </div>
-        </canvas>
-      </div>
-
-
-      <div class="tab-pane fade d-none fixedheight" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="2" data-tabs-link-target="contentDocuments">
-
-        <%= form_with(url: documents_path, multipart: true) do |form| %>
-          <%= form.file_field :file, class: 'd-none', id: 'doc-upload', accept: ".pdf" %>
-          <%= form.label :photo, '📝 Charger un document', class: 'upload-photo', for: 'doc-upload' %>
-          <%= form.hidden_field :id, value: @project.id %>
-          <%= form.submit "Télécharger", class: 'upload-photo' %>
-        <% end %>
-
-        <%# if @upload_url %>
-        <%#  <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url </p>
-        <%# end %>
-
-        <div class="taglist">
-          <div class="searchdesc">
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search in title or description" aria-label="Seacrh" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" type="button">Search</button>
+            <div class="card-caracteristic">
+              <div class="cardsmall">
+                <p><strong>Planning</strong></p>
+                <div class="w3-darkgreen  w3-round-large">
+                  <% s = "width:#{@project.progress}%" %>
+                  <div class="w3-container w3-green w3-round-large" style= <%=s%>>
+                    <% if (@project.progress).round < 10 %>
+                      <p class="greentext"> </p>
+                    <% else  %>
+                      <%= (@project.progress).round %>
+                    <% end %> %
+                  </div>
                 </div>
               </div>
+
+              <div class="cardsmall">
+                <p><strong>Budget</strong></p>
+                <div class="w3-darkblue w3-round-large">
+                  <% s = "width:#{100 * (@project.total_expenses/@project.customer_budget)}%" %>
+                  <div class="w3-container w3-blue w3-round-large" style=<%= s%>>
+                    <%= (100 * (@project.total_expenses/@project.customer_budget)).round %>
+                    %
+                  </div>
+                </div>
+              </div>
+
+              <div class="cardsmall">
+                <p><strong>Client</strong></p>
+                <p><%= @customer.name %> </p>
+              </div>
+
             </div>
-
-          <%#= ActsAsTaggableOn::Tag.most_used(10) %>
-          <%#= @documents.tagged_with(["awesome", "cool"], :match_all => true) %>
-        </div>
-
-
-        <%= render "documents/document" %>
-
-      </div>
-      <div class="tab-pane fade d-none fixedheight" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="3" data-tabs-link-target="contentPhotos">
-
-        <%= form_with(url: documents_path, multipart: true) do |f| %>
-          <%= f.file_field :file, class: 'd-none', id: 'photo-upload', accept: ".jpg" %>
-          <%= f.label :photo, '📸 Charger une photo', class: 'upload-photo', for: 'photo-upload' %>
-          <%= f.hidden_field :id, value: @project.id %>
-          <%= f.submit "Télécharger", class: 'upload-photo' %>
-        <% end %>
-
-          <%# if @upload_url %>
-          <%#  <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url </p>
-          <%# end %>
-
-          <%= render "documents/photo" %>
-      </div>
-
-      <div class="tab-pane fade d-none scrollonglet" id="nav-messagerie" role="tabpanel" aria-labelledby="nav-messagerie-tab" tabindex="4" data-tabs-link-target="contentMessagerie">
-        <div class="container chatroom" id="chatmsg">
-          <div class="messages"
-            data-controller="chatroom-subscription"
-            data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
-            <% @chatroom.messages.each do |message| %>
-              <%#= render "messages/message", message: message %>
-              <% if message.user.nickname == @project.user.nickname %>
-                  <div class="messagePro #{@message.id}">
-                    <div class="blue"><p class="white"><%= message.content %></p></div><br>
-                    <small class="colgrey txtshiftsmall"><strong><%= message.user.nickname %></strong>
-                    <i><%= message.created_at.strftime("le %d/%m/%Y à %H:%M:%S") %></i></small>
-                  </div>
-              <% else %>
-                  <div class="message #{@message.id}">
-                    <div class="grey"><p class="white"><%= message.content %></p></div>
-                    <small class="colgrey txtshift"><strong><%= message.user.nickname %></strong>
-                    <i><%= message.created_at.strftime("le %d/%m/%Y à %H:%M:%S") %></i></small>
-                  </div>
-              <% end %>
-            <% end %>
-          </div>
-
-          <div class="msgbox boxrounded" id="txtwrite">
-            <%= simple_form_for [@chatroom, @message], remote: true do |f|%>
-              <%= f.input :content, id: 'msgtxt', label: false ,input_html: { placeholder: "Send message", style: "font-style: italic;"} %>
-            <% end %>
-          </div>
-
-          <div id="test">
           </div>
         </div>
       </div>
-    </div>
-    </div>
-  </div>
 
-</div>
+      <div class="mx-3">
+        <div class="row">
+          <div class="onglets" data-controller="tabs-link" >
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active myTab" id="nav-planning-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" data-action="click->tabs-link#revealPlanning">Planning</button>
+                <button class="nav-link myTab" id="nav-budget-tab" data-bs-toggle="tab" data-bs-target="#nav-budget" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" data-action="click->tabs-link#revealBudget">Budget</button>
+                <button class="nav-link myTab" id="nav-documents-tab" data-bs-toggle="tab" data-bs-target="#nav-documents" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" data-action="click->tabs-link#revealDocuments">Documents</button>
+                <button class="nav-link myTab" id="nav-photos-tab" data-bs-toggle="tab" data-bs-target="#nav-photos" type="button" role="tab" aria-controls="nav-photos" aria-selected="false" data-action="click->tabs-link#revealPhotos">Photos</button>
+                <button class="nav-link myTab" id="nav-messagerie-tab" data-bs-toggle="tab" data-bs-target="#nav-messagerie" type="button" role="tab" aria-controls="nav-messagerie" aria-selected="false" data-action="click->tabs-link#revealMessagerie">Messagerie</button>
+                <button class="nav-link myTab" id="nav-taches-tab" data-bs-toggle="tab" data-bs-target="#nav-taches" type="button" role="tab" aria-controls="nav-taches" aria-selected="false" data-action="click->tabs-link#revealTaches">Tâches</button>
+              </div>
+            </nav>
+
+            <div class="tab-content ongletscontainer" id="nav-tabContent">
+
+              <div class="tab-pane fade show active fixedheight d-flex justify-content-center align-items-center p-2" id="nav-planning" role="tabpanel" aria-labelledby="nav-planning-tab" tabindex="0" data-tabs-link-target="contentPlanning">
+                <% tasks_name = [] %>
+                <% tasks_start = [] %>
+                <% tasks_end = [] %>
+                <% tasks_price = [] %>
+                <% tasks_progress = [] %>
+                <% @tasks.each do |task| %>
+                  <% tasks_name << task.name %>
+                  <% tasks_end << task.end_at%>
+                  <% tasks_start << task.start_at%>
+                  <% tasks_price << task.budget %>
+                  <% tasks_progress << task.progress %>
+                <% end %>
+                <canvas id= "ganttChart" data-controller="gantt" >
+                  <div data-gantt-target="projectName" data-value="<%= @project.title %>"></div>
+                  <div data-gantt-target="tasksName" data-value = "<%= tasks_name %>"> </div>
+                  <div data-gantt-target="tasksStart" data-value = "<%= tasks_start %>"> </div>
+                  <div data-gantt-target="tasksEnd" data-value = "<%= tasks_end %>"> </div>
+                  <div data-gantt-target="tasksProgress" data-value = "<%= tasks_progress %>"> </div>
+                </canvas>
+              </div>
+
+              <div class="tab-pane fade d-none fixedheight d-flex justify-content-center align-items-center p-2" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab" tabindex="1" data-tabs-link-target="contentBudget">
+                <canvas id = "budgetgraph" data-controller="line-chart">
+                  <div data-line-chart-target="tasksName" data-value = "<%= tasks_name %>"> </div>
+                  <div data-line-chart-target="tasksPrice" data-value = "<%= tasks_price %>"> </div>
+                  <div data-line-chart-target="tasksProgress" data-value = "<%= tasks_progress %>"> </div>
+                </canvas>
+              </div>
+
+              <div class="tab-pane fade d-none fixedheight" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="2" data-tabs-link-target="contentDocuments">
+                <%= form_with(url: documents_path, multipart: true) do |form| %>
+                  <%= form.file_field :file, class: 'd-none', id: 'doc-upload', accept: ".pdf" %>
+                  <%= form.label :photo, '📝 Charger un document', class: 'upload-photo', for: 'doc-upload' %>
+                  <%= form.hidden_field :id, value: @project.id %>
+                  <%= form.submit "Télécharger", class: 'upload-photo' %>
+                <% end %>
+
+                <%# if @upload_url %>
+                <%#  <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %>
+                <%# end %>
+
+                <div class="taglist">
+                  <div class="searchdesc">
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Chercher des mots clé" aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-secondary" type="button">Recherche</button>
+                        </div>
+                      </div>
+                    </div>
+
+                  <%= ActsAsTaggableOn::Tag.most_used(10) %>
+                  <%= @documents.tagged_with(["facture"], :match_all => true) %>
+                </div>
+
+                <%= render "documents/document" , locals: { document: @document }%>
+              </div>
+
+              <div class="tab-pane fade d-none fixedheight" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="3" data-tabs-link-target="contentPhotos">
+                <%= form_with(url: documents_path, multipart: true) do |f| %>
+                  <%= f.file_field :file, class: 'd-none', id: 'photo-upload', accept: ".jpg" %>
+                  <%= f.label :photo, '📸 Charger une photo', class: 'upload-photo', for: 'photo-upload' %>
+                  <%= f.hidden_field :id, value: @project.id %>
+                  <%= f.submit "Télécharger", class: 'upload-photo' %>
+                <% end %>
+
+                <%# if @upload_url %>
+                <%#  <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %>
+                <%# end %>
+
+                <%= render "documents/photo" %>
+              </div>
+
+              <div class="tab-pane fade d-none scrollonglet" id="nav-messagerie" role="tabpanel" aria-labelledby="nav-messagerie-tab" tabindex="4" data-tabs-link-target="contentMessagerie">
+                <div class="container chatroom" id="chatmsg">
+                  <div class="messages"
+                    data-controller="chatroom-subscription"
+                    data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+                    <% @chatroom.messages.each do |message| %>
+                      <%#= render "messages/message", message: message %>
+                      <% if message.user.nickname == @project.user.nickname %>
+                          <div class="messagePro #{@message.id}">
+                            <div class="blue"><p class="white"><%= message.content %></p></div><br>
+                            <small class="colgrey txtshiftsmall"><strong><%= message.user.nickname %></strong>
+                            <i><%= message.created_at.strftime("le %d/%m/%Y à %H:%M:%S") %></i></small>
+                          </div>
+                      <% else %>
+                          <div class="message #{@message.id}">
+                            <div class="grey"><p class="white"><%= message.content %></p></div>
+                            <small class="colgrey txtshift"><strong><%= message.user.nickname %></strong>
+                            <i><%= message.created_at.strftime("le %d/%m/%Y à %H:%M:%S") %></i></small>
+                          </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="msgbox boxrounded" id="txtwrite">
+                    <%= simple_form_for [@chatroom, @message], remote: true do |f|%>
+                      <%= f.input :content, id: 'msgtxt', label: false ,input_html: { placeholder: "Send message", style: "font-style: italic;"} %>
+                    <% end %>
+                  </div>
+                  <div id="test">
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade d-none scrollonglet" id="nav-taches" role="tabpanel" aria-labelledby="nav-taches-tab" tabindex="5" data-tabs-link-target="contentTaches">
+                <div class="container my-4 px-4">
+                  <div class="text-end">
+                    <%# <%= link_to "Ajouter une nouvelle tâche", new_project_task_path(@project.id), class: "btn main-btn" %>
+                    <a class="btn main-btn" data-bs-toggle="modal" data-bs-target="#newTaskModal">
+                      Ajouter une tâche
+                    </a>
+                  </div>
+
+                  <!-- Modal -->
+                  <div class="modal" id="newTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="newTaskModalLabel">Nouvelle tâche</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <%= render "formtask", project: @project, task: @task_new %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <% @tasks.each do |task| %>
+                    <div class="task-notification mt-3">
+                      <div class="task-notification-description">
+                        <p><strong><%= task.name %></strong></p>
+                        <p> <%=task.description%> </p>
+                      </div>
+                      <div class="task-notification-content text-center">
+                        <p><small> <%=task.start_at%> - <%=task.end_at%> </small></p>
+                        <p><small> <%=task.budget%> € </small></p>
+                      </div>
+                      <div class="task-notification-actions">
+                        <%= link_to '<i class="fas fa-pencil-alt"></i> Modifier'.html_safe, edit_project_task_path(@project.id, task.id) %>
+                        <%= link_to '<i class="far fa-trash-alt"></i> Supprimer'.html_safe, task_path(task.id), data: {turbo_method: :delete, turbo_confirm: "Voulez vous supprimer cette tâche?"} %>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

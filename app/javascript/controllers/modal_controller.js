@@ -26,7 +26,8 @@ export default class extends Controller {
 
     const tags = description.split(" ").map(tag => tag.trim());
     const filteredTags = tags.filter(str => str.length > 3);
-    this.descriptionDisplayTarget.textContent = filteredTags;
+    this.descriptionDisplayTarget.textContent = filteredTags.join(", ");
+    console.log("Tags filtrés : " + filteredTags.join(", "));
     this.close();
   }
 

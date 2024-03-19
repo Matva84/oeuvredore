@@ -20,7 +20,7 @@
   padding-bottom: 8px;
   padding-left: 8px;
   position: relative;
-  bottom: 24px;
+  bottom: 48px;
   border-radius: 0px 0px 16px 16px;
 }
 
@@ -31,7 +31,7 @@
 
 .trash-icon {
   position: absolute;
-  bottom: 30px; /* Ajustez ceci pour contrôler la position verticale */
+  bottom: 56px; /* Ajustez ceci pour contrôler la position verticale */
   right: 10px; /* Ajustez ceci pour contrôler la position horizontale */
   color: #000; /* Couleur de l'icône */
   font-size: 20px; /* Taille de l'icône */
@@ -54,4 +54,9 @@
 .photo {
   position: relative;
   display: inline-block; /* Pour s'assurer que la taille de la div est déterminée par le contenu */
+}
+.btn-hidden {
+  display: none;
+  border: none;
+  border-width: 0px;
 }
