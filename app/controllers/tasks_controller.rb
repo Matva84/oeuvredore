@@ -1,9 +1,4 @@
 class TasksController < ApplicationController
-  def new
-    @project = Project.find(params[:project_id])
-    @task_new = Task.new
-  end
-
   def create
     @start_at = params[:task]["start_at"].to_date
     @end_at = params[:task]["end_at"].to_date

@@ -21,6 +21,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @task_new = Task.new
     @tasks = @project.tasks
     @user = @project.user
     @customer = @project.customer

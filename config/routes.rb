@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # get "projects/new", to: "projects#new"
   resources :projects do
-    resources :tasks, only: [:new, :create, :edit, :update]
+    resources :tasks, only: [:create, :edit, :update]
   end
   resources :tasks, only: :destroy
   resources :chatrooms, only: :show do
