@@ -7,6 +7,7 @@
           <%= link_to(document_path(doc.id), class: 'btn btn-ghost', data: {turbo_method: :delete, turbo_confirm: "Do you really want to remove this document ?"}) do %>
             <i class="fa-solid fa-trash-can trash-icon"></i>
           <% end %>
+          <i class="fa-solid fa-tag"></i>
         </div>
         <a href=<%= doc.url %> target="_blank" class="doclink"><%= doc.name %></a>
       </div>

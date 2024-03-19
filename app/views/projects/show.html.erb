@@ -111,9 +111,24 @@
           <%= form.submit "Télécharger", class: 'upload-photo' %>
         <% end %>
 
-        <% if @upload_url %>
-          <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %></p>
-        <% end %>
+        <%# if @upload_url %>
+        <%#  <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url </p>
+        <%# end %>
+
+        <div class="taglist">
+          <div class="searchdesc">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search in title or description" aria-label="Seacrh" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button">Search</button>
+                </div>
+              </div>
+            </div>
+
+          <%#= ActsAsTaggableOn::Tag.most_used(10) %>
+          <%#= @documents.tagged_with(["awesome", "cool"], :match_all => true) %>
+        </div>
+
 
         <%= render "documents/document" %>
 
@@ -127,9 +142,9 @@
           <%= f.submit "Télécharger", class: 'upload-photo' %>
         <% end %>
 
-          <% if @upload_url %>
-            <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %></p>
-          <% end %>
+          <%# if @upload_url %>
+          <%#  <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url </p>
+          <%# end %>
 
           <%= render "documents/photo" %>
       </div>
