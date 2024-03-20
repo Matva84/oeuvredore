@@ -118,9 +118,9 @@
                         <a href="#" class="tag" data-tag="<%= tag.name %>" data-action="click->search-documents#toggle" data-search-document-target="link"><%= tag.name %></a>
                       <% end %>
 
-                      <!--<% if @documents.tag_list.any? %>
-                        <p>Tags: <%= doc.tag_list.join(", ") %></p>
-                      <% end %>-->
+                      <%# if @documents.tag_list.any? %>
+                      <%#  <p>Tags: <%= doc.tag_list.join(", ") %>
+                      <%# end %>
 
                     <div data-search-documents-target="list">
                       <%= @documents.tagged_with(["document"], :match_all => true) %>
