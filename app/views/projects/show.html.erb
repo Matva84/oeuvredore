@@ -101,7 +101,7 @@
 
               <div class="tab-pane fade d-none fixedheight" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="2" data-tabs-link-target="contentDocuments">
                 <%= form_with(url: documents_path, multipart: true) do |form| %>
-                  <%= form.file_field :file, class: 'd-none', id: 'doc-upload', accept: ".pdf" %>
+                  <%= form.file_field :file, class: 'd-none', id: 'doc-upload', accept: "application/pdf, application/msword, image/jpeg, image/png" %>
                   <%= form.label :photo, '📝 Charger un document', class: 'upload-photo', for: 'doc-upload' %>
                   <%= form.hidden_field :id, value: @project.id %>
                   <%= form.submit "Télécharger", class: 'upload-photo' %>
@@ -112,17 +112,17 @@
                 <%# end %>
 
                 <div class="taglist">
-                  <div class="searchdesc">
-                      <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Chercher des mots clé" aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-secondary" type="button">Recherche</button>
-                        </div>
-                      </div>
-                    </div>
 
-                  <%= ActsAsTaggableOn::Tag.most_used(10) %>
-                  <%= @documents.tagged_with(["facture"], :match_all => true) %>
+                  <% ActsAsTaggableOn::Tag.most_used(10).each do |tag| %>
+                    <a href="#" class="tag" data-tag="<%= tag.name %>"><%= tag.name %></a>
+                  <% end %>
+                  <%#= @documents.tagged_with(["Document"], :match_all => true) %>
+
+                  <%#<p>List of tags</p>
+                  <%# if @documents.tag_list.any? %>
+                  <%#  <p>Tags: <%= doc.tag_list.join(", ") %>
+                  <%# end %>
+
                 </div>
 
                 <%= render "documents/document" , locals: { document: @document }%>
