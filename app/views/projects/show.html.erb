@@ -220,6 +220,7 @@
                         <%= link_to '<i class="far fa-trash-alt"></i> Supprimer'.html_safe, task_path(task.id), data: {turbo_method: :delete, turbo_confirm: "Voulez vous supprimer cette tâche?"} %>
                       </div>
                     </div>
+                    <%# faire modal pour l'edit, en faisant un id de modal dynamique %>
                   <% end %>
                 </div>
               </div>
