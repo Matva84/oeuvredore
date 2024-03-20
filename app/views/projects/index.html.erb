@@ -5,7 +5,7 @@
     </div>
 
     <div class="col-10">
-      <div class="container">
+      <div class="container-projects">
         <div class="row">
           <div class="col-md-6">
             <div class="card text-center">
@@ -26,11 +26,11 @@
         <div class="container">
           <div class="row mt-6">
             <div class="col-md-9">
-              <h1 class="mt-5 mb-4">Mes projets</h1>
+              <h2 class="h2-black">Mes projets</h1>
             </div>
             <div class="col-md-3 text-right mt-5">
             <!-- button Modal -->
-              <button type="button" class="btn btn-see" data-bs-toggle="modal" data-bs-target="#newProjectModal">
+              <button type="button" class="main-btn" data-bs-toggle="modal" data-bs-target="#newProjectModal">
                 Ajouter Nouveau Projet
               </button>
             <!-- Modal -->
@@ -39,7 +39,7 @@
                   <div class="modal-content">
                      <div class="modal-header">
                         <h5 class="modal-title" id="newProjectModal">Ajouter Nouveau Projet</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="main-btn" data-bs-dismiss="modal" aria-label="Close"></button>
                      </div>
                        <div class="modal-body">
                         <%= render "newproject", project: @new_project_path %>
@@ -60,25 +60,27 @@
                       <%= cl_image_tag project.photo.key, crop: :fill, class: "img-thumbnail" %>
                     </div>
                   </div>
-                  <h5 class="card-title"><%= project.title %></h5>
-                  <div class="text-maxheight">
-                    <p class="card-text"><%= project.description %></p>
-                  </div>
-              <!-- Barre de progression du planning -->
-                  <p><strong>Progression</strong></p>
-                  <div class="w3-darkgreen w3-round-large">
-                    <% s = "width:#{project.progress}%" %>
-                    <div class="w3-container w3-green w3-round-large" style="<%= s %>">
-                      <% if project.progress.round < 10 %>
-                        <p class="greentext"></p>
-                      <% else %>
-                        <%= project.progress.round %>%
-                      <% end %>
+                  <div class= "card-content">
+                    <h5 class="card-title"><%= project.title %></h5>
+                    <div class="text-maxheight">
+                      <p class="card-text"><%= project.description %></p>
                     </div>
+                <!-- Barre de progression du planning -->
+                    <p><strong>Progression</strong></p>
+                    <div class="w3-darkgreen w3-round-large">
+                      <% s = "width:#{project.progress}%" %>
+                      <div class="w3-container w3-green w3-round-large" style="<%= s %>">
+                        <% if project.progress.round < 10 %>
+                          <p class="greentext"></p>
+                        <% else %>
+                          <%= project.progress.round %>%
+                        <% end %>
+                      </div>
+                    </div>
+                    <%= link_to "Voir le projet", project_path(project), class: "main-btn-rounded", id: "btn-margin" %>
                   </div>
-                  <%= link_to "Voir le projet", project_path(project), class: "btn btn-see mt-5" %>
                 </div>
-              </div>
+                </div>
             </div>
             <% end %>
           </div>
