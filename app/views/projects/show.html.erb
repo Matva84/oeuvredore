@@ -158,10 +158,14 @@
                   <div data-line-chart-target="tasksProgress" data-value = "<%= tasks_progress %>"> </div>
                 </canvas>
                 <div id="budget-numbers">
-                  Limite budgétaire :
-                  <%=@project.customer_budget.to_i%>
-                  Réalisé :
-                  <%=@project.total_expenses.to_i%>
+                  <div>
+                    <strong>Limite budgétaire :</strong>
+                    <p><%=@project.customer_budget.to_i%> €</p>
+                  </div>
+                  <div>
+                    <strong>Réalisé :</strong>
+                    <p><%=@project.total_expenses.to_i%> €</p>
+                  </div>
                 </div>
               </div>
 
