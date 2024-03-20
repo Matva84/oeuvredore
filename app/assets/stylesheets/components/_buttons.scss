@@ -7,6 +7,7 @@
   padding: 10px 25px 10px 25px;
   font-size: 14px;
   font-weight: 500;
+  display: inline-flex;
   &:hover {
     background-color: #00000000;
     border-color: #000000;
@@ -42,4 +43,8 @@
   background-color: #000000a8;
   border-color: #000000;
   color: #fff;
+}
+
+#btn-margin {
+  margin-top: 25px;
 }
