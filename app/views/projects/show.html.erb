@@ -59,11 +59,11 @@
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link active myTab" id="nav-planning-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" data-action="click->tabs-link#revealPlanning">Planning</button>
+                <button class="nav-link myTab" id="nav-taches-tab" data-bs-toggle="tab" data-bs-target="#nav-taches" type="button" role="tab" aria-controls="nav-taches" aria-selected="false" data-action="click->tabs-link#revealTaches">Tâches</button>
                 <button class="nav-link myTab" id="nav-budget-tab" data-bs-toggle="tab" data-bs-target="#nav-budget" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" data-action="click->tabs-link#revealBudget">Budget</button>
                 <button class="nav-link myTab" id="nav-documents-tab" data-bs-toggle="tab" data-bs-target="#nav-documents" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" data-action="click->tabs-link#revealDocuments">Documents</button>
                 <button class="nav-link myTab" id="nav-photos-tab" data-bs-toggle="tab" data-bs-target="#nav-photos" type="button" role="tab" aria-controls="nav-photos" aria-selected="false" data-action="click->tabs-link#revealPhotos">Photos</button>
                 <button class="nav-link myTab" id="nav-messagerie-tab" data-bs-toggle="tab" data-bs-target="#nav-messagerie" type="button" role="tab" aria-controls="nav-messagerie" aria-selected="false" data-action="click->tabs-link#revealMessagerie">Messagerie</button>
-                <button class="nav-link myTab" id="nav-taches-tab" data-bs-toggle="tab" data-bs-target="#nav-taches" type="button" role="tab" aria-controls="nav-taches" aria-selected="false" data-action="click->tabs-link#revealTaches">Tâches</button>
               </div>
             </nav>
 
@@ -91,7 +91,67 @@
                 </canvas>
               </div>
 
-              <div class="tab-pane fade d-none fixedheight d-flex justify-content-center align-items-center p-2" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab" tabindex="1" data-tabs-link-target="contentBudget">
+              <div class="tab-pane fade d-none scrollonglet" id="nav-taches" role="tabpanel" aria-labelledby="nav-taches-tab" tabindex="1" data-tabs-link-target="contentTaches">
+                <div class="container my-4 px-4">
+                  <div class="text-end">
+                    <%# <%= link_to "Ajouter une nouvelle tâche", new_project_task_path(@project.id), class: "btn main-btn" %>
+                    <a class="btn main-btn" data-bs-toggle="modal" data-bs-target="#newTaskModal">
+                      Ajouter une tâche
+                    </a>
+                  </div>
+
+                  <!-- Modal new -->
+                  <div class="modal" id="newTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="newTaskModalLabel">Nouvelle tâche</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <%= render "formtask", project: @project, task: @task_new %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <% @tasks.each do |task| %>
+                    <div class="task-notification mt-3">
+                      <div class="task-notification-description">
+                        <p><strong><%= task.name %></strong></p>
+                        <p> <%=task.description%> </p>
+                      </div>
+                      <div class="task-notification-content text-center">
+                        <p><small> <%=task.start_at%> - <%=task.end_at%> </small></p>
+                        <p><small> <%=task.budget%> € </small></p>
+                      </div>
+                      <div class="task-notification-actions">
+                        <a class="btn" data-bs-toggle="modal" data-bs-target="#editTaskModal<%=task.id%>">
+                          <i class="fas fa-pencil-alt"></i> Modifier
+                        </a>
+                        <%# <%= link_to '<i class="fas fa-pencil-alt"></i> Modifier'.html_safe, edit_project_task_path(@project.id, task.id) %>
+                        <%= link_to '<i class="far fa-trash-alt"></i> Supprimer'.html_safe, task_path(task.id), class: "btn", data: {turbo_method: :delete, turbo_confirm: "Voulez vous supprimer cette tâche?"} %>
+                      </div>
+                    </div>
+                      <!-- Modal Update -->
+                      <div class="modal" id="editTaskModal<%=task.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="editTaskModalLabel">Actualiser une tâche</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <%= render "formtask", project: @project, task: task %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="tab-pane fade d-none fixedheight d-flex justify-content-center align-items-center p-2" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab" tabindex="2" data-tabs-link-target="contentBudget">
                 <canvas id = "budgetgraph" data-controller="line-chart">
                   <div data-line-chart-target="tasksName" data-value = "<%= tasks_name %>"> </div>
                   <div data-line-chart-target="tasksPrice" data-value = "<%= tasks_price %>"> </div>
@@ -99,7 +159,7 @@
                 </canvas>
               </div>
 
-              <div class="tab-pane fade d-none fixedheight" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="2" data-tabs-link-target="contentDocuments">
+              <div class="tab-pane fade d-none fixedheight" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="3" data-tabs-link-target="contentDocuments">
                 <%= form_with(url: documents_path, multipart: true) do |form| %>
                   <%= form.file_field :file, class: 'd-none', id: 'doc-upload', accept: "application/pdf, application/msword, image/jpeg, image/png" %>
                   <%= form.label :photo, '📝 Charger un document', class: 'upload-photo', for: 'doc-upload' %>
@@ -134,7 +194,7 @@
 
               </div>
 
-              <div class="tab-pane fade d-none fixedheight" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="3" data-tabs-link-target="contentPhotos">
+              <div class="tab-pane fade d-none fixedheight" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="4" data-tabs-link-target="contentPhotos">
                 <%= form_with(url: documents_path, multipart: true) do |f| %>
                   <%= f.file_field :file, class: 'd-none', id: 'photo-upload', accept: ".jpg" %>
                   <%= f.label :photo, '📸 Charger une photo', class: 'upload-photo', for: 'photo-upload' %>
@@ -149,7 +209,7 @@
                 <%= render "documents/photo" %>
               </div>
 
-              <div class="tab-pane fade d-none scrollonglet" id="nav-messagerie" role="tabpanel" aria-labelledby="nav-messagerie-tab" tabindex="4" data-tabs-link-target="contentMessagerie">
+              <div class="tab-pane fade d-none scrollonglet" id="nav-messagerie" role="tabpanel" aria-labelledby="nav-messagerie-tab" tabindex="5" data-tabs-link-target="contentMessagerie">
                 <div class="container chatroom" id="chatmsg">
                   <div class="messages"
                     data-controller="chatroom-subscription"
@@ -178,50 +238,6 @@
                   </div>
                   <div id="test">
                   </div>
-                </div>
-              </div>
-
-              <div class="tab-pane fade d-none scrollonglet" id="nav-taches" role="tabpanel" aria-labelledby="nav-taches-tab" tabindex="5" data-tabs-link-target="contentTaches">
-                <div class="container my-4 px-4">
-                  <div class="text-end">
-                    <%# <%= link_to "Ajouter une nouvelle tâche", new_project_task_path(@project.id), class: "btn main-btn" %>
-                    <a class="btn main-btn" data-bs-toggle="modal" data-bs-target="#newTaskModal">
-                      Ajouter une tâche
-                    </a>
-                  </div>
-
-                  <!-- Modal -->
-                  <div class="modal" id="newTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="newTaskModalLabel">Nouvelle tâche</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <%= render "formtask", project: @project, task: @task_new %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <% @tasks.each do |task| %>
-                    <div class="task-notification mt-3">
-                      <div class="task-notification-description">
-                        <p><strong><%= task.name %></strong></p>
-                        <p> <%=task.description%> </p>
-                      </div>
-                      <div class="task-notification-content text-center">
-                        <p><small> <%=task.start_at%> - <%=task.end_at%> </small></p>
-                        <p><small> <%=task.budget%> € </small></p>
-                      </div>
-                      <div class="task-notification-actions">
-                        <%= link_to '<i class="fas fa-pencil-alt"></i> Modifier'.html_safe, edit_project_task_path(@project.id, task.id) %>
-                        <%= link_to '<i class="far fa-trash-alt"></i> Supprimer'.html_safe, task_path(task.id), data: {turbo_method: :delete, turbo_confirm: "Voulez vous supprimer cette tâche?"} %>
-                      </div>
-                    </div>
-                    <%# faire modal pour l'edit, en faisant un id de modal dynamique %>
-                  <% end %>
                 </div>
               </div>
 
