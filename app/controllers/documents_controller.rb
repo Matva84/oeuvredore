@@ -31,25 +31,39 @@ class DocumentsController < ApplicationController
     public_id = upload['public_id'].split("/")[1]
     filename = name.split('.')[0]
     project_id = params[:id].to_i
+
     @document = Document.new(project_id: project_id, name: filename, type_of_document: doctype, url: upload['secure_url'], cloudinary_id: public_id)
+    @document.tag_list.add(doctype)
+
     @document.save!
-    #render "document/#{doctype}"
+    redirect_to document_path(@document)
   end
 
   def show
     @project = Project.find(params[:id])
     @documents = @project.documents
+    @document = Document.find(params[:id])
+    @tags = @document.tag_list
   end
 
   def destroy
     @document = Document.find(params[:id])
     @document.destroy
-    #redirect_to document_collection_path, status: :see_other
+    redirect_to document_path(@document), see: :others
+  end
+
+  def add_tags
+    @document = Document.find(params[:id])
+    @document.tag_list.add(params[:tag_list])
+    @document.save
+    raise
+    redirect_to document_path(@document)
   end
 
   private
 
   def document_params
+    #params.require(:document).permit(:name, :type_of_document, :url, :id, :tag_list)
     params.require(:document).permit(:name, :type_of_document, :url, :id)
   end
 end

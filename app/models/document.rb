@@ -1,5 +1,6 @@
 class Document < ApplicationRecord
   AUTHORIZED_CATEGORIES = ["Photo", "Facture", "Devis", "Contrat", "Autre"]
+  acts_as_taggable_on :tags
   belongs_to :project
 
   validates :name, presence: true

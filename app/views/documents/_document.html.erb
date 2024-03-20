@@ -2,11 +2,54 @@
   <% @documents.each do |doc| %>
     <% if doc.type_of_document == "document" %>
       <div class="onephoto">
-        <div class="photo" style="position: relative;"> <!-- Assurez-vous que le parent a une position relative -->
+        <div class="photo" style="position: relative;">
           <%= link_to(cl_image_tag(doc.cloudinary_id, { width: 175, height: 216 }), doc.url, target: "_blank") %>
+          <%#https://res.cloudinary.com/demo/image/fetch/w_175,h_216,c_thumb,q_95,f_jpg/ %>
           <%= link_to(document_path(doc.id), class: 'btn btn-ghost', data: {turbo_method: :delete, turbo_confirm: "Do you really want to remove this document ?"}) do %>
-          <i class="fa-solid fa-trash-can trash-icon"></i>
+            <i class="fa-solid fa-trash-can trash-icon"></i>
           <% end %>
+
+          <div data-controller="modal">
+            <button type="button" data-action="click->modal#open" id="btn-hidden">
+              <i class="fa-solid fa-tag"></i>
+            </button>
+
+            <!-- Modale -->
+            <div class="modal fade" id="descriptionModal" data-modal-target="modal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="descriptionModalLabel">Entrez une description</h5>
+                    <button type="button" class="close" data-action="click->modal#close" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="descriptionInput">Description :</label>
+                        <textarea class="form-control" id="descriptionInput" rows="3"></textarea>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-action="click->modal#close">Fermer</button>
+                    <button type="button" class="btn btn-primary" data-action="click->modal#save">Enregistrer</button>
+                  </div>
+                </div>
+              </div>
+
+              <p><span data-modal-target="descriptionDisplay"></span></p>
+              <% desc = content_tag(:span, data: { target: "modal.descriptionDisplay" }) %>
+              <%#<p class="d-none"><%= desc %>
+              <p><%= desc %></p>
+              <%= doc.tag_list.add("Test") %>
+              <%#= doc.add_tags %>
+              <%#= doc.tags %>
+
+            </div>
+          </div>
+
         </div>
         <a href=<%= doc.url %> target="_blank" class="doclink"><%= doc.name %></a>
       </div>

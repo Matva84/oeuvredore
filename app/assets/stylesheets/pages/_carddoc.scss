@@ -20,7 +20,8 @@
   padding-bottom: 8px;
   padding-left: 8px;
   position: relative;
-  bottom: 0px;
+  bottom: 48px;
+  border-radius: 0px 0px 16px 16px;
 }
 
 .photo {
@@ -29,6 +30,17 @@
 }
 
 .trash-icon {
+  position: absolute;
+  bottom: 56px; /* Ajustez ceci pour contrôler la position verticale */
+  right: 10px; /* Ajustez ceci pour contrôler la position horizontale */
+  color: #000; /* Couleur de l'icône */
+  font-size: 20px; /* Taille de l'icône */
+  /*background-color: #fff; /* Couleur de fond pour une meilleure visibilité */
+  border-radius: 50%; /* Pour donner une forme de cercle à l'icône */
+  padding: 5px; /* Espace autour de l'icône */
+}
+
+.fa-tag {
   position: absolute;
   top: 10px; /* Ajustez ceci pour contrôler la position verticale */
   right: 10px; /* Ajustez ceci pour contrôler la position horizontale */
@@ -42,4 +54,26 @@
 .photo {
   position: relative;
   display: inline-block; /* Pour s'assurer que la taille de la div est déterminée par le contenu */
+}
+.btn-hidden {
+  display: none;
+  border: none;
+  border-width: 0px;
+}
+.tag {
+  text-decoration: none;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border: 1px solid #e6e6e6;
+  border-radius: 16px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  margin-left: 12px;
+  margin-right: 12px;
+  background-color: #f9f8f9;
+}
+.tag.active {
+  color: red;
 }
