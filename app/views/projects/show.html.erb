@@ -168,7 +168,7 @@
                     </a>
                   </div>
 
-                  <!-- Modal -->
+                  <!-- Modal new -->
                   <div class="modal" id="newTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                       <div class="modal-content">
@@ -194,11 +194,27 @@
                         <p><small> <%=task.budget%> € </small></p>
                       </div>
                       <div class="task-notification-actions">
-                        <%= link_to '<i class="fas fa-pencil-alt"></i> Modifier'.html_safe, edit_project_task_path(@project.id, task.id) %>
-                        <%= link_to '<i class="far fa-trash-alt"></i> Supprimer'.html_safe, task_path(task.id), data: {turbo_method: :delete, turbo_confirm: "Voulez vous supprimer cette tâche?"} %>
+                        <a class="btn" data-bs-toggle="modal" data-bs-target="#editTaskModal<%=task.id%>">
+                          <i class="fas fa-pencil-alt"></i> Modifier
+                        </a>
+                        <%# <%= link_to '<i class="fas fa-pencil-alt"></i> Modifier'.html_safe, edit_project_task_path(@project.id, task.id) %>
+                        <%= link_to '<i class="far fa-trash-alt"></i> Supprimer'.html_safe, task_path(task.id), class: "btn", data: {turbo_method: :delete, turbo_confirm: "Voulez vous supprimer cette tâche?"} %>
                       </div>
                     </div>
-                    <%# faire modal pour l'edit, en faisant un id de modal dynamique %>
+                      <!-- Modal update -->
+                      <div class="modal" id="editTaskModal<%=task.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="editTaskModalLabel">Actualiser une tâche</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <%= render "formtask", project: @project, task: task %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                   <% end %>
                 </div>
               </div>
