@@ -73,7 +73,7 @@ puts "  >> #{list_of_users.count} user(s) created"
 puts "Creating projects..."
 usr = list_of_users[rand(0..list_of_users.count-1)]
 file = URI.open(urls[1])
-projectbq1 = Project.new(title: "Maison sur l'ile de Ré, à rénover", description: "Rénovation complète de la salle de bain, avec remplacement de la baignoire par une douche, remplacement du carrelage, et installation d'un meuble vasque.", address: "573, avenue de la Corniche, 17940 Rivedoux-Plage", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 5000, total_expenses: 1000, user: user_bq, customer: usr)
+projectbq1 = Project.new(title: "Maison sur l'ile de Ré, à rénover", description: "Rénovation complète de la salle de bain, avec remplacement de la baignoire par une douche, remplacement du carrelage, et installation d'un meuble vasque.", address: "573, avenue de la Corniche, 17940 Rivedoux-Plage", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 50000, total_expenses: 1000, user: user_bq, customer: usr)
 projectbq1.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
 projectbq1.save!
 list_of_projects << projectbq1
@@ -81,7 +81,7 @@ chatbq1 = Chatroom.create(name: "Maison bq", project: projectbq1)
 Message.create(chatroom: chatbq1, user: user_bq, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
 usr = list_of_users[rand(0..list_of_users.count-1)]
 file = URI.open(urls[0])
-projectbq2 = Project.new(title: "Appartement à Bordeaux", description: "Rénovation complète de la cuisine, avec remplacement des meubles, remplacement du carrelage, et installation d'un plan de travail.", address: "9, chemin clos des Grenettes, 17740 Sainte-Marie-De-Ré", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 8000, total_expenses: 5000, user: user_bq, customer: usr)
+projectbq2 = Project.new(title: "Appartement à Bordeaux", description: "Rénovation complète de la cuisine, avec remplacement des meubles, remplacement du carrelage, et installation d'un plan de travail.", address: "9, chemin clos des Grenettes, 17740 Sainte-Marie-De-Ré", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 80000, total_expenses: 5000, user: user_bq, customer: usr)
 projectbq2.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
 projectbq2.save!
 list_of_projects << projectbq2
@@ -89,7 +89,7 @@ chatbq2 = Chatroom.create(name: "Appartement bq", project: projectbq2)
 Message.create(chatroom: chatbq2, user: user_bq, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
 usr = list_of_users[rand(0..list_of_users.count-1)]
 file = URI.open(urls[2])
-projectbq3 = Project.new(title: "Villa à Nantes, rénovation de la chambre", description: "Rénovation complète de la chambre, avec remplacement du parquet, remplacement de la peinture, et installation d'un dressing.", address: "12 rue de la Grosse Pierre, 17580 Le-Bois-Plage-En-Ré", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 3000, total_expenses: 1000, user: user_bq, customer: usr)
+projectbq3 = Project.new(title: "Villa à Nantes, rénovation de la chambre", description: "Rénovation complète de la chambre, avec remplacement du parquet, remplacement de la peinture, et installation d'un dressing.", address: "12 rue de la Grosse Pierre, 17580 Le-Bois-Plage-En-Ré", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 30000, total_expenses: 1000, user: user_bq, customer: usr)
 projectbq3.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
 projectbq3.save!
 list_of_projects << projectbq3

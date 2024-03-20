@@ -31,6 +31,8 @@ class ProjectsController < ApplicationController
     @chatroom = @project.chatroom
     @message = Message.new
     @documents = @project.documents
+    @project.total_expenses = expenses_calcul(@project)
+    @project.save
   end
 
   def create
@@ -91,6 +93,15 @@ class ProjectsController < ApplicationController
     end
     progress = tasks_progress.sum / tasks_progress.length
     return progress
+  end
+
+  def expenses_calcul(project)
+    tasks_project = project.tasks
+    total_expenses = 0
+    tasks_project.each do |task|
+      total_expenses += task.budget * task.progress / 100
+    end
+    return total_expenses
   end
 
 end
