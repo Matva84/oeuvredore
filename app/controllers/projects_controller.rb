@@ -6,13 +6,16 @@ class ProjectsController < ApplicationController
     @users = User.all
     @project = Project.new
     @show_all_projects = params[:show_all] == "true"
-
     if @show_all_projects
       @projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id))
     else
       @projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id)).limit(6)
     end
-      @total_projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id)).count
+    @total_projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id)).count
+    @projects.each do |project|
+      project.progress = progress_calcul(project)
+      project.save
+    end
   end
 
   def new
@@ -78,6 +81,16 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(:id, :title, :description, :address, :initial_start_at, :initial_end_at, :progress, :customer_budget, :total_expenses, :customer_id, :photo)
+  end
+
+  def progress_calcul(project)
+    tasks_project = project.tasks
+    tasks_progress = []
+    tasks_project.each do |task|
+      tasks_progress << task.progress
+    end
+    progress = tasks_progress.sum / tasks_progress.length
+    return progress
   end
 
 end
