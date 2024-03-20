@@ -9,6 +9,6 @@ export default class extends Controller {
     flatpickr(this.element, {
       minDate: "today"
     });
-    this.fire();
+    // this.fire();
   }
 }
