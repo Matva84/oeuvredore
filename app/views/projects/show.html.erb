@@ -112,20 +112,26 @@
                 <%# end %>
 
                 <div class="taglist">
+                  <div data-controller="search-documents">
 
-                  <% ActsAsTaggableOn::Tag.most_used(10).each do |tag| %>
-                    <a href="#" class="tag" data-tag="<%= tag.name %>"><%= tag.name %></a>
-                  <% end %>
-                  <%#= @documents.tagged_with(["Document"], :match_all => true) %>
+                      <% ActsAsTaggableOn::Tag.most_used(10).each do |tag| %>
+                        <a href="#" class="tag" data-tag="<%= tag.name %>" data-action="click->search-documents#toggle" data-search-document-target="link"><%= tag.name %></a>
+                      <% end %>
 
-                  <%#<p>List of tags</p>
-                  <%# if @documents.tag_list.any? %>
-                  <%#  <p>Tags: <%= doc.tag_list.join(", ") %>
-                  <%# end %>
+                      <!--<% if @documents.tag_list.any? %>
+                        <p>Tags: <%= doc.tag_list.join(", ") %></p>
+                      <% end %>-->
 
+                    <div data-search-documents-target="list">
+                      <%= @documents.tagged_with(["document"], :match_all => true) %>
+                      <%= render "documents/document" , locals: { document: @documents.tagged_with(["document"]) }%>
+                    </div>
+
+                  </div>
                 </div>
 
                 <%= render "documents/document" , locals: { document: @document }%>
+
               </div>
 
               <div class="tab-pane fade d-none fixedheight" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="3" data-tabs-link-target="contentPhotos">
@@ -167,7 +173,7 @@
                   </div>
                   <div class="msgbox boxrounded" id="txtwrite">
                     <%= simple_form_for [@chatroom, @message], remote: true do |f|%>
-                      <%= f.input :content, id: 'msgtxt', label: false ,input_html: { placeholder: "Send message", style: "font-style: italic;"} %>
+                      <%= f.input :content, id: 'msgtxt', label: false ,input_html: { placeholder: "Message", style: "font-style: italic;"} %>
                     <% end %>
                   </div>
                   <div id="test">
