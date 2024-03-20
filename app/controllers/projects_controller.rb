@@ -14,6 +14,7 @@ class ProjectsController < ApplicationController
     @total_projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id)).count
     @projects.each do |project|
       project.progress = progress_calcul(project)
+      project.save
     end
   end
 
