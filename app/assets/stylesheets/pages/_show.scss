@@ -259,3 +259,19 @@ padding: 16px;
 .modal-content {
   border-radius: 5px;
 }
+
+// budget
+#nav-budget {
+  display: flex;
+}
+
+#budget-numbers {
+  border-left: solid 3px;
+  border-color: rgb(111, 111, 111);
+  height: 90%;
+  margin-left: 30px;
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
