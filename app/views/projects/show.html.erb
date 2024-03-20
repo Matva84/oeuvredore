@@ -133,7 +133,7 @@
                         <%= link_to '<i class="far fa-trash-alt"></i> Supprimer'.html_safe, task_path(task.id), class: "btn", data: {turbo_method: :delete, turbo_confirm: "Voulez vous supprimer cette tâche?"} %>
                       </div>
                     </div>
-                      <!-- Modal update -->
+                      <!-- Modal Update -->
                       <div class="modal" id="editTaskModal<%=task.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                           <div class="modal-content">
