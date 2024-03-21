@@ -65,7 +65,7 @@ puts "  >> #{list_of_users_pro.count} professionnal user(s) created"
   user = User.new(email: Faker::Internet.email, password: "password", name: nameStr, nickname: nameStr)
   user.photo.attach(io: file, filename: "sebsatien.png", content_type: "image/png")
   user.save!
-  puts user.id, user.email, user.name
+  # puts user.id, user.email, user.name
   list_of_users << user
 end
 puts "  >> #{list_of_users.count} user(s) created"
@@ -73,7 +73,7 @@ puts "  >> #{list_of_users.count} user(s) created"
 puts "Creating projects..."
 usr = list_of_users[rand(0..list_of_users.count-1)]
 file = URI.open(urls[1])
-projectbq1 = Project.new(title: "Maison sur l'ile de Ré, à rénover", description: "Rénovation complète de la salle de bain, avec remplacement de la baignoire par une douche, remplacement du carrelage, et installation d'un meuble vasque.", address: "573, avenue de la Corniche, 17940 Rivedoux-Plage", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 5000, total_expenses: 1000, user: user_bq, customer: usr)
+projectbq1 = Project.new(title: "Maison sur l'ile de Ré, à rénover", description: "Rénovation complète de la salle de bain, avec remplacement de la baignoire par une douche, remplacement du carrelage, et installation d'un meuble vasque.", address: "573, avenue de la Corniche, 17940 Rivedoux-Plage", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 50000, total_expenses: 1000, user: user_bq, customer: usr)
 projectbq1.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
 projectbq1.save!
 list_of_projects << projectbq1
@@ -81,7 +81,7 @@ chatbq1 = Chatroom.create(name: "Maison bq", project: projectbq1)
 Message.create(chatroom: chatbq1, user: user_bq, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
 usr = list_of_users[rand(0..list_of_users.count-1)]
 file = URI.open(urls[0])
-projectbq2 = Project.new(title: "Appartement à Bordeaux", description: "Rénovation complète de la cuisine, avec remplacement des meubles, remplacement du carrelage, et installation d'un plan de travail.", address: "9, chemin clos des Grenettes, 17740 Sainte-Marie-De-Ré", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 8000, total_expenses: 5000, user: user_bq, customer: usr)
+projectbq2 = Project.new(title: "Appartement à Bordeaux", description: "Rénovation complète de la cuisine, avec remplacement des meubles, remplacement du carrelage, et installation d'un plan de travail.", address: "9, chemin clos des Grenettes, 17740 Sainte-Marie-De-Ré", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 80000, total_expenses: 5000, user: user_bq, customer: usr)
 projectbq2.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
 projectbq2.save!
 list_of_projects << projectbq2
@@ -89,7 +89,7 @@ chatbq2 = Chatroom.create(name: "Appartement bq", project: projectbq2)
 Message.create(chatroom: chatbq2, user: user_bq, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
 usr = list_of_users[rand(0..list_of_users.count-1)]
 file = URI.open(urls[2])
-projectbq3 = Project.new(title: "Villa à Nantes, rénovation de la chambre", description: "Rénovation complète de la chambre, avec remplacement du parquet, remplacement de la peinture, et installation d'un dressing.", address: "12 rue de la Grosse Pierre, 17580 Le-Bois-Plage-En-Ré", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 3000, total_expenses: 1000, user: user_bq, customer: usr)
+projectbq3 = Project.new(title: "Villa à Nantes, rénovation de la chambre", description: "Rénovation complète de la chambre, avec remplacement du parquet, remplacement de la peinture, et installation d'un dressing.", address: "12 rue de la Grosse Pierre, 17580 Le-Bois-Plage-En-Ré", initial_start_at: Date.today-30, initial_end_at: Date.today+30, progress: rand(0..100), customer_budget: 30000, total_expenses: 1000, user: user_bq, customer: usr)
 projectbq3.photo.attach(io: file, filename: "renovation.png", content_type: "image/png")
 projectbq3.save!
 list_of_projects << projectbq3
@@ -271,70 +271,80 @@ puts "  >> #{Project.count} project(s) created"
 
 puts "Creating tasks..."
 i = 0
-3.times do
+6.times do
+  puts("NUMERO INDENTATION : #{i}")
   debut = Date.today-rand(0..90)
-  fin = debut + rand(0..10)
+  fin = debut + rand(1..180)
   task1bq = Task.create(name: "Définition du projet",description: "Réunion de lancement",category: "Définition",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, project: list_of_projects[i])
-  task1mv = Task.create(name: "Définition du projet",description: "Réunion de lancement",category: "Définition",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, project: list_of_projects[i+3])
-  task1fl = Task.create(name: "Définition du projet",description: "Réunion de lancement",category: "Définition",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, project: list_of_projects[i+6])
-  task1gl = Task.create(name: "Définition du projet",description: "Réunion de lancement",category: "Définition",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, project: list_of_projects[i+9])
-
+  task1mv = Task.create(name: "Définition du projet",description: "Réunion de lancement",category: "Définition",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, project: list_of_projects[i+6])
+  task1fl = Task.create(name: "Définition du projet",description: "Réunion de lancement",category: "Définition",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, project: list_of_projects[i+12])
+  task1gl = Task.create(name: "Définition du projet",description: "Réunion de lancement",category: "Définition",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, project: list_of_projects[i+18])
+  puts ("définition")
+  puts(task1bq.id, task1mv.id, task1fl.id, task1gl.id)
   debut = fin
   fin = debut + rand(0..10)
   task2bq = Task.create(name: "Devis",description: "Phase de demande/reception des devis",category: "Définition",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task1bq.id, project: list_of_projects[i])
-  task2mv = Task.create(name: "Devis",description: "Phase de demande/reception des devis",category: "Définition",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task1mv.id, project: list_of_projects[i+3])
-  task2fl = Task.create(name: "Devis",description: "Phase de demande/reception des devis",category: "Définition",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task1fl.id, project: list_of_projects[i+6])
-  task2gl = Task.create(name: "Devis",description: "Phase de demande/reception des devis",category: "Définition",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task1gl.id, project: list_of_projects[i+9])
-
+  task2mv = Task.create(name: "Devis",description: "Phase de demande/reception des devis",category: "Définition",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task1mv.id, project: list_of_projects[i+6])
+  task2fl = Task.create(name: "Devis",description: "Phase de demande/reception des devis",category: "Définition",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task1fl.id, project: list_of_projects[i+12])
+  task2gl = Task.create(name: "Devis",description: "Phase de demande/reception des devis",category: "Définition",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task1gl.id, project: list_of_projects[i+18])
+  puts ("devisn")
+  puts(task2bq.id, task2mv.id, task2fl.id, task2gl.id)
   debut = fin
   fin = debut + rand(0..30)
   task3bq = Task.create(name: "Dépose",description: "Démontage de l'existant",category: "Démontage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task2bq.id, project: list_of_projects[i])
-  task3mv = Task.create(name: "Dépose",description: "Démontage de l'existant",category: "Démontage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task2mv.id, project: list_of_projects[i+3])
-  task3fl = Task.create(name: "Dépose",description: "Démontage de l'existant",category: "Démontage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task2fl.id, project: list_of_projects[i+6])
-  task3gl = Task.create(name: "Dépose",description: "Démontage de l'existant",category: "Démontage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task2gl.id, project: list_of_projects[i+9])
-
+  task3mv = Task.create(name: "Dépose",description: "Démontage de l'existant",category: "Démontage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task2mv.id, project: list_of_projects[i+6])
+  task3fl = Task.create(name: "Dépose",description: "Démontage de l'existant",category: "Démontage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task2fl.id, project: list_of_projects[i+12])
+  task3gl = Task.create(name: "Dépose",description: "Démontage de l'existant",category: "Démontage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task2gl.id, project: list_of_projects[i+18])
+  puts ("dépose")
+  puts(task3bq.id, task3mv.id, task3fl.id, task3gl.id)
   debut = fin
   fin = debut + rand(0..30)
-  task4bq = Task.create(name: "Passage tuyaux",description: "Passage des nouveaux tuyaux",category: "Plomberie",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task3bq.id, project: list_of_projects[i])
-  task4mv = Task.create(name: "Passage tuyaux",description: "Passage des nouveaux tuyaux",category: "Plomberie",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task3mv.id, project: list_of_projects[i+3])
-  task4fl = Task.create(name: "Passage tuyaux",description: "Passage des nouveaux tuyaux",category: "Plomberie",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task3gl.id, project: list_of_projects[i+6])
-  task4gl = Task.create(name: "Passage tuyaux",description: "Passage des nouveaux tuyaux",category: "Plomberie",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task3gl.id, project: list_of_projects[i+9])
-
+  task4bq = Task.create(name: "Gros oeuvre",description: "Ouvertures des murs",category: "Plomberie",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task3bq.id, project: list_of_projects[i])
+  task4mv = Task.create(name: "Gros oeuvre",description: "Ouvertures des murs",category: "Plomberie",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task3mv.id, project: list_of_projects[i+6])
+  task4fl = Task.create(name: "Gros oeuvre",description: "Ouvertures des murs",category: "Plomberie",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task3gl.id, project: list_of_projects[i+12])
+  task4gl = Task.create(name: "Gros oeuvre",description: "Ouvertures des murs",category: "Plomberie",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task3gl.id, project: list_of_projects[i+18])
+  puts ("gros oeuvre")
+  puts(task4bq.id, task4mv.id, task4fl.id, task4gl.id)
   debut = fin
   fin = debut + rand(0..30)
-  task5bq = Task.create(name: "Passage câbles",description: "Passage des nouveaux câbles",category: "Electricité",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task4bq.id, project: list_of_projects[i])
-  task5mv = Task.create(name: "Passage câbles",description: "Passage des nouveaux câbles",category: "Electricité",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task4mv.id, project: list_of_projects[i+3])
-  task5fl = Task.create(name: "Passage câbles",description: "Passage des nouveaux câbles",category: "Electricité",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task4fl.id, project: list_of_projects[i+6])
-  task5gl = Task.create(name: "Passage câbles",description: "Passage des nouveaux câbles",category: "Electricité",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task4gl.id, project: list_of_projects[i+9])
-
+  task5bq = Task.create(name: "Menuiseries",description: "Passage des nouveaux câbles",category: "Electricité",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task4bq.id, project: list_of_projects[i])
+  task5mv = Task.create(name: "Menuiseries",description: "Passage des nouveaux câbles",category: "Electricité",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task4mv.id, project: list_of_projects[i+6])
+  task5fl = Task.create(name: "Menuiseries",description: "Passage des nouveaux câbles",category: "Electricité",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task4fl.id, project: list_of_projects[i+12])
+  task5gl = Task.create(name: "Menuiseries",description: "Passage des nouveaux câbles",category: "Electricité",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task4gl.id, project: list_of_projects[i+18])
+  puts ("menuiseries")
+  puts(task5bq.id, task5mv.id, task5fl.id, task5gl.id)
   debut = fin
   fin = debut + rand(0..30)
-  task6bq = Task.create(name: "Carrelage",description: "Pose carrelage sol & murs",category: "Carrelage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task5bq.id, project: list_of_projects[i])
-  task6mv = Task.create(name: "Carrelage",description: "Pose carrelage sol & murs",category: "Carrelage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task5mv.id, project: list_of_projects[i+3])
-  task6fl = Task.create(name: "Carrelage",description: "Pose carrelage sol & murs",category: "Carrelage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task5fl.id, project: list_of_projects[i+6])
-  task6gl = Task.create(name: "Carrelage",description: "Pose carrelage sol & murs",category: "Carrelage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task5gl.id, project: list_of_projects[i+9])
-
+  task6bq = Task.create(name: "Isolation",description: "Pose carrelage sol & murs",category: "Carrelage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task5bq.id, project: list_of_projects[i])
+  task6mv = Task.create(name: "Isolation",description: "Pose carrelage sol & murs",category: "Carrelage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task5mv.id, project: list_of_projects[i+6])
+  task6fl = Task.create(name: "Isolation",description: "Pose carrelage sol & murs",category: "Carrelage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task5fl.id, project: list_of_projects[i+12])
+  task6gl = Task.create(name: "Isolation",description: "Pose carrelage sol & murs",category: "Carrelage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task5gl.id, project: list_of_projects[i+18])
+  puts ("isolation")
+  puts(task6bq.id, task6mv.id, task6fl.id, task6gl.id)
   debut = fin
   fin = debut + rand(0..30)
-  task7bq = Task.create(name: "Peinture",description: "Peinture des murs",category: "Peinture",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task6bq.id, project: list_of_projects[i])
-  task7mv = Task.create(name: "Peinture",description: "Peinture des murs",category: "Peinture",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task6mv.id, project: list_of_projects[i+3])
-  task7fl = Task.create(name: "Peinture",description: "Peinture des murs",category: "Peinture",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task6fl.id, project: list_of_projects[i+6])
-  task7gl = Task.create(name: "Peinture",description: "Peinture des murs",category: "Peinture",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task6gl.id, project: list_of_projects[i+9])
-
+  task7bq = Task.create(name: "Réseaux",description: "Peinture des murs",category: "Peinture",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task6bq.id, project: list_of_projects[i])
+  task7mv = Task.create(name: "Réseaux",description: "Peinture des murs",category: "Peinture",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task6mv.id, project: list_of_projects[i+6])
+  task7fl = Task.create(name: "Réseaux",description: "Peinture des murs",category: "Peinture",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task6fl.id, project: list_of_projects[i+12])
+  task7gl = Task.create(name: "Réseaux",description: "Peinture des murs",category: "Peinture",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task6gl.id, project: list_of_projects[i+18])
+  puts ("réseaux")
+  puts(task7bq.id, task7mv.id, task7fl.id, task7gl.id)
   debut = fin
   fin = debut + rand(0..30)
-  task8bq = Task.create(name: "Finitions",description: "Assemblage des meubles",category: "Montage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task7bq.id, project: list_of_projects[i])
-  task8mv = Task.create(name: "Finitions",description: "Assemblage des meubles",category: "Montage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task7mv.id, project: list_of_projects[i+3])
-  task8fl = Task.create(name: "Finitions",description: "Assemblage des meubles",category: "Montage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task7fl.id, project: list_of_projects[i+6])
-  task8gl = Task.create(name: "Finitions",description: "Assemblage des meubles",category: "Montage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task7gl.id, project: list_of_projects[i+9])
-
+  task8bq = Task.create(name: "Revetements",description: "Assemblage des meubles",category: "Montage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task7bq.id, project: list_of_projects[i])
+  task8mv = Task.create(name: "Revetements",description: "Assemblage des meubles",category: "Montage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task7mv.id, project: list_of_projects[i+6])
+  task8fl = Task.create(name: "Revetements",description: "Assemblage des meubles",category: "Montage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task7fl.id, project: list_of_projects[i+12])
+  task8gl = Task.create(name: "Revetements",description: "Assemblage des meubles",category: "Montage",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task7gl.id, project: list_of_projects[i+18])
+  puts ("revetement")
+  puts(task8bq.id, task8mv.id, task8fl.id, task8gl.id)
   debut = fin
   fin = debut + rand(0..10)
   task9bq = Task.create(name: "Réception",description: "Réception de fin de chantier",category: "Réception",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task8bq.id, project: list_of_projects[i])
-  task9mv = Task.create(name: "Réception",description: "Réception de fin de chantier",category: "Réception",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task8mv.id, project: list_of_projects[i+3])
-  task9fl = Task.create(name: "Réception",description: "Réception de fin de chantier",category: "Réception",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task8fl.id, project: list_of_projects[i+6])
-  task9gl = Task.create(name: "Réception",description: "Réception de fin de chantier",category: "Réception",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task8gl.id, project: list_of_projects[i+9])
-
+  task9mv = Task.create(name: "Réception",description: "Réception de fin de chantier",category: "Réception",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task8mv.id, project: list_of_projects[i+6])
+  task9fl = Task.create(name: "Réception",description: "Réception de fin de chantier",category: "Réception",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task8fl.id, project: list_of_projects[i+12])
+  task9gl = Task.create(name: "Réception",description: "Réception de fin de chantier",category: "Réception",progress: rand(0..100),budget: rand(0..20000),start_at: debut, end_at:fin, dependant_from_task_id: task8gl.id, project: list_of_projects[i+18])
+  puts ("réception")
+  puts(task9bq.id, task9mv.id, task9fl.id, task9gl.id)
   i += 1
 end
 puts "  >> #{Task.count} task(s) created"

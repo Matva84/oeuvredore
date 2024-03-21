@@ -10,4 +10,5 @@ class Task < ApplicationRecord
   validates :end_at, presence: true, comparison: { greater_than: :start_at }
 
   has_many_attached :photos
+
 end

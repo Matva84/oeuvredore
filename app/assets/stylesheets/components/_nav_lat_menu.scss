@@ -1,32 +1,38 @@
 .nav-lat-menu {
   // background-color: rgb(241, 241, 241);
-  padding: 5px;
-  padding-top: 20px;
-  text-align: center;
+  padding: 15px 5px 15px 10px;
+  justify-items: left;
 }
 
 .btn-menu {
-  background-color: white;
-  border-radius: 2px;
-  margin-top: 15px;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 8px;
+  margin-top: 10px;
+  margin: 0 auto;
+  padding: 10px 0px 10px 15px;
+  font-size: 14px;
   width: 90%;
-  text-align: center;
+  text-align: left;
   --bs-btn-padding-x: 0rem;
   --bs-btn-padding-y: 0rem;
 }
 
 .btn-menu:hover {
   background-color: white;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
 .nav-title {
   background-color: black;
   color: white;
   text-align: center;
-  padding: 10px;
+  padding: 6px;
+  font-family: 'Brotherline';
+  font-size: 28px;
+  font-weight: 100;
 }
 
 .col-2 {
   background-color: rgb(241, 241, 241);
+  width: 14%;
 }
