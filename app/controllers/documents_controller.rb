@@ -5,12 +5,14 @@ class DocumentsController < ApplicationController
   end
 
   def index
+    puts "CECI EST LA FONCTION INDEX DE DOCUMENTS CONTROLLER"
     @user = current_user
     @users = User.all
     @projects = Project.all
     @docs_all = Document.all
     @documents = []
     @documents_all.each do |doc|
+      #filter ici les documents en fonction des tags selectionnés
       if document.user_id == @user.id
         @documents << doc
       end
@@ -52,18 +54,16 @@ class DocumentsController < ApplicationController
     redirect_to document_path(@document), see: :others
   end
 
-  def add_tags
+  def update
     @document = Document.find(params[:id])
-    @document.tag_list.add(params[:tag_list])
+    @document.tag_list.add(params[:tags])
     @document.save
-    raise
-    redirect_to document_path(@document)
   end
 
   private
 
   def document_params
     #params.require(:document).permit(:name, :type_of_document, :url, :id, :tag_list)
-    params.require(:document).permit(:name, :type_of_document, :url, :id)
+    params.require(:document).permit(:name, :type_of_document, :url, :id, :tags)
   end
 end
