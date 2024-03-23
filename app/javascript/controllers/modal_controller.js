@@ -26,16 +26,8 @@ export default class extends Controller {
     const description = descriptionInput.value;
     const tags = description.split(" ").map(tag => tag.trim());
     const filteredTags = tags.filter(str => str.length > 3).join(", ");
-    //this.descriptionDisplayTarget.textContent = filteredTags;
     console.log("Tags filtrés : " + filteredTags + " pour le document " + this.element.dataset.modalValueId);
     this.close();
-    console.log(this.modalTarget.action)
-    //var url = new URL("/documents/" + this.element.dataset.modalValueId);
-    //var url = new URL("/documents/" + this.element.dataset.modalValueId, window.location.origin);
-    //console.log(url)
-    //url.searchParams.append('tags', filteredTags);
-    //url.searchParams.append('id', this.element.dataset.modalValueId);
-    //console.log(url.searchParams)
     const url = `/documents/${this.element.dataset.modalValueId}`;
     fetch(url, {
       method: "PATCH",

@@ -28,7 +28,7 @@
                     <form>
                       <div class="form-group">
                         <label for="descriptionInput">Description :</label>
-                        <textarea class="form-control" id="descriptionInput" rows="3"></textarea>
+                        <textarea class="form-control" id="descriptionInput" rows="3"><%= doc.tag_list %></textarea>
                       </div>
                     </form>
                   </div>
@@ -38,14 +38,6 @@
                   </div>
                 </div>
               </div>
-
-              <p><span data-modal-target="descriptionDisplay" ></span></p>
-              <% desc = content_tag(:span, data: { target: "modal.descriptionDisplay" }) %>
-              <%#<p class="d-none"><%= desc %>
-              <p><%= desc %></p>
-              <%= doc.tag_list.add("Test") %>
-              <%= doc.save %>
-              <%= doc.tags %>
 
             </div>
           </div>

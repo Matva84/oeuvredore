@@ -171,9 +171,9 @@
               <div class="tab-pane fade d-none fixedheight" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="3" data-tabs-link-target="contentDocuments">
                 <%= form_with(url: documents_path, multipart: true) do |form| %>
                   <%= form.file_field :file, class: 'd-none', id: 'doc-upload', accept: "application/pdf, application/msword, image/jpeg, image/png" %>
-                  <%= form.label :photo, '📝 Charger un document ou une photo', class: 'upload-photo', for: 'doc-upload' %>
+                  <%= form.label :photo, '📝 Charger un document ou une photo', class: 'upload-photo btn-rounded', for: 'doc-upload' %>
                   <%= form.hidden_field :id, value: @project.id %>
-                  <%= form.submit "Télécharger", class: 'upload-photo' %>
+                  <%= form.submit "Télécharger", class: 'upload-photo btn-rounded' %>
                 <% end %>
 
                 <% if @upload_url %>
@@ -182,18 +182,15 @@
 
                 <div class="taglist">
                   <div data-controller="search-documents">
-                      <% ActsAsTaggableOn::Tag.most_used(10).each do |tag| %>
-                        <%= link_to tag.name, project_path(@project.id), class: "tag", data: { action: "click->search-documents#toggle" }, "data-search-document-target": "link" %>
+                      <% @project_tags.each do |tag| %>
+                        <%= link_to tag, project_path(@project.id), class: "tag", data: { action: "click->search-documents#toggle" }, "data-search-document-target": "link" %>
                       <% end %>
-
-                      <%# if @documents.tags.any? %>
-                      <%#  <p>Tags: <%= doc.tag_list.join(", ")%>
-                      <%# end %>
 
                     <div data-search-documents-target="list">
                       <%#= @documents.tagged_with(["document, image"], :match_all => true) %>
-                      <%= doc_filtered = @documents.tagged_with(["document"], :match_all => true) %>
-                      <%= render "documents/document" , locals: { documents_list: doc_filtered }%>
+                      <%#= doc_filtered = @documents.tagged_with(["document"], :match_all => true) %>
+                      <%#= render "documents/document" , locals: { documents_list: @documents }%>
+                      <%= render "documents/document" , locals: { documents: @documents }%>
                     </div>
 
                   </div>

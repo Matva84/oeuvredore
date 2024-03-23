@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # get "projects/new", to: "projects#new"
   resources :projects do
     resources :tasks, only: [:create, :edit, :update]
+    resources :documents, only: [:index]
   end
   resources :tasks, only: :destroy
   resources :chatrooms, only: :show do
