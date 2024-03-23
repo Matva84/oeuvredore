@@ -62,7 +62,6 @@
                 <button class="nav-link myTab" id="nav-taches-tab" data-bs-toggle="tab" data-bs-target="#nav-taches" type="button" role="tab" aria-controls="nav-taches" aria-selected="false" data-action="click->tabs-link#revealTaches">Tâches</button>
                 <button class="nav-link myTab" id="nav-budget-tab" data-bs-toggle="tab" data-bs-target="#nav-budget" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" data-action="click->tabs-link#revealBudget">Budget</button>
                 <button class="nav-link myTab" id="nav-documents-tab" data-bs-toggle="tab" data-bs-target="#nav-documents" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" data-action="click->tabs-link#revealDocuments">Documents</button>
-                <button class="nav-link myTab" id="nav-photos-tab" data-bs-toggle="tab" data-bs-target="#nav-photos" type="button" role="tab" aria-controls="nav-photos" aria-selected="false" data-action="click->tabs-link#revealPhotos">Photos</button>
                 <button class="nav-link myTab" id="nav-messagerie-tab" data-bs-toggle="tab" data-bs-target="#nav-messagerie" type="button" role="tab" aria-controls="nav-messagerie" aria-selected="false" data-action="click->tabs-link#revealMessagerie">Messagerie</button>
               </div>
             </nav>
@@ -172,35 +171,32 @@
               <div class="tab-pane fade d-none fixedheight" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="3" data-tabs-link-target="contentDocuments">
                 <%= form_with(url: documents_path, multipart: true) do |form| %>
                   <%= form.file_field :file, class: 'd-none', id: 'doc-upload', accept: "application/pdf, application/msword, image/jpeg, image/png" %>
-                  <%= form.label :photo, '📝 Charger un document', class: 'upload-photo', for: 'doc-upload' %>
+                  <%= form.label :photo, '📝 Charger un document ou une photo', class: 'upload-photo btn-rounded', for: 'doc-upload' %>
                   <%= form.hidden_field :id, value: @project.id %>
-                  <%= form.submit "Télécharger", class: 'upload-photo' %>
+                  <%= form.submit "Télécharger", class: 'upload-photo btn-rounded' %>
                 <% end %>
 
-                <%# if @upload_url %>
-                <%#  <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %>
-                <%# end %>
+                <% if @upload_url %>
+                  <p class="alert">Fichier téléchargé avec succès!</p>
+                <% end %>
 
                 <div class="taglist">
                   <div data-controller="search-documents">
-
-                      <% ActsAsTaggableOn::Tag.most_used(10).each do |tag| %>
-                        <a href="#" class="tag" data-tag="<%= tag.name %>" data-action="click->search-documents#toggle" data-search-document-target="link"><%= tag.name %></a>
+                      <% @project_tags.each do |tag| %>
+                        <%= link_to tag, project_path(@project.id), class: "tag", data: { action: "click->search-documents#toggle" }, "data-search-document-target": "link" %>
                       <% end %>
 
-                      <%# if @documents.tag_list.any? %>
-                      <%#  <p>Tags: <%= doc.tag_list.join(", ") %>
-                      <%# end %>
-
                     <div data-search-documents-target="list">
-                      <%= @documents.tagged_with(["document"], :match_all => true) %>
-                      <%= render "documents/document" , locals: { document: @documents.tagged_with(["document"]) }%>
+                      <%#= @documents.tagged_with(["document, image"], :match_all => true) %>
+                      <%#= doc_filtered = @documents.tagged_with(["document"], :match_all => true) %>
+                      <%#= render "documents/document" , locals: { documents_list: @documents }%>
+                      <%= render "documents/document" , locals: { documents: @documents }%>
                     </div>
 
                   </div>
                 </div>
 
-                <%= render "documents/document" , locals: { document: @document }%>
+                <%#= render "documents/document" , locals: { document: @document }%>
 
               </div>
 
@@ -211,10 +207,6 @@
                   <%= f.hidden_field :id, value: @project.id %>
                   <%= f.submit "Télécharger", class: 'upload-photo' %>
                 <% end %>
-
-                <%# if @upload_url %>
-                <%#  <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %>
-                <%# end %>
 
                 <%= render "documents/photo" %>
               </div>

@@ -5,16 +5,31 @@ class DocumentsController < ApplicationController
   end
 
   def index
-    @user = current_user
-    @users = User.all
-    @projects = Project.all
-    @docs_all = Document.all
-    @documents = []
-    @documents_all.each do |doc|
-      if document.user_id == @user.id
-        @documents << doc
+    @project = Project.find(params[:project_id])
+    @documents = @project.documents
+    doc_filtered = []
+    @documents.each do |doc|
+      tag_found = 1
+      params[:active_tags].split(",").each do |tag|
+        if doc.tag_list.include?(tag)
+          tag_found = tag_found * 1
+        else
+          tag_found = tag_found * 0
+        end
+      end
+      if tag_found != 0
+        doc_filtered << doc
       end
     end
+
+    if params[:active_tags].empty?
+      @documents = @project.documents
+    else
+      @documents = doc_filtered
+    end
+    #@documents = @documents.where("tag_list ILIKE ?", "%#{params[:active_tags]}%") if params[:active_tags].present?
+    #@documents = @documents.where("tags ILIKE ?", "%#{params[:active_tags]}%") if params[:active_tags].include?(doc.tags)
+    render json: { documents: render_to_string(partial: "document", formats: [:html])}
   end
 
   def create
@@ -34,7 +49,6 @@ class DocumentsController < ApplicationController
 
     @document = Document.new(project_id: project_id, name: filename, type_of_document: doctype, url: upload['secure_url'], cloudinary_id: public_id)
     @document.tag_list.add(doctype)
-
     @document.save!
     redirect_to document_path(@document)
   end
@@ -52,18 +66,24 @@ class DocumentsController < ApplicationController
     redirect_to document_path(@document), see: :others
   end
 
-  def add_tags
+  def update
     @document = Document.find(params[:id])
-    @document.tag_list.add(params[:tag_list])
+    @project = @document.project
+
+    tag_list = params[:tags].split(",")
+    @project_tags = @project.project_tags
+    @project_tags << tag_list
+    @project_tags = @project_tags.uniq
+
+    @document.tag_list.add(tag_list)
+
     @document.save
-    raise
     redirect_to document_path(@document)
   end
 
   private
 
   def document_params
-    #params.require(:document).permit(:name, :type_of_document, :url, :id, :tag_list)
-    params.require(:document).permit(:name, :type_of_document, :url, :id)
+    params.require(:document).permit(:name, :type_of_document, :url, :id, :tags)
   end
 end
