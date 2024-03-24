@@ -105,3 +105,9 @@ export default class extends Controller {
 
   }
 }
+
+// Sélection de l'élément avec son ID
+var element = document.getElementById('budgetgraph');
+
+// Modification de la hauteur
+element.style.height = '520px'; // ou toute autre valeur souhaitée
