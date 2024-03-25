@@ -20,6 +20,15 @@
               <div class="cardsmall">
                 <p><strong>Planning</strong></p>
                 <div class="w3-darkgreen  w3-round-large">
+
+                  <%  total_days = 0 %>
+                  <%  actual_days = 0 %>
+                  <% @tasks.each do |task| %>
+                    <% total_days += (task.end_at.to_date - task.start_at.to_date).to_f %>
+                    <% actual_days += task.progress.to_f / 100 *(task.end_at.to_date - task.start_at.to_date) %>
+                  <% end %>
+                  <% @project.progress = (100 * actual_days / total_days).round(0) %>
+
                   <% s = "width:#{@project.progress}%" %>
                   <div class="w3-container w3-green w3-round-large" style= <%=s%>>
                     <% if (@project.progress).round < 10 %>
@@ -80,6 +89,7 @@
                   <% tasks_price << task.budget %>
                   <% tasks_progress << task.progress %>
                 <% end %>
+
                 <canvas id= "ganttChart" data-controller="gantt" >
                   <div data-gantt-target="projectName" data-value="<%= @project.title %>"></div>
                   <div data-gantt-target="tasksName" data-value = "<%= tasks_name %>"> </div>
@@ -93,7 +103,7 @@
                 <div class="container my-4 px-4">
                   <div class="text-end">
                     <%# <%= link_to "Ajouter une nouvelle tâche", new_project_task_path(@project.id), class: "btn main-btn" %>
-                    <% if @customer.pro %>
+                    <% if @user.pro %>
                       <a class="btn main-btn" data-bs-toggle="modal" data-bs-target="#newTaskModal">
                         Ajouter une tâche
                       </a>
@@ -126,11 +136,13 @@
                         <p><small> <%=task.budget%> € </small></p>
                       </div>
                       <div class="task-notification-actions">
-                        <a class="btn" data-bs-toggle="modal" data-bs-target="#editTaskModal<%=task.id%>">
-                          <i class="fas fa-pencil-alt"></i> Modifier
-                        </a>
-                        <%# <%= link_to '<i class="fas fa-pencil-alt"></i> Modifier'.html_safe, edit_project_task_path(@project.id, task.id) %>
-                        <%= link_to '<i class="far fa-trash-alt"></i> Supprimer'.html_safe, task_path(task.id), class: "btn", data: {turbo_method: :delete, turbo_confirm: "Voulez vous supprimer cette tâche?"} %>
+                        <% if @customer.pro %>
+                          <a class="btn" data-bs-toggle="modal" data-bs-target="#editTaskModal<%=task.id%>">
+                            <i class="fas fa-pencil-alt"></i> Modifier
+                          </a>
+                          <%# <%= link_to '<i class="fas fa-pencil-alt"></i> Modifier'.html_safe, edit_project_task_path(@project.id, task.id) %>
+                          <%= link_to '<i class="far fa-trash-alt"></i> Supprimer'.html_safe, task_path(task.id), class: "btn", data: {turbo_method: :delete, turbo_confirm: "Voulez vous supprimer cette tâche?"} %>
+                        <% end %>
                       </div>
                     </div>
                       <!-- Modal Update -->
@@ -171,7 +183,7 @@
 
               <div class="tab-pane fade d-none fixedheight" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="3" data-tabs-link-target="contentDocuments">
 
-                <% if @customer.pro %>
+                <% if @user.pro %>
                   <%= form_with(url: documents_path, multipart: true) do |form| %>
                     <%= form.file_field :file, class: 'd-none', id: 'doc-upload', accept: "application/pdf, application/msword, image/jpeg, image/png" %>
                     <%= form.label :photo, '📝 Sélectionner un document ou une photo', class: 'upload-photo btn-rounded', for: 'doc-upload' %>
