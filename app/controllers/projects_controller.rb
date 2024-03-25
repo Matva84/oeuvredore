@@ -26,7 +26,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @task_new = Task.new
     @tasks = @project.tasks
-    @user = @project.user
+    @user = current_user #@project.user
     @customer = @project.customer
     @chatroom = @project.chatroom
     @message = Message.new
