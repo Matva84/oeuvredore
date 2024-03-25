@@ -30,9 +30,11 @@
             </div>
             <div class="col-md-3 text-right mt-5">
             <!-- button Modal -->
-              <button type="button" class="main-btn" data-bs-toggle="modal" data-bs-target="#newProjectModal">
-                Ajouter Nouveau Projet
-              </button>
+              <% if @user.pro %>
+                <button type="button" class="main-btn" data-bs-toggle="modal" data-bs-target="#newProjectModal">
+                  Ajouter Nouveau Projet
+                </button>
+              <% end %>
             <!-- Modal -->
               <div class="modal fade" id="newProjectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
