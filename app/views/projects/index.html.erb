@@ -10,7 +10,7 @@
           <div class="col-md-6">
             <div class="card text-center">
               <div class="card-body custom-card-body">
-                <h5 class="card-title mt-2">Projets réalisés</h5>
+                <h5 class="card-title mt-2">Projets réalisés: <%= @realized_projects %></h5>
               </div>
             </div>
           </div>
@@ -56,6 +56,14 @@
             <% @projects.each do |project| %>
             <div class="col-md-4 mb-4">
               <div class="card">
+                <%  total_days = 0 %>
+                <%  actual_days = 0 %>
+                <% project.tasks.each do |task| %>
+                  <% total_days += (task.end_at.to_date - task.start_at.to_date).to_f %>
+                  <% actual_days += task.progress.to_f / 100 *(task.end_at.to_date - task.start_at.to_date) %>
+                <% end %>
+                <% project.progress = (100 * actual_days / total_days).round(0) %>
+
                 <div class="card-body fixed-height">
                   <div class="container">
                     <div class="img-container">

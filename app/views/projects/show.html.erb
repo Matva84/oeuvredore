@@ -136,7 +136,7 @@
                         <p><small> <%=task.budget%> € </small></p>
                       </div>
                       <div class="task-notification-actions">
-                        <% if @customer.pro %>
+                        <% if @user.pro %>
                           <a class="btn" data-bs-toggle="modal" data-bs-target="#editTaskModal<%=task.id%>">
                             <i class="fas fa-pencil-alt"></i> Modifier
                           </a>
