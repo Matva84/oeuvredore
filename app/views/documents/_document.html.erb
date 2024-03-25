@@ -3,13 +3,17 @@
     <% if doc.type_of_document == "document" || doc.type_of_document == "photo" %>
       <div class="onephoto">
         <div class="photo" style="position: relative;">
-          <%= link_to(cl_image_tag(doc.cloudinary_id, { width: 175, height: 216 }), doc.url, target: "_blank") %>
+          <% if doc.type_of_document == "photo" %>
+            <%= link_to(cl_image_tag(doc.cloudinary_id, { width: 175, height: 216 }), doc.url, target: "_blank") %>
+          <% else %>
+            <%= link_to(cl_image_tag("Doc_js7hc1", { width: 175, height: 216 }), doc.url, target: "_blank") %>
+          <% end %>
           <%#https://res.cloudinary.com/demo/image/fetch/w_175,h_216,c_thumb,q_95,f_jpg/ %>
-          <%= link_to(document_path(doc.id), class: 'btn btn-ghost', data: {turbo_method: :delete, turbo_confirm: "Do you really want to remove this document ?"}) do %>
+          <%= link_to(document_path(doc.id), class: 'btn btn-ghost', data: {turbo_method: :delete, turbo_confirm: "Souhaitez-vous vraiment supprimer ce document ?"}) do %>
             <i class="fa-solid fa-trash-can trash-icon"></i>
           <% end %>
 
-          <div data-controller="modal" data-modal-value-id="<%=doc.id%>">
+          <div data-controller="modal" data-modal-value-id="<%=doc.id%>" class="div_notDisplayed">
             <button type="button" data-action="click->modal#open" id="btn-hidden">
               <i class="fa-solid fa-tag"></i>
             </button>
