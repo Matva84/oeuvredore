@@ -4,7 +4,7 @@
   align-items: flex-start;
   gap: 0px;
   border: 1px solid #e6e6e6;
-  border-radius: 16px;
+  border-radius: 32px;
   box-shadow: 2px 2px 3px #e6e6e6;
   width: 175px;
   height: 260px;
@@ -27,6 +27,7 @@
 .photo {
   position: relative;
   display: flex;
+  border: none;
 }
 
 .trash-icon {
@@ -53,10 +54,11 @@
 
 .photo {
   position: relative;
-  display: inline-block; /* Pour s'assurer que la taille de la div est déterminée par le contenu */
+  display: inline-block;
+  border: none;
 }
-.btn-hidden {
-  display: none;
+#btn-hidden {
+
   border: none;
   border-width: 0px;
 }
@@ -68,7 +70,7 @@
   padding-left: 16px;
   padding-right: 16px;
   border: 1px solid #e6e6e6;
-  border-radius: 16px;
+  border-radius: 32px;
   margin-top: 12px;
   margin-bottom: 12px;
   margin-left: 12px;
@@ -78,4 +80,8 @@
 .tag.active {
   background-color: black;
   color: white;
+}
+
+.div_notDisplayed {
+  border: none;
 }

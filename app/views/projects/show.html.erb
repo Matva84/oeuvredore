@@ -171,7 +171,7 @@
               <div class="tab-pane fade d-none fixedheight" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="3" data-tabs-link-target="contentDocuments">
                 <%= form_with(url: documents_path, multipart: true) do |form| %>
                   <%= form.file_field :file, class: 'd-none', id: 'doc-upload', accept: "application/pdf, application/msword, image/jpeg, image/png" %>
-                  <%= form.label :photo, '📝 Charger un document ou une photo', class: 'upload-photo btn-rounded', for: 'doc-upload' %>
+                  <%= form.label :photo, '📝 Sélectionner un document ou une photo', class: 'upload-photo btn-rounded', for: 'doc-upload' %>
                   <%= form.hidden_field :id, value: @project.id %>
                   <%= form.submit "Télécharger", class: 'upload-photo btn-rounded' %>
                 <% end %>
@@ -181,7 +181,7 @@
                 <% end %>
 
                 <div class="taglist">
-                  <div data-controller="search-documents">
+                  <div data-controller="search-documents" class="div_search">
                       <% @project_tags.each do |tag| %>
                         <%= link_to tag, project_path(@project.id), class: "tag", data: { action: "click->search-documents#toggle" }, "data-search-document-target": "link" %>
                       <% end %>
