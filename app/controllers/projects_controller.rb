@@ -16,6 +16,8 @@ class ProjectsController < ApplicationController
       project.progress = progress_calcul(project)
       project.save
     end
+    @realized_projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id)).where(progress: 100).count
+    @total_projects -= @realized_projects
   end
 
   def new
