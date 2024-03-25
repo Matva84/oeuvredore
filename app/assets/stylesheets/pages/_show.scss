@@ -131,6 +131,17 @@ padding: 16px;
 .w3-green,.w3-hover-green:hover{color:#fff!important;background-color:#4dd293!important}
 .w3-darkgreen,.w3-hover-green:hover{color:#fff!important;background-color:#169151!important}
 
+.w3-darkblue {
+  max-height:  24px;
+}
+
+.w3-container {
+  max-height: 24px;
+  min-inline-size: 70px;
+}
+
+
+
 .blue {
   display: inline-block;
   border: solid 1px #218aff;
@@ -312,6 +323,11 @@ padding: 16px;
 .taglist {
   margin-top: 24px;
 }
+
+.custom-card-body {
+  max-height: 90px;
+}
+
 .div_search {
   padding-left: 0px;
 }
