@@ -11,7 +11,6 @@
           <div class="card">
             <div class="card-presentation">
               <%= cl_image_tag @project.photo.key, crop: :fill, class: "img-fluid full-width mb-8" %>
-              <i class="fa-regular fa-pen-to-square pen"></i>
             </div>
 
             <h5 class="card-title"><%= @project.title %></h5>
@@ -94,9 +93,11 @@
                 <div class="container my-4 px-4">
                   <div class="text-end">
                     <%# <%= link_to "Ajouter une nouvelle tâche", new_project_task_path(@project.id), class: "btn main-btn" %>
-                    <a class="btn main-btn" data-bs-toggle="modal" data-bs-target="#newTaskModal">
-                      Ajouter une tâche
-                    </a>
+                    <% if @customer.pro %>
+                      <a class="btn main-btn" data-bs-toggle="modal" data-bs-target="#newTaskModal">
+                        Ajouter une tâche
+                      </a>
+                    <% end %>
                   </div>
 
                   <!-- Modal new -->
@@ -169,15 +170,18 @@
               </div>
 
               <div class="tab-pane fade d-none fixedheight" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="3" data-tabs-link-target="contentDocuments">
-                <%= form_with(url: documents_path, multipart: true) do |form| %>
-                  <%= form.file_field :file, class: 'd-none', id: 'doc-upload', accept: "application/pdf, application/msword, image/jpeg, image/png" %>
-                  <%= form.label :photo, '📝 Sélectionner un document ou une photo', class: 'upload-photo btn-rounded', for: 'doc-upload' %>
-                  <%= form.hidden_field :id, value: @project.id %>
-                  <%= form.submit "Télécharger", class: 'upload-photo btn-rounded' %>
-                <% end %>
 
-                <% if @upload_url %>
-                  <p class="alert">Fichier téléchargé avec succès!</p>
+                <% if @customer.pro %>
+                  <%= form_with(url: documents_path, multipart: true) do |form| %>
+                    <%= form.file_field :file, class: 'd-none', id: 'doc-upload', accept: "application/pdf, application/msword, image/jpeg, image/png" %>
+                    <%= form.label :photo, '📝 Sélectionner un document ou une photo', class: 'upload-photo btn-rounded', for: 'doc-upload' %>
+                    <%= form.hidden_field :id, value: @project.id %>
+                    <%= form.submit "Télécharger", class: 'upload-photo btn-rounded' %>
+                  <% end %>
+
+                  <% if @upload_url %>
+                    <p class="alert">Fichier téléchargé avec succès!</p>
+                  <% end %>
                 <% end %>
 
                 <div class="taglist">

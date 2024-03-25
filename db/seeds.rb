@@ -62,7 +62,7 @@ puts "  >> #{list_of_users_pro.count} professionnal user(s) created"
 10.times do
   file = URI.open("https://kitt.lewagon.com/placeholder/users/ssaunier")
   nameStr = Faker::Name.name
-  user = User.new(email: Faker::Internet.email, password: "password", name: nameStr, nickname: nameStr)
+  user = User.new(email: Faker::Internet.email, password: "password", name: nameStr, nickname: nameStr, pro: false)
   user.photo.attach(io: file, filename: "sebsatien.png", content_type: "image/png")
   user.save!
   # puts user.id, user.email, user.name
@@ -166,7 +166,7 @@ projectmv6 = Project.new(title: "Maison de campagne, Saint-Emilion", description
 projectmv6.photo.attach(io: file, filename: "renovation.jpg", content_type: "image/jpg")
 projectmv6.save!
 list_of_projects << projectmv6
-chatmv6 = Chatroom.create(name: "Maison de campagne mv", project: projectmv6)
+chatmv6 = Chatroom.create(name: "Maison de campagne", project: projectmv6)
 Message.create(chatroom: chatmv6, user: user_mv, content: "Bonjour #{usr.name}, dans ce chat, nous pourrons échanger à propos de votre projet!")
 
 usr = list_of_users[rand(0..list_of_users.count-1)]
