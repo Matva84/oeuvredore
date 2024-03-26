@@ -229,6 +229,16 @@ padding: 16px;
   height: 530px;
   padding: 0px;
 }
+// nav link
+
+.nav-link {
+  color: black
+}
+
+.nav-link:hover {
+  color: white;
+  background-color: black;
+}
 
 // tâches
 .task-notification {
