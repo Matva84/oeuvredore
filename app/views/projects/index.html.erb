@@ -73,21 +73,19 @@
                   <div class= "card-content">
                     <h5 class="card-title-index"><%= project.title %></h5>
                     <div class="text-maxheight">
-                      <p class="card-text"><%= project.description %></p>
+                      <p class="card-text pb-1"><%= project.description %></p>
                     </div>
                 <!-- Barre de progression du planning -->
-                    <p><strong>Progression</strong></p>
-                    <div class="w3-darkgreen w3-round-large">
-                      <% s = "width:#{project.progress}%" %>
-                      <div class="w3-container w3-green w3-round-large" style="<%= s %>">
-                        <% if project.progress.round < 10 %>
-                          <p class="greentext"></p>
-                        <% else %>
-                          <%= project.progress.round %>%
-                        <% end %>
+                    <%# <p><strong>Progression</strong></p> %>
+                    <div data-controller="color-progression">
+                      <div class="w3-round-large mt-5" data-color-progression-target="completeBar" data-value="<%= project.progress%>">
+                        <% s = "width:#{project.progress}%" %>
+                        <div class="w3-container w3-round-large" style="<%= s %>" data-color-progression-target="progressBar">
+                            <%= project.progress.round %> %
+                        </div>
                       </div>
                     </div>
-                    <%= link_to "Voir le projet", project_path(project), class: "main-btn-rounded", id: "btn-margin" %>
+                    <%= link_to "Voir", project_path(project), class: "main-btn-rounded", id: "btn-margin" %>
                   </div>
                 </div>
                 </div>
