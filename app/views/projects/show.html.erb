@@ -14,13 +14,13 @@
               <%# class: "img-fluid full-width mb-8" %>
             </div>
 
-            <h5 class="card-title-show"><%= @project.title %></h5>
+            <h3 class="h3-black-title"><%= @project.title %></h3>
             <p class="card-text"><%= @project.description %></p>
 
             <div class="card-caracteristic">
               <div class="cardsmall">
-                <p><strong>Planning</strong></p>
-                <div class="w3-darkgreen  w3-round-large">
+                <p class="p-caracteristic">Planning</p>
+                <div class="w3-darkblue  w3-round-large">
 
                   <%  total_days = 0 %>
                   <%  actual_days = 0 %>
@@ -31,21 +31,17 @@
                   <% @project.progress = (100 * actual_days / total_days).round(0) %>
 
                   <% s = "width:#{@project.progress}%" %>
-                  <div class="w3-container w3-green w3-round-large" style= <%=s%>>
-                    <% if (@project.progress).round < 10 %>
-                      <p class="greentext"> </p>
-                    <% else  %>
-                      <%= (@project.progress).round %>
-                    <% end %> %
+                  <div class="w3-container w3-blue w3-round-large" style= <%=s%>>
+                      <%= (@project.progress).round %> %
                   </div>
                 </div>
               </div>
 
               <div class="cardsmall">
-                <p><strong>Budget</strong></p>
-                <div class="w3-darkblue w3-round-large">
-                  <% s = "width:#{100 * (@project.total_expenses/@project.customer_budget)}%" %>
-                  <div class="w3-container w3-blue w3-round-large" style=<%= s%>>
+                <p class="p-caracteristic">Budget</p>
+                <div class="w3-darkgreen w3-round-large">
+                  <% s = "width:#{ (@project.total_expenses/@project.customer_budget)}%" %>
+                  <div class="w3-container w3-green w3-round-large" style=<%= s%>>
                     <%= (100 * (@project.total_expenses/@project.customer_budget)).round %>
                     %
                   </div>
@@ -53,8 +49,8 @@
               </div>
 
               <div class="cardsmall">
-                <p><strong>Client</strong></p>
-                <p><%= @customer.name %> </p>
+                <p class="p-caracteristic">Client</p>
+                <p class="p-client"><%= @customer.name %> </p>
               </div>
 
             </div>
