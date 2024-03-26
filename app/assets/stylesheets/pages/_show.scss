@@ -14,8 +14,6 @@
   border: solid 1px #e2e2e2;
   border-radius: 8px;
   margin-top: 20px;
-  margin-left: 5px;
-  margin-right: 5px;
   width: 95%;
   box-shadow: 2px 2px 3px #e2e2e2;
   padding: 0px;
@@ -52,6 +50,8 @@
   width: 100%;
   max-height: 250px; /* Limite la hauteur de l'image */
   object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .card-caracteristic {
@@ -70,8 +70,7 @@ padding: 16px;
   color: black;
   border: solid 1px #e2e2e2;
   border-radius: 8px;
-  margin-top: 20px;
-  width: 100%;
+  width: 95%;
   box-shadow: 2px 2px 3px #e2e2e2;
   margin-top: 40px;
   margin-bottom: 40px;
@@ -86,19 +85,24 @@ padding: 16px;
 
 .card-title {
   margin-top: 15px;
-  margin-bottom: 0px;
-  padding: 0px 10px;
+  margin-bottom: 15px;
   margin: 0;
+  font-size: 18px;
+}
+  .card-title-show {
+  padding-top: 20px;
+  padding-left: 20px;
   font-size: 20px;
   font-weight: 500;
 }
 
 .card-text {
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
   font-weight: 300;
   border-top: 1px solid #e2e2e2;
   padding-top: 10px;
+  font-size: 13px;
 }
 
 .card-progression {
@@ -128,8 +132,9 @@ padding: 16px;
 .w3-blue,.w3-hover-blue:hover{color:#fff!important;background-color:#8bbff8!important}
 .w3-container,.w3-panel{padding:0.01em 16px}.w3-panel{margin-top:16px;margin-bottom:16px}
 .w3-light-grey,.w3-hover-light-grey:hover,.w3-light-gray,.w3-hover-light-gray:hover{color:#000!important;background-color:#f1f1f1!important}
-.w3-green,.w3-hover-green:hover{color:#fff!important;background-color:#4dd293!important}
-.w3-darkgreen,.w3-hover-green:hover{color:#fff!important;background-color:#169151!important}
+.w3-green,.w3-hover-green:hover{color:#fff!important;background-color:#faa060!important}
+.w3-darkgreen,.w3-hover-green:hover{color:#fff!important;background-color:#e27a11!important}
+
 
 .w3-darkblue {
   max-height:  24px;
@@ -223,6 +228,16 @@ padding: 16px;
 .fixed-height {
   height: 530px;
   padding: 0px;
+}
+// nav link
+
+.nav-link {
+  color: black
+}
+
+.nav-link:hover {
+  color: white;
+  background-color: black;
 }
 
 // tâches

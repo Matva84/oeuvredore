@@ -4,18 +4,24 @@
 }
 
 .text-maxheight  {
-  max-height: 90px;
-  min-height: 90px;
+  max-height: 105px;
+  min-height: 105px;
   overflow: hidden;
   margin-bottom: 16px;
 }
 
 .card-title {
+  max-height: 75px;
+  min-height: 75px;
+  overflow: hidden;
+  padding: 18px 10px 18px 10px;
+}
+  .card-title-index {
   max-height: 70px;
   min-height: 70px;
   overflow: hidden;
-  padding-top: 16px;
-  padding-top: 8px;
+  padding-top: 15px;
+  padding-left: 15px;
 }
 
 .img-container {
@@ -40,4 +46,29 @@
   background-color: transparent;
   border: 1px solid;
   border-radius: 30px;
+}
+
+// color of progress
+.green {
+  background-color: #4CD292;
+}
+
+.background-green {
+  background-color: #179C5C;
+}
+
+.orange {
+  background-color: #EDC96C;
+}
+
+.background-orange {
+  background-color: #BDA158;
+}
+
+.red {
+  background-color: #D26C4C;
+}
+
+.background-red {
+  background-color: #9C4F17;
 }

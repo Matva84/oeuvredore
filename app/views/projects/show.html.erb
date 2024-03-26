@@ -10,16 +10,17 @@
 
           <div class="card">
             <div class="card-presentation">
-              <%= cl_image_tag @project.photo.key, crop: :fill, class: "img-fluid full-width mb-8" %>
+              <%= cl_image_tag @project.photo.key, crop: :fill %>
+              <%# class: "img-fluid full-width mb-8" %>
             </div>
 
-            <h5 class="card-title"><%= @project.title %></h5>
+            <h5 class="card-title-show"><%= @project.title %></h5>
             <p class="card-text"><%= @project.description %></p>
 
             <div class="card-caracteristic">
               <div class="cardsmall">
                 <p><strong>Planning</strong></p>
-                <div class="w3-darkgreen  w3-round-large">
+                <div class="w3-darkblue  w3-round-large">
 
                   <%  total_days = 0 %>
                   <%  actual_days = 0 %>
@@ -30,21 +31,17 @@
                   <% @project.progress = (100 * actual_days / total_days).round(0) %>
 
                   <% s = "width:#{@project.progress}%" %>
-                  <div class="w3-container w3-green w3-round-large" style= <%=s%>>
-                    <% if (@project.progress).round < 10 %>
-                      <p class="greentext"> </p>
-                    <% else  %>
-                      <%= (@project.progress).round %>
-                    <% end %> %
+                  <div class="w3-container w3-blue w3-round-large" style= <%=s%>>
+                      <%= (@project.progress).round %> %
                   </div>
                 </div>
               </div>
 
               <div class="cardsmall">
                 <p><strong>Budget</strong></p>
-                <div class="w3-darkblue w3-round-large">
+                <div class="w3-darkgreen w3-round-large">
                   <% s = "width:#{100 * (@project.total_expenses/@project.customer_budget)}%" %>
-                  <div class="w3-container w3-blue w3-round-large" style=<%= s%>>
+                  <div class="w3-container w3-green w3-round-large" style=<%= s%>>
                     <%= (100 * (@project.total_expenses/@project.customer_budget)).round %>
                     %
                   </div>
@@ -76,7 +73,7 @@
 
             <div class="tab-content ongletscontainer" id="nav-tabContent">
 
-              <div class="tab-pane fade show active fixedheight d-flex justify-content-center align-items-center p-2" id="nav-planning" role="tabpanel" aria-labelledby="nav-planning-tab" tabindex="0" data-tabs-link-target="contentPlanning">
+              <div class="tab-pane fade show active fixedheight d-flex justify-content-center align-items-center px-5 py-3" id="nav-planning" role="tabpanel" aria-labelledby="nav-planning-tab" tabindex="0" data-tabs-link-target="contentPlanning">
                 <% tasks_name = [] %>
                 <% tasks_start = [] %>
                 <% tasks_end = [] %>
