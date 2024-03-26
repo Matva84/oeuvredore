@@ -6,16 +6,14 @@ export default class extends Controller {
 
   connect() {
 
-    // console.log("hello budget controller")
+    var names = this.tasksNameTarget.dataset.value;
+    var names_json = JSON.parse(names);
 
-    var names = this.tasksNameTarget.dataset.value
-    var names_json = JSON.parse(names)
+    var prices = this.tasksPriceTarget.dataset.value;
+    var prices_json = JSON.parse(prices);
 
-    var prices = this.tasksPriceTarget.dataset.value
-    var prices_json = JSON.parse(prices)
-
-    var progress = this.tasksProgressTarget.dataset.value
-    var progress_json = JSON.parse(progress)
+    var progress = this.tasksProgressTarget.dataset.value;
+    var progress_json = JSON.parse(progress);
 
     var progression_prices_data = [];
     for (let i = 0; i < prices_json.length; i++) {
@@ -39,8 +37,7 @@ export default class extends Controller {
           backgroundColor: [
             'rgba(255, 159, 64, 1)'
           ],
-        }
-      ]
+        }]
       },
       options: {
         scales: {
@@ -49,11 +46,20 @@ export default class extends Controller {
           },
           y: {
             stacked: false,
+            ticks: {
+              callback: function(value, index, values) {
+                return value + ' €';
+              }
+            }
           }
         }
       }
     });
-}
+
+    setTimeout(() => {
+      this.element.style.maxWidth = '1000px';
+    }, 100);
+  }
 
   disconnect() {
     console.log("Line chart controller disconnected");
