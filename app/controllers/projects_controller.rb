@@ -16,6 +16,8 @@ class ProjectsController < ApplicationController
       project.progress = progress_calcul(project)
       project.save
     end
+    @realized_projects = Project.where(user_id: @user.id).or(Project.where(customer_id: @user.id)).where(progress: 100).count
+    @total_projects -= @realized_projects
   end
 
   def new
@@ -26,13 +28,21 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @task_new = Task.new
     @tasks = @project.tasks
-    @user = @project.user
+    @user = current_user #@project.user
     @customer = @project.customer
     @chatroom = @project.chatroom
     @message = Message.new
     @documents = @project.documents
     @project.total_expenses = expenses_calcul(@project)
     @project.save
+    @project_tags = ["document", "photo"]
+    @documents.each do |doc|
+      doc.tag_list.each do |tag|
+        @project_tags << tag
+        puts tag
+      end
+    end
+    @project_tags = @project_tags.uniq
   end
 
   def create
@@ -42,6 +52,7 @@ class ProjectsController < ApplicationController
     @project.customer_id = params[:project][:customer_id]
     @chatroom = Chatroom.new(name: "Chatroom for #{@project.title}")
     @project.chatroom = @chatroom
+    @project_tags = ["document", "photo"]
     if @project.save && @chatroom.save
       # Créer une nouvelle tâche avec les dates de début et de fin du projet
       @task = Task.new(
@@ -82,7 +93,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:id, :title, :description, :address, :initial_start_at, :initial_end_at, :progress, :customer_budget, :total_expenses, :customer_id, :photo)
+    params.require(:project).permit(:id, :title, :description, :address, :initial_start_at, :initial_end_at, :progress, :customer_budget, :total_expenses, :customer_id, :photo, :project_tags)
   end
 
   def progress_calcul(project)

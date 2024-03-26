@@ -10,17 +10,26 @@
 
           <div class="card">
             <div class="card-presentation">
-              <%= cl_image_tag @project.photo.key, crop: :fill, class: "img-fluid full-width mb-8" %>
-              <i class="fa-regular fa-pen-to-square pen"></i>
+              <%= cl_image_tag @project.photo.key, crop: :fill %>
+              <%# class: "img-fluid full-width mb-8" %>
             </div>
 
-            <h5 class="card-title"><%= @project.title %></h5>
+            <h5 class="card-title-show"><%= @project.title %></h5>
             <p class="card-text"><%= @project.description %></p>
 
             <div class="card-caracteristic">
               <div class="cardsmall">
                 <p><strong>Planning</strong></p>
                 <div class="w3-darkgreen  w3-round-large">
+
+                  <%  total_days = 0 %>
+                  <%  actual_days = 0 %>
+                  <% @tasks.each do |task| %>
+                    <% total_days += (task.end_at.to_date - task.start_at.to_date).to_f %>
+                    <% actual_days += task.progress.to_f / 100 *(task.end_at.to_date - task.start_at.to_date) %>
+                  <% end %>
+                  <% @project.progress = (100 * actual_days / total_days).round(0) %>
+
                   <% s = "width:#{@project.progress}%" %>
                   <div class="w3-container w3-green w3-round-large" style= <%=s%>>
                     <% if (@project.progress).round < 10 %>
@@ -62,14 +71,13 @@
                 <button class="nav-link myTab" id="nav-taches-tab" data-bs-toggle="tab" data-bs-target="#nav-taches" type="button" role="tab" aria-controls="nav-taches" aria-selected="false" data-action="click->tabs-link#revealTaches">Tâches</button>
                 <button class="nav-link myTab" id="nav-budget-tab" data-bs-toggle="tab" data-bs-target="#nav-budget" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" data-action="click->tabs-link#revealBudget">Budget</button>
                 <button class="nav-link myTab" id="nav-documents-tab" data-bs-toggle="tab" data-bs-target="#nav-documents" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" data-action="click->tabs-link#revealDocuments">Documents</button>
-                <button class="nav-link myTab" id="nav-photos-tab" data-bs-toggle="tab" data-bs-target="#nav-photos" type="button" role="tab" aria-controls="nav-photos" aria-selected="false" data-action="click->tabs-link#revealPhotos">Photos</button>
                 <button class="nav-link myTab" id="nav-messagerie-tab" data-bs-toggle="tab" data-bs-target="#nav-messagerie" type="button" role="tab" aria-controls="nav-messagerie" aria-selected="false" data-action="click->tabs-link#revealMessagerie">Messagerie</button>
               </div>
             </nav>
 
             <div class="tab-content ongletscontainer" id="nav-tabContent">
 
-              <div class="tab-pane fade show active fixedheight d-flex justify-content-center align-items-center p-2" id="nav-planning" role="tabpanel" aria-labelledby="nav-planning-tab" tabindex="0" data-tabs-link-target="contentPlanning">
+              <div class="tab-pane fade show active fixedheight d-flex justify-content-center align-items-center px-5 py-3" id="nav-planning" role="tabpanel" aria-labelledby="nav-planning-tab" tabindex="0" data-tabs-link-target="contentPlanning">
                 <% tasks_name = [] %>
                 <% tasks_start = [] %>
                 <% tasks_end = [] %>
@@ -82,6 +90,7 @@
                   <% tasks_price << task.budget %>
                   <% tasks_progress << task.progress %>
                 <% end %>
+
                 <canvas id= "ganttChart" data-controller="gantt" >
                   <div data-gantt-target="projectName" data-value="<%= @project.title %>"></div>
                   <div data-gantt-target="tasksName" data-value = "<%= tasks_name %>"> </div>
@@ -95,9 +104,11 @@
                 <div class="container my-4 px-4">
                   <div class="text-end">
                     <%# <%= link_to "Ajouter une nouvelle tâche", new_project_task_path(@project.id), class: "btn main-btn" %>
-                    <a class="btn main-btn" data-bs-toggle="modal" data-bs-target="#newTaskModal">
-                      Ajouter une tâche
-                    </a>
+                    <% if @user.pro %>
+                      <a class="btn main-btn" data-bs-toggle="modal" data-bs-target="#newTaskModal">
+                        Ajouter une tâche
+                      </a>
+                    <% end %>
                   </div>
 
                   <!-- Modal new -->
@@ -126,11 +137,13 @@
                         <p><small> <%=task.budget%> € </small></p>
                       </div>
                       <div class="task-notification-actions">
-                        <a class="btn" data-bs-toggle="modal" data-bs-target="#editTaskModal<%=task.id%>">
-                          <i class="fas fa-pencil-alt"></i> Modifier
-                        </a>
-                        <%# <%= link_to '<i class="fas fa-pencil-alt"></i> Modifier'.html_safe, edit_project_task_path(@project.id, task.id) %>
-                        <%= link_to '<i class="far fa-trash-alt"></i> Supprimer'.html_safe, task_path(task.id), class: "btn", data: {turbo_method: :delete, turbo_confirm: "Voulez vous supprimer cette tâche?"} %>
+                        <% if @user.pro %>
+                          <a class="btn" data-bs-toggle="modal" data-bs-target="#editTaskModal<%=task.id%>">
+                            <i class="fas fa-pencil-alt"></i> Modifier
+                          </a>
+                          <%# <%= link_to '<i class="fas fa-pencil-alt"></i> Modifier'.html_safe, edit_project_task_path(@project.id, task.id) %>
+                          <%= link_to '<i class="far fa-trash-alt"></i> Supprimer'.html_safe, task_path(task.id), class: "btn", data: {turbo_method: :delete, turbo_confirm: "Voulez vous supprimer cette tâche?"} %>
+                        <% end %>
                       </div>
                     </div>
                       <!-- Modal Update -->
@@ -170,37 +183,37 @@
               </div>
 
               <div class="tab-pane fade d-none fixedheight" id="nav-documents" role="tabpanel" aria-labelledby="nav-documents-tab" tabindex="3" data-tabs-link-target="contentDocuments">
-                <%= form_with(url: documents_path, multipart: true) do |form| %>
-                  <%= form.file_field :file, class: 'd-none', id: 'doc-upload', accept: "application/pdf, application/msword, image/jpeg, image/png" %>
-                  <%= form.label :photo, '📝 Charger un document', class: 'upload-photo', for: 'doc-upload' %>
-                  <%= form.hidden_field :id, value: @project.id %>
-                  <%= form.submit "Télécharger", class: 'upload-photo' %>
+
+                <% if @user.pro %>
+                  <%= form_with(url: documents_path, multipart: true) do |form| %>
+                    <%= form.file_field :file, class: 'd-none', id: 'doc-upload', accept: "application/pdf, application/msword, image/jpeg, image/png" %>
+                    <%= form.label :photo, '📝 Sélectionner un document ou une photo', class: 'upload-photo btn-rounded', for: 'doc-upload' %>
+                    <%= form.hidden_field :id, value: @project.id %>
+                    <%= form.submit "Télécharger", class: 'upload-photo btn-rounded' %>
+                  <% end %>
+
+                  <% if @upload_url %>
+                    <p class="alert">Fichier téléchargé avec succès!</p>
+                  <% end %>
                 <% end %>
 
-                <%# if @upload_url %>
-                <%#  <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %>
-                <%# end %>
-
                 <div class="taglist">
-                  <div data-controller="search-documents">
-
-                      <% ActsAsTaggableOn::Tag.most_used(10).each do |tag| %>
-                        <a href="#" class="tag" data-tag="<%= tag.name %>" data-action="click->search-documents#toggle" data-search-document-target="link"><%= tag.name %></a>
+                  <div data-controller="search-documents" class="div_search">
+                      <% @project_tags.each do |tag| %>
+                        <%= link_to tag, project_path(@project.id), class: "tag", data: { action: "click->search-documents#toggle" }, "data-search-document-target": "link" %>
                       <% end %>
 
-                      <%# if @documents.tag_list.any? %>
-                      <%#  <p>Tags: <%= doc.tag_list.join(", ") %>
-                      <%# end %>
-
                     <div data-search-documents-target="list">
-                      <%= @documents.tagged_with(["document"], :match_all => true) %>
-                      <%= render "documents/document" , locals: { document: @documents.tagged_with(["document"]) }%>
+                      <%#= @documents.tagged_with(["document, image"], :match_all => true) %>
+                      <%#= doc_filtered = @documents.tagged_with(["document"], :match_all => true) %>
+                      <%#= render "documents/document" , locals: { documents_list: @documents }%>
+                      <%= render "documents/document" , locals: { documents: @documents }%>
                     </div>
 
                   </div>
                 </div>
 
-                <%= render "documents/document" , locals: { document: @document }%>
+                <%#= render "documents/document" , locals: { document: @document }%>
 
               </div>
 
@@ -211,10 +224,6 @@
                   <%= f.hidden_field :id, value: @project.id %>
                   <%= f.submit "Télécharger", class: 'upload-photo' %>
                 <% end %>
-
-                <%# if @upload_url %>
-                <%#  <p>Fichier téléchargé avec succès! Voici le lien vers votre fichier : <%= @upload_url %>
-                <%# end %>
 
                 <%= render "documents/photo" %>
               </div>

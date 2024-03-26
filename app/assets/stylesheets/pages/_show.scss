@@ -14,8 +14,6 @@
   border: solid 1px #e2e2e2;
   border-radius: 8px;
   margin-top: 20px;
-  margin-left: 5px;
-  margin-right: 5px;
   width: 95%;
   box-shadow: 2px 2px 3px #e2e2e2;
   padding: 0px;
@@ -52,6 +50,8 @@
   width: 100%;
   max-height: 250px; /* Limite la hauteur de l'image */
   object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .card-caracteristic {
@@ -70,8 +70,7 @@ padding: 16px;
   color: black;
   border: solid 1px #e2e2e2;
   border-radius: 8px;
-  margin-top: 20px;
-  width: 100%;
+  width: 95%;
   box-shadow: 2px 2px 3px #e2e2e2;
   margin-top: 40px;
   margin-bottom: 40px;
@@ -89,6 +88,11 @@ padding: 16px;
   margin-bottom: 15px;
   margin: 0;
   font-size: 18px;
+}
+  .card-title-show {
+  padding-top: 20px;
+  padding-left: 20px;
+  font-size: 20px;
   font-weight: 500;
 }
 
@@ -130,6 +134,17 @@ padding: 16px;
 .w3-light-grey,.w3-hover-light-grey:hover,.w3-light-gray,.w3-hover-light-gray:hover{color:#000!important;background-color:#f1f1f1!important}
 .w3-green,.w3-hover-green:hover{color:#fff!important;background-color:#4dd293!important}
 .w3-darkgreen,.w3-hover-green:hover{color:#fff!important;background-color:#169151!important}
+
+.w3-darkblue {
+  max-height:  24px;
+}
+
+.w3-container {
+  max-height: 24px;
+  min-inline-size: 70px;
+}
+
+
 
 .blue {
   display: inline-block;
@@ -297,4 +312,26 @@ padding: 16px;
 
 .card-content {
   padding: 0px 20px;
+}
+
+#nav-documents {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  margin-left: 24px;
+}
+
+.btn-rounded {
+  border-radius: 8px;
+  margin-right: 60px;
+}
+.taglist {
+  margin-top: 24px;
+}
+
+.custom-card-body {
+  max-height: 90px;
+}
+
+.div_search {
+  padding-left: 0px;
 }

@@ -5,19 +5,19 @@
     </div>
 
     <div class="col-10">
-      <div class="container-projects">
+      <div class="container">
         <div class="row">
           <div class="col-md-6">
             <div class="card text-center">
-              <div class="card-body">
-                <h5 class="card-title">Projets réalisés</h5>
+              <div class="card-body custom-card-body">
+                <h5 class="card-title mt-2">Projets réalisés: <%= @realized_projects %></h5>
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="card text-center">
-              <div class="card-body">
-                <h5 class="card-title">Projets en cours: <%= @total_projects %> </h5>
+              <div class="card-body custom-card-body">
+                <h5 class="card-title mt-2">Projets en cours: <%= @total_projects %> </h5>
               </div>
             </div>
           </div>
@@ -30,9 +30,11 @@
             </div>
             <div class="col-md-3 text-right mt-5">
             <!-- button Modal -->
-              <button type="button" class="main-btn" data-bs-toggle="modal" data-bs-target="#newProjectModal">
-                Ajouter Nouveau Projet
-              </button>
+              <% if @user.pro %>
+                <button type="button" class="main-btn" data-bs-toggle="modal" data-bs-target="#newProjectModal">
+                  Ajouter Nouveau Projet
+                </button>
+              <% end %>
             <!-- Modal -->
               <div class="modal fade" id="newProjectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -54,6 +56,14 @@
             <% @projects.each do |project| %>
             <div class="col-md-4 mb-4">
               <div class="card">
+                <%  total_days = 0 %>
+                <%  actual_days = 0 %>
+                <% project.tasks.each do |task| %>
+                  <% total_days += (task.end_at.to_date - task.start_at.to_date).to_f %>
+                  <% actual_days += task.progress.to_f / 100 *(task.end_at.to_date - task.start_at.to_date) %>
+                <% end %>
+                <% project.progress = (100 * actual_days / total_days).round(0) %>
+
                 <div class="card-body fixed-height">
                   <div class="container">
                     <div class="img-container">
@@ -61,7 +71,7 @@
                     </div>
                   </div>
                   <div class= "card-content">
-                    <h5 class="card-title"><%= project.title %></h5>
+                    <h5 class="card-title-index"><%= project.title %></h5>
                     <div class="text-maxheight">
                       <p class="card-text"><%= project.description %></p>
                     </div>

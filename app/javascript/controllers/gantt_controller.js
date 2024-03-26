@@ -7,8 +7,11 @@ import "chartjs-adapter-date-fns"
 export default class extends Controller {
   static targets = ["projectName", "tasksName", "tasksEnd", "tasksStart", "tasksProgress"]
 
+
+
   connect() {
     // console.log("hello from gantt controller")
+    // Sélection de l'élément avec son ID
 
     var names = this.tasksNameTarget.dataset.value
     var names_json = JSON.parse(names)
@@ -102,6 +105,10 @@ export default class extends Controller {
       document.getElementById('ganttChart'),
       config
     );
+    setTimeout(() => {
+      var element = document.getElementById('budgetgraph');
+      element.style.height = '520px'; // ou toute autre valeur souhaitée
+    }, 100); // 100ms de délai, ajustez selon les besoins
 
   }
 }

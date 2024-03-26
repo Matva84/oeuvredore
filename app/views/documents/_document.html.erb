@@ -1,15 +1,19 @@
 <div class="card-group">
   <% @documents.each do |doc| %>
-    <% if doc.type_of_document == "document" %>
+    <% if doc.type_of_document == "document" || doc.type_of_document == "photo" %>
       <div class="onephoto">
         <div class="photo" style="position: relative;">
-          <%= link_to(cl_image_tag(doc.cloudinary_id, { width: 175, height: 216 }), doc.url, target: "_blank") %>
+          <% if doc.type_of_document == "photo" %>
+            <%= link_to(cl_image_tag(doc.cloudinary_id, { width: 175, height: 216 }), doc.url, target: "_blank") %>
+          <% else %>
+            <%= link_to(cl_image_tag("Doc_js7hc1", { width: 175, height: 216 }), doc.url, target: "_blank") %>
+          <% end %>
           <%#https://res.cloudinary.com/demo/image/fetch/w_175,h_216,c_thumb,q_95,f_jpg/ %>
-          <%= link_to(document_path(doc.id), class: 'btn btn-ghost', data: {turbo_method: :delete, turbo_confirm: "Do you really want to remove this document ?"}) do %>
+          <%= link_to(document_path(doc.id), class: 'btn btn-ghost', data: {turbo_method: :delete, turbo_confirm: "Souhaitez-vous vraiment supprimer ce document ?"}) do %>
             <i class="fa-solid fa-trash-can trash-icon"></i>
           <% end %>
 
-          <div data-controller="modal">
+          <div data-controller="modal" data-modal-value-id="<%=doc.id%>" class="div_notDisplayed">
             <button type="button" data-action="click->modal#open" id="btn-hidden">
               <i class="fa-solid fa-tag"></i>
             </button>
@@ -28,24 +32,16 @@
                     <form>
                       <div class="form-group">
                         <label for="descriptionInput">Description :</label>
-                        <textarea class="form-control" id="descriptionInput" rows="3"></textarea>
+                        <textarea class="form-control" id="descriptionInput" rows="3"><%= doc.tag_list %></textarea>
                       </div>
                     </form>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-action="click->modal#close">Fermer</button>
-                    <button type="button" class="btn btn-primary" data-action="click->modal#save">Enregistrer</button>
+                    <button type="button" class="btn btn-primary" data-action="click->modal#update">Enregistrer</button>
                   </div>
                 </div>
               </div>
-
-              <p><span data-modal-target="descriptionDisplay"></span></p>
-              <% desc = content_tag(:span, data: { target: "modal.descriptionDisplay" }) %>
-              <%#<p class="d-none"><%= desc %>
-              <p><%= desc %></p>
-              <%= doc.tag_list.add("Test") %>
-              <%#= doc.add_tags %>
-              <%#= doc.tags %>
 
             </div>
           </div>
