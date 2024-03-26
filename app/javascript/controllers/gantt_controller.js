@@ -107,7 +107,8 @@ export default class extends Controller {
     );
     setTimeout(() => {
       var element = document.getElementById('budgetgraph');
-      element.style.height = '520px'; // ou toute autre valeur souhaitée
+      element.style.height = '520px';
+      this.element.style.maxWidth = '1500px';
     }, 100); // 100ms de délai, ajustez selon les besoins
 
   }

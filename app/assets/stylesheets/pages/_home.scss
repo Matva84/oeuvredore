@@ -217,18 +217,19 @@ footer {
 /* Style pour bouton homePage */
 
 #proBtn {
-  font-size: 22px;
+  font-size: 16px;
   transition: font-size 0.3s ease;
 }
 
 #partBtn {
-  font-size: 12px;
+  font-size: 16px;
+  transition: font-size 0.3s ease;
 }
 
 #partBtn:hover {
   font-size: 24px;
 }
 
-#partBtn:hover ~ #proBtn {
-  font-size: 12px;
+#proBtn:hover {
+  font-size: 24px;
 }
