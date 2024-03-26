@@ -50,7 +50,29 @@
 
               <div class="cardsmall">
                 <p class="p-caracteristic">Client</p>
-                <p class="p-client"><%= @customer.name %> </p>
+                <% if @user.pro %>
+                  <a class="btn" data-bs-toggle="modal" data-bs-target="#editUserModal<%=@customer.id%>">
+                    <p class="p-client"><%= @customer.name %> </p>
+                  </a>
+                <% else %>
+                  <p class="p-client"><%= @customer.name %> </p>
+                <% end %>
+
+                <!-- Modal Update -->
+                <div class="modal" id="editUserModal<%=@customer.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="editUserModalLabel">Coordonnées client</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <%= render "formuser", project: @project, user: @customer%>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
 
             </div>

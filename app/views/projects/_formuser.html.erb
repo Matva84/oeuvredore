@@ -1,0 +1,25 @@
+<%= simple_form_for([project, user], url: user_path(user), method: :patch) do |f| %>
+  <div class="form-group mt-3 ">
+    <%= f.label :name, "Nom du client :" %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group mt-3">
+    <%= f.label :email , "Email :" %>
+    <%= f.text_area :email, class: 'form-control' %>
+  </div>
+
+  <div class="form-group mt-3">
+    <%= f.label :address , "Adresse postale :" %>
+    <%= f.text_area :address, class: 'form-control' %>
+  </div>
+
+  <div class="form-group mt-3">
+    <%= f.label :phone , "Numéro de téléphone :" %>
+    <%= f.text_area :phone, class: 'form-control' %>
+  </div>
+
+  <div class="form-group mt-3">
+    <%= f.submit 'Mettre à jour', class: 'main-btn-rounded' %>
+  </div>
+<% end %>
