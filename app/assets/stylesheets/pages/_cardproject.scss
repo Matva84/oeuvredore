@@ -4,13 +4,19 @@
 }
 
 .text-maxheight  {
-  max-height: 90px;
-  min-height: 90px;
+  max-height: 105px;
+  min-height: 105px;
   overflow: hidden;
   margin-bottom: 16px;
 }
 
-.card-title-index {
+.card-title {
+  max-height: 75px;
+  min-height: 75px;
+  overflow: hidden;
+  padding: 18px 10px 18px 10px;
+}
+  .card-title-index {
   max-height: 70px;
   min-height: 70px;
   overflow: hidden;
