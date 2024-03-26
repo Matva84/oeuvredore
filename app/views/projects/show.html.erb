@@ -10,10 +10,11 @@
 
           <div class="card">
             <div class="card-presentation">
-              <%= cl_image_tag @project.photo.key, crop: :fill, class: "img-fluid full-width mb-8" %>
+              <%= cl_image_tag @project.photo.key, crop: :fill %>
+              <%# class: "img-fluid full-width mb-8" %>
             </div>
 
-            <h5 class="card-title"><%= @project.title %></h5>
+            <h5 class="card-title-show"><%= @project.title %></h5>
             <p class="card-text"><%= @project.description %></p>
 
             <div class="card-caracteristic">
@@ -76,7 +77,7 @@
 
             <div class="tab-content ongletscontainer" id="nav-tabContent">
 
-              <div class="tab-pane fade show active fixedheight d-flex justify-content-center align-items-center p-2" id="nav-planning" role="tabpanel" aria-labelledby="nav-planning-tab" tabindex="0" data-tabs-link-target="contentPlanning">
+              <div class="tab-pane fade show active fixedheight d-flex justify-content-center align-items-center px-5 py-3" id="nav-planning" role="tabpanel" aria-labelledby="nav-planning-tab" tabindex="0" data-tabs-link-target="contentPlanning">
                 <% tasks_name = [] %>
                 <% tasks_start = [] %>
                 <% tasks_end = [] %>
