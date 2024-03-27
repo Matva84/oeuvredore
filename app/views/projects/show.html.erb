@@ -38,7 +38,7 @@
               </div>
 
               <div class="cardsmall">
-                <p><strong>Budget</strong></p>
+                <p class="p-caracteristic">Budget</p>
                 <div class="w3-darkgreen w3-round-large">
                   <% s = "width:#{100 * (@project.total_expenses/@project.customer_budget)}%" %>
                   <div class="w3-container w3-green w3-round-large" style=<%= s%>>
@@ -51,7 +51,7 @@
               <div class="cardsmall">
                 <p class="p-caracteristic">Client</p>
                 <% if @user.pro %>
-                  <a class="btn" data-bs-toggle="modal" data-bs-target="#editUserModal<%=@customer.id%>">
+                  <a class="btn btn-client" data-bs-toggle="modal" data-bs-target="#editUserModal<%=@customer.id%>">
                     <p class="p-client"><%= @customer.name %> </p>
                   </a>
                 <% else %>

@@ -363,18 +363,25 @@ padding: 16px;
 .p-caracteristic {
   display: flex;
   justify-content: flex-start;
-  padding-left: 10px;
+  //padding-left: 10px;
   font-size: 16px;
   font-weight: 600;
 }
 
 .p-client {
-  display: flex;
-  justify-content: flex-start;
-  padding-left: 10px;
+  //display: flex;
+  //justify-content: flex-start;
+  //padding-left: 10px;
 }
 
 .task-notification-content {
   display: flex;
   justify-content: space-between;
+}
+
+.btn-client {
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  justify-content: flex-start;
 }
