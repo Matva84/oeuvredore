@@ -10,14 +10,22 @@
           <div class="col-md-6">
             <div class="card text-center">
               <div class="card-body custom-card-body">
-                <h5 class="card-title">Projets réalisés: <%= @realized_projects %></h5>
+                <% if @realized_projects > 1 %>
+                  <h5 class="card-title">Projets réalisés: <%= @realized_projects %></h5>
+                <% else %>
+                  <h5 class="card-title">Projet réalisé: <%= @realized_projects %></h5>
+                <% end %>
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="card text-center">
               <div class="card-body custom-card-body">
-                <h5 class="card-title">Projets en cours: <%= @total_projects %> </h5>
+                <% if @total_projects > 1 %>
+                  <h5 class="card-title">Projets en cours: <%= @total_projects %> </h5>
+                <% else %>
+                  <h5 class="card-title">Projet en cours: <%= @total_projects %> </h5>
+                <% end %>
               </div>
             </div>
           </div>

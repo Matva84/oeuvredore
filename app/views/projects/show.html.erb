@@ -38,7 +38,7 @@
               </div>
 
               <div class="cardsmall">
-                <p><strong>Budget</strong></p>
+                <p class="p-caracteristic">Budget</p>
                 <div class="w3-darkgreen w3-round-large">
                   <% s = "width:#{100 * (@project.total_expenses/@project.customer_budget)}%" %>
                   <div class="w3-container w3-green w3-round-large" style=<%= s%>>
@@ -50,7 +50,29 @@
 
               <div class="cardsmall">
                 <p class="p-caracteristic">Client</p>
-                <p class="p-client"><%= @customer.name %> </p>
+                <% if @user.pro %>
+                  <a class="btn btn-client" data-bs-toggle="modal" data-bs-target="#editUserModal<%=@customer.id%>">
+                    <p class="p-client"><%= @customer.name %> </p>
+                  </a>
+                <% else %>
+                  <p class="p-client"><%= @customer.name %> </p>
+                <% end %>
+
+                <!-- Modal Update -->
+                <div class="modal" id="editUserModal<%=@customer.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="editUserModalLabel">Coordonnées client</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <%= render "formuser", project: @project, user: @customer%>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
 
             </div>
@@ -129,8 +151,8 @@
                         <p> <%=task.description%> </p>
                       </div>
                       <div class="task-notification-content text-center">
-                        <p><small> <%=task.start_at%> - <%=task.end_at%> </small></p>
-                        <p><small> <%=task.budget%> € </small></p>
+                        <p class="small-thin"><%= Date.parse(task.start_at).strftime("%d/%m/%Y") %> -> <%= Date.parse(task.end_at).strftime("%d/%m/%Y") %> </p>
+                        <p class="small-bold"><%= number_with_delimiter(task.budget) %> € </p>
                       </div>
                       <div class="task-notification-actions">
                         <% if @user.pro %>
@@ -161,20 +183,20 @@
               </div>
 
               <div class="tab-pane fade d-none fixedheight d-flex justify-content-center align-items-center p-2" id="nav-budget" role="tabpanel" aria-labelledby="nav-budget-tab" tabindex="2" data-tabs-link-target="contentBudget">
-                <canvas id = "budgetgraph" data-controller="line-chart">
+                <canvas id = "budgetgraph" width="1100px" height="700px" data-controller="line-chart">
                   <div data-line-chart-target="tasksName" data-value = "<%= tasks_name %>"> </div>
                   <div data-line-chart-target="tasksPrice" data-value = "<%= tasks_price %>"> </div>
                   <div data-line-chart-target="tasksProgress" data-value = "<%= tasks_progress %>"> </div>
                 </canvas>
                 <div id="budget-numbers">
-                  <div>
-                    <strong>Limite budgétaire :</strong>
-                    <p><%=@project.customer_budget.to_i%> €</p>
-                  </div>
-                  <div>
-                    <strong>Réalisé :</strong>
-                    <p><%=@project.total_expenses.to_i%> €</p>
-                  </div>
+                <div>
+                  <strong>Limite budgétaire :</strong>
+                  <p><%= number_with_delimiter(@project.customer_budget.to_i) %> €</p>
+                </div>
+                <div>
+                  <strong>Réalisé :</strong>
+                  <p><%= number_with_delimiter(@project.total_expenses.to_i) %> €</p>
+                </div>
                 </div>
               </div>
 
